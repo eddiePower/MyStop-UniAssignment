@@ -1,0 +1,674 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		89315BA91946C49800CD1D50 /* TrainAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 89315BA81946C49800CD1D50 /* TrainAlert.mp3 */; };
+		89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89315BAA1946CD4B00CD1D50 /* Localizable.strings */; };
+		893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */; };
+		893C6A4E1931E57D00501E0A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893C6A4D1931E57D00501E0A /* CoreData.framework */; };
+		8967C8311941EB56002460EB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967C8301941EB56002460EB /* SettingsViewController.m */; };
+		89701DA91919FE4500501AB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DA81919FE4500501AB0 /* Foundation.framework */; };
+		89701DAB1919FE4500501AB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DAA1919FE4500501AB0 /* CoreGraphics.framework */; };
+		89701DAD1919FE4500501AB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DAC1919FE4500501AB0 /* UIKit.framework */; };
+		89701DB31919FE4500501AB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89701DB11919FE4500501AB0 /* InfoPlist.strings */; };
+		89701DB51919FE4500501AB0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DB41919FE4500501AB0 /* main.m */; };
+		89701DB91919FE4500501AB0 /* StopMonitorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DB81919FE4500501AB0 /* StopMonitorAppDelegate.m */; };
+		89701DBC1919FE4500501AB0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89701DBA1919FE4500501AB0 /* Main.storyboard */; };
+		89701DC11919FE4500501AB0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89701DC01919FE4500501AB0 /* Images.xcassets */; };
+		89701DC81919FE4600501AB0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DC71919FE4600501AB0 /* XCTest.framework */; };
+		89701DC91919FE4600501AB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DA81919FE4500501AB0 /* Foundation.framework */; };
+		89701DCA1919FE4600501AB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DAC1919FE4500501AB0 /* UIKit.framework */; };
+		89701DD21919FE4600501AB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89701DD01919FE4600501AB0 /* InfoPlist.strings */; };
+		89701DD41919FE4600501AB0 /* MyStopMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */; };
+		89701DDF191A032B00501AB0 /* AlarmListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DDE191A032B00501AB0 /* AlarmListController.m */; };
+		89701DE2191A035900501AB0 /* AddStopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE1191A035900501AB0 /* AddStopController.m */; };
+		89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE4191A039A00501AB0 /* AlarmCell.m */; };
+		89701DE8191A03AB00501AB0 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE7191A03AB00501AB0 /* StationCell.m */; };
+		897F2A021944EE5F00799A48 /* errorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FA1944EE5F00799A48 /* errorIcon.png */; };
+		897F2A031944EE5F00799A48 /* errorIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FB1944EE5F00799A48 /* errorIcon@2x.png */; };
+		897F2A041944EE5F00799A48 /* infoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FC1944EE5F00799A48 /* infoIcon.png */; };
+		897F2A051944EE5F00799A48 /* infoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FD1944EE5F00799A48 /* infoIcon@2x.png */; };
+		897F2A061944EE5F00799A48 /* successIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FE1944EE5F00799A48 /* successIcon.png */; };
+		897F2A071944EE5F00799A48 /* successIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FF1944EE5F00799A48 /* successIcon@2x.png */; };
+		897F2A081944EE5F00799A48 /* TDNotificationPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F2A011944EE5F00799A48 /* TDNotificationPanel.m */; };
+		899C70321944C3110026D1E7 /* ACPReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 899C70311944C3110026D1E7 /* ACPReminder.m */; };
+		899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 899F721B1927D0BA00835477 /* StopAnnotation.m */; };
+		89ACB9181935637F00B43EF8 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB9171935637F00B43EF8 /* Station.m */; };
+		89ACB91B1935637F00B43EF8 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91A1935637F00B43EF8 /* Alarm.m */; };
+		89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */; };
+		89BAD9B4194302F800D56D08 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BAD9B3194302F800D56D08 /* AVFoundation.framework */; };
+		89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BAD9B519430A4200D56D08 /* Default@2x.png */; };
+		89D6B536191FD25100011880 /* TrainLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6B535191FD25100011880 /* TrainLine.m */; };
+		89D6B539191FD93500011880 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B537191FD93500011880 /* CoreLocation.framework */; };
+		89D6B53A191FD93500011880 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B538191FD93500011880 /* MapKit.framework */; };
+		89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		89701DCB1919FE4600501AB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89701D9D1919FE4500501AB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 89701DA41919FE4500501AB0;
+			remoteInfo = MyStopMonitor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		89315BA81946C49800CD1D50 /* TrainAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrainAlert.mp3; sourceTree = "<group>"; };
+		89315BAA1946CD4B00CD1D50 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		893C6A4B1931E0EC00501E0A /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		893C6A4D1931E57D00501E0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		8967C82F1941EB56002460EB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		8967C8301941EB56002460EB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		89701DA51919FE4500501AB0 /* MyStopMonitorV1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStopMonitorV1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		89701DA81919FE4500501AB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		89701DAA1919FE4500501AB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		89701DAC1919FE4500501AB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		89701DB01919FE4500501AB0 /* MyStopMonitorV1.1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitorV1.1-Info.plist"; sourceTree = "<group>"; };
+		89701DB21919FE4500501AB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		89701DB41919FE4500501AB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		89701DB61919FE4500501AB0 /* MyStopMonitorV1.1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyStopMonitorV1.1-Prefix.pch"; sourceTree = "<group>"; };
+		89701DB71919FE4500501AB0 /* StopMonitorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopMonitorAppDelegate.h; sourceTree = "<group>"; };
+		89701DB81919FE4500501AB0 /* StopMonitorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopMonitorAppDelegate.m; sourceTree = "<group>"; };
+		89701DBB1919FE4500501AB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		89701DC01919FE4500501AB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		89701DC61919FE4600501AB0 /* MyStopMonitorV1.1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyStopMonitorV1.1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89701DC71919FE4600501AB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		89701DCF1919FE4600501AB0 /* MyStopMonitorV1.1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitorV1.1Tests-Info.plist"; sourceTree = "<group>"; };
+		89701DD11919FE4600501AB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyStopMonitorTests.m; sourceTree = "<group>"; };
+		89701DDD191A032B00501AB0 /* AlarmListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmListController.h; sourceTree = "<group>"; };
+		89701DDE191A032B00501AB0 /* AlarmListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmListController.m; sourceTree = "<group>"; };
+		89701DE0191A035900501AB0 /* AddStopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStopController.h; sourceTree = "<group>"; };
+		89701DE1191A035900501AB0 /* AddStopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddStopController.m; sourceTree = "<group>"; };
+		89701DE3191A039A00501AB0 /* AlarmCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmCell.h; sourceTree = "<group>"; };
+		89701DE4191A039A00501AB0 /* AlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmCell.m; sourceTree = "<group>"; };
+		89701DE6191A03AB00501AB0 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
+		89701DE7191A03AB00501AB0 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
+		897F29FA1944EE5F00799A48 /* errorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorIcon.png; sourceTree = "<group>"; };
+		897F29FB1944EE5F00799A48 /* errorIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "errorIcon@2x.png"; sourceTree = "<group>"; };
+		897F29FC1944EE5F00799A48 /* infoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoIcon.png; sourceTree = "<group>"; };
+		897F29FD1944EE5F00799A48 /* infoIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoIcon@2x.png"; sourceTree = "<group>"; };
+		897F29FE1944EE5F00799A48 /* successIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = successIcon.png; sourceTree = "<group>"; };
+		897F29FF1944EE5F00799A48 /* successIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "successIcon@2x.png"; sourceTree = "<group>"; };
+		897F2A001944EE5F00799A48 /* TDNotificationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNotificationPanel.h; sourceTree = "<group>"; };
+		897F2A011944EE5F00799A48 /* TDNotificationPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNotificationPanel.m; sourceTree = "<group>"; };
+		899C70301944C3110026D1E7 /* ACPReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPReminder.h; sourceTree = "<group>"; };
+		899C70311944C3110026D1E7 /* ACPReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPReminder.m; sourceTree = "<group>"; };
+		899F721A1927D0BA00835477 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
+		899F721B1927D0BA00835477 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
+		89ACB9161935637F00B43EF8 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		89ACB9171935637F00B43EF8 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		89ACB9191935637F00B43EF8 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
+		89ACB91A1935637F00B43EF8 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
+		89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateSigniture.h; sourceTree = "<group>"; };
+		89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateSigniture.m; sourceTree = "<group>"; };
+		89BAD9B3194302F800D56D08 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		89BAD9B519430A4200D56D08 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		89D6B534191FD25100011880 /* TrainLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainLine.h; sourceTree = "<group>"; };
+		89D6B535191FD25100011880 /* TrainLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainLine.m; sourceTree = "<group>"; };
+		89D6B537191FD93500011880 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		89D6B538191FD93500011880 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		89D6B53D191FDA0A00011880 /* ShowStopMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowStopMapViewController.h; sourceTree = "<group>"; };
+		89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowStopMapViewController.m; sourceTree = "<group>"; };
+		89FC0ADC1924F3DB002BC8B0 /* FrankstonLineStops.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FrankstonLineStops.gpx; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		89701DA21919FE4500501AB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89BAD9B4194302F800D56D08 /* AVFoundation.framework in Frameworks */,
+				893C6A4E1931E57D00501E0A /* CoreData.framework in Frameworks */,
+				89D6B539191FD93500011880 /* CoreLocation.framework in Frameworks */,
+				89D6B53A191FD93500011880 /* MapKit.framework in Frameworks */,
+				89701DAB1919FE4500501AB0 /* CoreGraphics.framework in Frameworks */,
+				89701DAD1919FE4500501AB0 /* UIKit.framework in Frameworks */,
+				89701DA91919FE4500501AB0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89701DC31919FE4600501AB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89701DC81919FE4600501AB0 /* XCTest.framework in Frameworks */,
+				89701DCA1919FE4600501AB0 /* UIKit.framework in Frameworks */,
+				89701DC91919FE4600501AB0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8936BB921944F47900BB9B9B /* ExtraResources */ = {
+			isa = PBXGroup;
+			children = (
+				897F29F91944EE5F00799A48 /* TDNotificationPanel */,
+				899C702F1944C3110026D1E7 /* ACPReminder */,
+			);
+			name = ExtraResources;
+			sourceTree = "<group>";
+		};
+		89701D9C1919FE4500501AB0 = {
+			isa = PBXGroup;
+			children = (
+				89701DAE1919FE4500501AB0 /* MyStopMonitor */,
+				89701DCD1919FE4600501AB0 /* MyStopMonitorTests */,
+				89701DA61919FE4500501AB0 /* Products */,
+				89701DA71919FE4500501AB0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		89701DA61919FE4500501AB0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				89701DA51919FE4500501AB0 /* MyStopMonitorV1.1.app */,
+				89701DC61919FE4600501AB0 /* MyStopMonitorV1.1Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		89701DA71919FE4500501AB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				89BAD9B3194302F800D56D08 /* AVFoundation.framework */,
+				893C6A4D1931E57D00501E0A /* CoreData.framework */,
+				89D6B537191FD93500011880 /* CoreLocation.framework */,
+				89D6B538191FD93500011880 /* MapKit.framework */,
+				89701DA81919FE4500501AB0 /* Foundation.framework */,
+				89701DAA1919FE4500501AB0 /* CoreGraphics.framework */,
+				89701DAC1919FE4500501AB0 /* UIKit.framework */,
+				89701DC71919FE4600501AB0 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		89701DAE1919FE4500501AB0 /* MyStopMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				8936BB921944F47900BB9B9B /* ExtraResources */,
+				899F72201927DF3A00835477 /* Resources */,
+				89701DBA1919FE4500501AB0 /* Main.storyboard */,
+				89F6B7BF191A554300797094 /* model */,
+				89BAD9AF1942EA3700D56D08 /* View */,
+				89BAD9B01942EA7100D56D08 /* Controller */,
+				89701DAF1919FE4500501AB0 /* Supporting Files */,
+			);
+			path = MyStopMonitor;
+			sourceTree = "<group>";
+		};
+		89701DAF1919FE4500501AB0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				89701DB01919FE4500501AB0 /* MyStopMonitorV1.1-Info.plist */,
+				89701DB11919FE4500501AB0 /* InfoPlist.strings */,
+				89701DB41919FE4500501AB0 /* main.m */,
+				89701DB61919FE4500501AB0 /* MyStopMonitorV1.1-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		89701DCD1919FE4600501AB0 /* MyStopMonitorTests */ = {
+			isa = PBXGroup;
+			children = (
+				89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */,
+				89701DCE1919FE4600501AB0 /* Supporting Files */,
+			);
+			path = MyStopMonitorTests;
+			sourceTree = "<group>";
+		};
+		89701DCE1919FE4600501AB0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				89701DCF1919FE4600501AB0 /* MyStopMonitorV1.1Tests-Info.plist */,
+				89701DD01919FE4600501AB0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		897F29F91944EE5F00799A48 /* TDNotificationPanel */ = {
+			isa = PBXGroup;
+			children = (
+				897F29FA1944EE5F00799A48 /* errorIcon.png */,
+				897F29FB1944EE5F00799A48 /* errorIcon@2x.png */,
+				897F29FC1944EE5F00799A48 /* infoIcon.png */,
+				897F29FD1944EE5F00799A48 /* infoIcon@2x.png */,
+				897F29FE1944EE5F00799A48 /* successIcon.png */,
+				897F29FF1944EE5F00799A48 /* successIcon@2x.png */,
+				897F2A001944EE5F00799A48 /* TDNotificationPanel.h */,
+				897F2A011944EE5F00799A48 /* TDNotificationPanel.m */,
+			);
+			path = TDNotificationPanel;
+			sourceTree = "<group>";
+		};
+		899C702F1944C3110026D1E7 /* ACPReminder */ = {
+			isa = PBXGroup;
+			children = (
+				899C70301944C3110026D1E7 /* ACPReminder.h */,
+				899C70311944C3110026D1E7 /* ACPReminder.m */,
+			);
+			path = ACPReminder;
+			sourceTree = "<group>";
+		};
+		899F72201927DF3A00835477 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				89315BAA1946CD4B00CD1D50 /* Localizable.strings */,
+				89315BA81946C49800CD1D50 /* TrainAlert.mp3 */,
+				89BAD9B519430A4200D56D08 /* Default@2x.png */,
+				89FC0ADC1924F3DB002BC8B0 /* FrankstonLineStops.gpx */,
+				89701DC01919FE4500501AB0 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		89BAD9AF1942EA3700D56D08 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				899F721A1927D0BA00835477 /* StopAnnotation.h */,
+				899F721B1927D0BA00835477 /* StopAnnotation.m */,
+				89701DE6191A03AB00501AB0 /* StationCell.h */,
+				89701DE7191A03AB00501AB0 /* StationCell.m */,
+				89701DE3191A039A00501AB0 /* AlarmCell.h */,
+				89701DE4191A039A00501AB0 /* AlarmCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		89BAD9B01942EA7100D56D08 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				89701DB71919FE4500501AB0 /* StopMonitorAppDelegate.h */,
+				89701DB81919FE4500501AB0 /* StopMonitorAppDelegate.m */,
+				89701DE0191A035900501AB0 /* AddStopController.h */,
+				89701DE1191A035900501AB0 /* AddStopController.m */,
+				89701DDD191A032B00501AB0 /* AlarmListController.h */,
+				89701DDE191A032B00501AB0 /* AlarmListController.m */,
+				89D6B53D191FDA0A00011880 /* ShowStopMapViewController.h */,
+				89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */,
+				8967C82F1941EB56002460EB /* SettingsViewController.h */,
+				8967C8301941EB56002460EB /* SettingsViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		89F6B7BF191A554300797094 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */,
+				89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */,
+				893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */,
+				89ACB9191935637F00B43EF8 /* Alarm.h */,
+				89ACB91A1935637F00B43EF8 /* Alarm.m */,
+				89ACB9161935637F00B43EF8 /* Station.h */,
+				89ACB9171935637F00B43EF8 /* Station.m */,
+				89D6B534191FD25100011880 /* TrainLine.h */,
+				89D6B535191FD25100011880 /* TrainLine.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		89701DA41919FE4500501AB0 /* MyStopMonitorV1.1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89701DD71919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1" */;
+			buildPhases = (
+				89701DA11919FE4500501AB0 /* Sources */,
+				89701DA21919FE4500501AB0 /* Frameworks */,
+				89701DA31919FE4500501AB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyStopMonitorV1.1;
+			productName = MyStopMonitor;
+			productReference = 89701DA51919FE4500501AB0 /* MyStopMonitorV1.1.app */;
+			productType = "com.apple.product-type.application";
+		};
+		89701DC51919FE4600501AB0 /* MyStopMonitorV1.1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89701DDA1919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1Tests" */;
+			buildPhases = (
+				89701DC21919FE4600501AB0 /* Sources */,
+				89701DC31919FE4600501AB0 /* Frameworks */,
+				89701DC41919FE4600501AB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				89701DCC1919FE4600501AB0 /* PBXTargetDependency */,
+			);
+			name = MyStopMonitorV1.1Tests;
+			productName = MyStopMonitorTests;
+			productReference = 89701DC61919FE4600501AB0 /* MyStopMonitorV1.1Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		89701D9D1919FE4500501AB0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = StopMonitor;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Eddie Power";
+				TargetAttributes = {
+					89701DC51919FE4600501AB0 = {
+						TestTargetID = 89701DA41919FE4500501AB0;
+					};
+				};
+			};
+			buildConfigurationList = 89701DA01919FE4500501AB0 /* Build configuration list for PBXProject "MyStopMonitorV1.1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				fr,
+			);
+			mainGroup = 89701D9C1919FE4500501AB0;
+			productRefGroup = 89701DA61919FE4500501AB0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				89701DA41919FE4500501AB0 /* MyStopMonitorV1.1 */,
+				89701DC51919FE4600501AB0 /* MyStopMonitorV1.1Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		89701DA31919FE4500501AB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				897F2A061944EE5F00799A48 /* successIcon.png in Resources */,
+				89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */,
+				897F2A021944EE5F00799A48 /* errorIcon.png in Resources */,
+				897F2A051944EE5F00799A48 /* infoIcon@2x.png in Resources */,
+				89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */,
+				89701DC11919FE4500501AB0 /* Images.xcassets in Resources */,
+				89701DB31919FE4500501AB0 /* InfoPlist.strings in Resources */,
+				897F2A031944EE5F00799A48 /* errorIcon@2x.png in Resources */,
+				897F2A041944EE5F00799A48 /* infoIcon.png in Resources */,
+				89315BA91946C49800CD1D50 /* TrainAlert.mp3 in Resources */,
+				89701DBC1919FE4500501AB0 /* Main.storyboard in Resources */,
+				897F2A071944EE5F00799A48 /* successIcon@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89701DC41919FE4600501AB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89701DD21919FE4600501AB0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		89701DA11919FE4500501AB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89701DB51919FE4500501AB0 /* main.m in Sources */,
+				89ACB91B1935637F00B43EF8 /* Alarm.m in Sources */,
+				89701DDF191A032B00501AB0 /* AlarmListController.m in Sources */,
+				89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */,
+				89701DE2191A035900501AB0 /* AddStopController.m in Sources */,
+				899C70321944C3110026D1E7 /* ACPReminder.m in Sources */,
+				89701DB91919FE4500501AB0 /* StopMonitorAppDelegate.m in Sources */,
+				89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */,
+				8967C8311941EB56002460EB /* SettingsViewController.m in Sources */,
+				893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */,
+				89701DE8191A03AB00501AB0 /* StationCell.m in Sources */,
+				89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */,
+				899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */,
+				89D6B536191FD25100011880 /* TrainLine.m in Sources */,
+				89ACB9181935637F00B43EF8 /* Station.m in Sources */,
+				897F2A081944EE5F00799A48 /* TDNotificationPanel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89701DC21919FE4600501AB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89701DD41919FE4600501AB0 /* MyStopMonitorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		89701DCC1919FE4600501AB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 89701DA41919FE4500501AB0 /* MyStopMonitorV1.1 */;
+			targetProxy = 89701DCB1919FE4600501AB0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		89701DB11919FE4500501AB0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89701DB21919FE4500501AB0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		89701DBA1919FE4500501AB0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89701DBB1919FE4500501AB0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		89701DD01919FE4600501AB0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				89701DD11919FE4600501AB0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		89701DD51919FE4600501AB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		89701DD61919FE4600501AB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		89701DD81919FE4600501AB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitorV1.1-Prefix.pch";
+				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitorV1.1-Info.plist";
+				PRODUCT_NAME = MyStopMonitorV1.1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		89701DD91919FE4600501AB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitorV1.1-Prefix.pch";
+				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitorV1.1-Info.plist";
+				PRODUCT_NAME = MyStopMonitorV1.1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		89701DDB1919FE4600501AB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyStopMonitor.app/MyStopMonitor";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MyStopMonitorTests/MyStopMonitorV1.1Tests-Info.plist";
+				PRODUCT_NAME = MyStopMonitorV1.1Tests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		89701DDC1919FE4600501AB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MyStopMonitor.app/MyStopMonitor";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
+				INFOPLIST_FILE = "MyStopMonitorTests/MyStopMonitorV1.1Tests-Info.plist";
+				PRODUCT_NAME = MyStopMonitorV1.1Tests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		89701DA01919FE4500501AB0 /* Build configuration list for PBXProject "MyStopMonitorV1.1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89701DD51919FE4600501AB0 /* Debug */,
+				89701DD61919FE4600501AB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89701DD71919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89701DD81919FE4600501AB0 /* Debug */,
+				89701DD91919FE4600501AB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		89701DDA1919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89701DDB1919FE4600501AB0 /* Debug */,
+				89701DDC1919FE4600501AB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				893C6A4B1931E0EC00501E0A /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 893C6A4B1931E0EC00501E0A /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 89701D9D1919FE4500501AB0 /* Project object */;
+}
