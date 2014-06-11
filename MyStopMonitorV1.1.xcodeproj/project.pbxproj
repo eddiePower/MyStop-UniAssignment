@@ -29,6 +29,7 @@
 		89701DE2191A035900501AB0 /* AddStopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE1191A035900501AB0 /* AddStopController.m */; };
 		89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE4191A039A00501AB0 /* AlarmCell.m */; };
 		89701DE8191A03AB00501AB0 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE7191A03AB00501AB0 /* StationCell.m */; };
+		8979916219484CC400F0AFA2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8979916119484CC400F0AFA2 /* README.md */; };
 		897F2A021944EE5F00799A48 /* errorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FA1944EE5F00799A48 /* errorIcon.png */; };
 		897F2A031944EE5F00799A48 /* errorIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FB1944EE5F00799A48 /* errorIcon@2x.png */; };
 		897F2A041944EE5F00799A48 /* infoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FC1944EE5F00799A48 /* infoIcon.png */; };
@@ -91,6 +92,7 @@
 		89701DE4191A039A00501AB0 /* AlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmCell.m; sourceTree = "<group>"; };
 		89701DE6191A03AB00501AB0 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
 		89701DE7191A03AB00501AB0 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
+		8979916119484CC400F0AFA2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		897F29FA1944EE5F00799A48 /* errorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = errorIcon.png; sourceTree = "<group>"; };
 		897F29FB1944EE5F00799A48 /* errorIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "errorIcon@2x.png"; sourceTree = "<group>"; };
 		897F29FC1944EE5F00799A48 /* infoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoIcon.png; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		89701D9C1919FE4500501AB0 = {
 			isa = PBXGroup;
 			children = (
+				8979916119484CC400F0AFA2 /* README.md */,
 				89701DAE1919FE4500501AB0 /* MyStopMonitor */,
 				89701DCD1919FE4600501AB0 /* MyStopMonitorTests */,
 				89701DA61919FE4500501AB0 /* Products */,
@@ -398,6 +401,7 @@
 				89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */,
 				897F2A021944EE5F00799A48 /* errorIcon.png in Resources */,
 				897F2A051944EE5F00799A48 /* infoIcon@2x.png in Resources */,
+				8979916219484CC400F0AFA2 /* README.md in Resources */,
 				89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */,
 				89701DC11919FE4500501AB0 /* Images.xcassets in Resources */,
 				89701DB31919FE4500501AB0 /* InfoPlist.strings in Resources */,
