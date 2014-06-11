@@ -54,7 +54,6 @@
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
-	//MOVE REGION CREATION TO OWN FILE AND CALL FROM THE ADD STOP CONTROLLER,
     //Start updating location changes.
 	[self.locManager startUpdatingLocation];
     
@@ -145,12 +144,15 @@
 
         //use accessoryView to help position the seitch easily.
         cell.accessoryView = alarmActiveSwitch;
+        cell.alarmSwitch = alarmActiveSwitch;
+        cell.cellAlarm = a;
         
-        //NSLog(@"The stored Alarm switch value is: %@", a.alarmIsActive);
+        [cell setupCell];
         
-        //Check initial state of alarm switch has it been saved in on or off position.
+        
+        //Check initial load state of alarm switch has it been saved in on or off position.
         //and redo that switch
-        if (a.alarmIsActive.integerValue ==  1)
+        if (a.alarmIsActive.intValue ==  1)
         {
             [alarmActiveSwitch setOn: YES animated: YES];
         }
@@ -161,7 +163,6 @@
         
         [alarmActiveSwitch addTarget: self action: @selector(switchChanged:) forControlEvents: UIControlEventValueChanged];
         
-    
        return cell;
     }
     else
@@ -177,8 +178,9 @@
     return nil;
 }
 
+
 //Check to see if activate Alarm Switch has moved  ??Ask about passing in alarm from row.
-- (void)switchChanged:(id)sender
+- (NSNumber *)switchChanged:(id)sender
 {
     UISwitch *switchControl = sender;
 
@@ -191,11 +193,14 @@
     {
         //??pass back value to set alarm is active??
         NSLog(@"Switch is on");
+        
+        return [NSNumber numberWithInt: 1];
 
     }
     else
     {
         NSLog(@"switch is off");
+        return [NSNumber numberWithInt: 0];
     }
     
 }
@@ -225,7 +230,7 @@
         stopCenter.latitude = [alarmToRemove.station.stationLatitude doubleValue];
         stopCenter.longitude = [alarmToRemove.station.stationLongitude doubleValue];
         
-        // ios7+ Create the geographic circular region to be monitored.
+        //geographic circular region to be removed.
         CLCircularRegion *geoRegion = [[CLCircularRegion alloc]
                                        initWithCenter: stopCenter
                                        radius: [alarmToRemove.alarmAlertRadius doubleValue]  //will be set by user slider
@@ -234,7 +239,7 @@
         //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
         [self.locManager stopMonitoringForRegion: geoRegion];
         
-        //remove the alarm object from the currentAlarms
+        //remove the alarm object fro m the currentAlarms
         [self.currentAlarms removeObject: alarmToRemove];
         
         //Update the alarms array with the mutableCopy of
@@ -295,7 +300,7 @@
     anAlarm.alarmIsActive = [NSNumber numberWithInt: 1];
     
     //link to slider to adjust radius of region
-    anAlarm.alarmAlertRadius = [NSNumber numberWithFloat: 210.0];  //used in the region creation for radius in meters.
+    anAlarm.alarmAlertRadius = [NSNumber numberWithFloat: 850.00];  //used in the region creation for radius in meters.
                                                                    //chose 210 to allow enough time for user.
                                                                    //will keep this value as the lowest radius limit.
     
@@ -359,6 +364,10 @@
     //NSLog(@"\nNow monitoring region named: %@", region.identifier);
 }
 
+-(void)locationManager:(CLLocationManager *)manager didStopMonitoringForRegion:(CLRegion *)region
+{
+    NSLog(@"Stoping monitoring region name: %@", region.identifier);
+}
 //if the region monitoring failed then run this delegate method.
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {

@@ -31,11 +31,16 @@
 ////////////////////////////////////////////////////////////*/
 
 #import <UIKit/UIKit.h>
+#import "Alarm.h"
 
 @interface AlarmCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *alarmSuburbLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alarmStopNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alarmLocationLabel;
+@property (strong, nonatomic) UISwitch *alarmSwitch;
+@property (strong, nonatomic) Alarm* cellAlarm;
+
+-(void)setupCell;
 
 @end

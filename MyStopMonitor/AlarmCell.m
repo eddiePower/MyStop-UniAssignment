@@ -34,4 +34,21 @@
 
 @implementation AlarmCell
 
+-(void)setupCell
+{
+    [self.alarmSwitch addTarget: self action: @selector(toggleAlarm) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)toggleAlarm
+{
+    if(self.alarmSwitch.on)
+    {
+        self.cellAlarm.alarmIsActive = [NSNumber numberWithInt:1];
+    }
+    else
+    {
+        self.cellAlarm.alarmIsActive = [NSNumber numberWithInt:0];
+    }
+}
+
 @end
