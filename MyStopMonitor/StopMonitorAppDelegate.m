@@ -62,29 +62,50 @@
     AlarmListController *alarmListController = [navController.viewControllers firstObject];
     alarmListController.managedObjectContext = self.managedObjectContext;
     
-    
-    //CREATING LOCATION MANAGER OBJECT FOR ALL APPLICATION ACCESS
-    //PASS LOCATION MANAGER TO ALARM LIST OBJECT FOR LATER USE.
+    //Create location manager for use through out the application
     self.locationManager = [[CLLocationManager alloc] init];
+    //Start updating the location data of the user to begin monitoring regions.
     [self.locationManager startUpdatingLocation];
     
-    self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
-    //self.locationManager.distanceFilter = 10.0f;
+    #warning more testing required on location manager accuracy setting vs battery life
     
-	self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    //self.locationManager.desiredAccuracy = 20.0f;
+    //Set desired accuracy as high as feasable due to purpose of the app.
+    self.locationManager.distanceFilter = kCLLocationAccuracyBest;
+    //self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
     
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    
+    //set the location manager used on other pages so monitoring dosnt stop at wrong time.
     alarmListController.locManager = self.locationManager;
     self.locationManager.delegate = alarmListController;
-
+    
     
     return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    /* Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.*/
+    
+    // In case user goes to home screen after interupt, Reset the icon badge number to zero.
+	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    //Check background GPS monitoring is available
+    if ([CLLocationManager significantLocationChangeMonitoringAvailable])
+    {
+		// Stop normal location updates and start significant location change updates for battery efficiency.
+		[self.locationManager stopUpdatingLocation];
+		[self.locationManager startMonitoringSignificantLocationChanges];
+        
+        NSLog(@"Switching to monitor Background signifigant Local Changes. Due to interupt from other service");
+        
+	}
+	else
+    {
+		NSLog(@"Significant location change monitoring is not available. Interup request is interupting!");
+	}
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -98,10 +119,14 @@
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
     
+    //Current Regions check & copy to workable array
+    ///Note: may use this for clean up on exit and then rebuild on restart,
+    //        build into core data for save state.
+    
     //NSMutableArray *regions = [[NSMutableArray alloc] init];
     //regions = [[self.viewController.locManager monitoredRegions] allObjects].mutableCopy;
     
-	
+    //Check background GPS monitoring is available
 	if ([CLLocationManager significantLocationChangeMonitoringAvailable])
     {
 		// Stop normal location updates and start significant location change updates for battery efficiency.

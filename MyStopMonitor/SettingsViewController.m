@@ -34,6 +34,7 @@
 
 @interface SettingsViewController ()
 
+@property(nonatomic)double radiusUpdate;
 
 @end
 
@@ -42,6 +43,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Create userDefaults store
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //Set mapView delegate
     self.radiusMapView.delegate = self;
@@ -79,9 +83,15 @@
     //overridden method below, adds custom pin and callout.
     [self.radiusMapView viewForAnnotation: radiusDemoAnnotation];
     
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    
+    double tempRadius = tempString.doubleValue;
+    
+    
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: kalertRadius];
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
+    
     [self.radiusMapView addOverlay: circle];
 }
 
@@ -92,6 +102,7 @@
     MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
     circleR.strokeColor = [UIColor blueColor];
     circleR.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    circleR.lineWidth = 3;
     
     return circleR;
 }
@@ -121,23 +132,21 @@
 
 - (IBAction)sliderValueChanged:(id)sender
 {
+    // Create userDefaults store
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     UISlider *tempSlider = sender;
+
+    NSLog(@"RadiusUpdate val: %.1f", tempSlider.value * 1000);
     
-    double radiusUpdate = tempSlider.value * 1000;
+    [defaults setDouble: tempSlider.value * 1000 forKey:@"alertRadius"];
     
-    CLLocationCoordinate2D demoRadiusCenter;
-    demoRadiusCenter.latitude = -37.817792;
-    demoRadiusCenter.longitude = 144.967229;
+    [defaults synchronize];
     
-    //MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: kalertRadius];
-    //[self.radiusMapView addOverlay: circle];
+    [self.radiusMapView reloadInputViews];
     
-    NSLog(@"%.1f", radiusUpdate);
-    //kalertRadius tempSlider.value;
+    NSLog(@"Defaults updated with: %@", [defaults objectForKey:@"alertRadius"]);
 }
-
-
-
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
@@ -151,7 +160,6 @@
     // for station or stop annotation
     if ([annotation isKindOfClass:[annotation class]])
     {
-        
         static NSString *StopAnnotationIdentifier = @"demoRadiusAnnotation";
         
         MKPinAnnotationView *pinView =
@@ -163,11 +171,9 @@
             [[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: StopAnnotationIdentifier];
             
             //Customize the pin view.
-            //customPinView.pinColor = MKPinAnnotationColorRed;
             customPinView.canShowCallout = YES;
             
             return customPinView;
-            
         }
         else
         {

@@ -39,6 +39,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Create userDefaults store
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     //MapView Configuration.
     self.mapView.showsBuildings = YES;
     self.mapView.showsUserLocation = YES;
@@ -79,9 +83,13 @@
     //overridden method below, adds custom pin and callout.
     [self.mapView viewForAnnotation: item];
     
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    
+    double tempRadius = tempString.doubleValue;
+    
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate: center radius: kalertRadius];
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate: center radius: tempRadius];
                         
     [self.mapView addOverlay: circle];
     
@@ -96,6 +104,7 @@
     MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
     circleR.strokeColor = [UIColor blueColor];
     circleR.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    circleR.lineWidth = 3;
     
     return circleR;
 }
@@ -124,7 +133,7 @@
             [[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: StopAnnotationIdentifier];
             
             //Customize the pin view.
-            customPinView.pinColor = MKPinAnnotationColorPurple;
+            customPinView.pinColor = MKPinAnnotationColorGreen;
             customPinView.animatesDrop = YES;
             customPinView.canShowCallout = YES;
             
@@ -143,7 +152,6 @@
 			customPinView.leftCalloutAccessoryView = removeRegionButton;
             customPinView.rightCalloutAccessoryView.tag = 1;
 
-            
             return customPinView;
 
         }
@@ -166,21 +174,17 @@
          NSLog(@"Clicked Left Button");
          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Switch off the alert!"
                                                             message:@"This is the area to turn off the alert for this alarm while still being able to access all the extra information shown on this VC!"
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
+                                                           delegate: self
+                                                  cancelButtonTitle: @"OK"
                                                   otherButtonTitles:nil];
           
-          [alertView show];
+         [alertView show];
 
       }
       else if (control.tag == 1)
       {
          NSLog(@"Clicked Right Button");
-          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Next 3 Train Times"
-                                                              message:@"This is your first UIAlertview message.\nThis is second line.\nThird Line\n4thLine etc etc"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
+          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Next 3 Train Times"       message:@"This is your first UIAlertview message.\nThis is second line.\nThird Line\n4thLine etc etc" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
           [alertView show];
 
       }

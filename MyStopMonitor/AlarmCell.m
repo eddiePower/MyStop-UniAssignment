@@ -45,7 +45,9 @@
     {
         //Update the value stored in alarmIsactive property part of the Alarm class
         self.cellAlarm.alarmIsActive = [NSNumber numberWithInt:1];
-        NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now active, value is: %@\nStation name is: %@", self.cellAlarm.alarmIsActive, self.cellAlarm.station.stationName);
+       
+        //NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now active, value is: %@\nStation name is: %@", self.cellAlarm.alarmIsActive, self.cellAlarm.station.stationName);
+        
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];        
     }
@@ -53,7 +55,9 @@
     {
         //Update the value stored in alarmIsactive property part of the Alarm class
         self.cellAlarm.alarmIsActive = [NSNumber numberWithInt: 0];
-        NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now inactive, value is: %@", self.cellAlarm.alarmIsActive);
+       
+        //NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now inactive, value is: %@", self.cellAlarm.alarmIsActive);
+        
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
     }

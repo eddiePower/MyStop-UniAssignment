@@ -10,6 +10,6 @@
 
 @implementation MyConstants
 
-NSString* const kCellTitleKey = @"CellTitle";
+NSString* kCellTitleKey = @"CellTitle";
 
 @end

@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-static const float kalertRadius = 350.0f;
-extern  NSString* const kCellTitleKey;
+static float kalertRadius = 350.0f;
+extern  NSString* kCellTitleKey;
 
 
 

@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
 
+    
+    
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
@@ -262,13 +264,18 @@
 //add the station location as a region for monitoring
 -(void)addAlarmStop:(Alarm *)anAlarm
 {
+    // Get the stored data before the view loads
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     //link to switch value to set alarm inactive/off for user to activate later
     anAlarm.alarmIsActive = [NSNumber numberWithInt: 1];
     
     //link to slider to adjust radius of region
-    anAlarm.alarmAlertRadius = [NSNumber numberWithFloat: 550.00];  //used in the region creation for radius in meters.
-                                                                   //chose 410-min to allow enough time for user.
-                                                                   //will keep this value as the lowest radius limit.
+    anAlarm.alarmAlertRadius = [defaults objectForKey:@"alertRadius"];  //used in the region creation for radius in meters.
+                                                                        //chose 410-min to allow enough time for user.
+                                                                        //will keep this value as the lowest radius limit.
+    
+    NSLog(@"The alarm radius bieng set is:%@", [defaults objectForKey:@"alertRadius"]);
     
     //date of creation may be used after future update to set repeating alarms.
     anAlarm.alarmTime = [NSDate date];
@@ -310,14 +317,13 @@
         stopCenter.latitude = [anAlarm.station.stationLatitude doubleValue];
         stopCenter.longitude = [anAlarm.station.stationLongitude doubleValue];
         
+        NSLog(@"Region Radius bieng set is: %f", [anAlarm.alarmAlertRadius doubleValue]);
+        
 		// Start location manager monitoring the alarm stop region, radius & ID.
 		[self.locManager startMonitoringForRegion: [[CLCircularRegion alloc]
                                                     initWithCenter: stopCenter
                                                     radius: [anAlarm.alarmAlertRadius doubleValue]
                                                     identifier: anAlarm.station.stationName]];
-        
-        //may change the location changes updates depending on needs Vs Battery.
-        [self.locManager startMonitoringSignificantLocationChanges];
 	}
 	else
     {
