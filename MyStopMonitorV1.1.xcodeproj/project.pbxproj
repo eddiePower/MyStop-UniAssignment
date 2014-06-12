@@ -37,10 +37,9 @@
 		897F2A061944EE5F00799A48 /* successIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FE1944EE5F00799A48 /* successIcon.png */; };
 		897F2A071944EE5F00799A48 /* successIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FF1944EE5F00799A48 /* successIcon@2x.png */; };
 		897F2A081944EE5F00799A48 /* TDNotificationPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F2A011944EE5F00799A48 /* TDNotificationPanel.m */; };
+		898D422C1949AEBD002704D6 /* MyConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 898D422B1949AEBD002704D6 /* MyConstants.m */; };
 		899C70321944C3110026D1E7 /* ACPReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 899C70311944C3110026D1E7 /* ACPReminder.m */; };
 		899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 899F721B1927D0BA00835477 /* StopAnnotation.m */; };
-		89ACB9181935637F00B43EF8 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB9171935637F00B43EF8 /* Station.m */; };
-		89ACB91B1935637F00B43EF8 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91A1935637F00B43EF8 /* Alarm.m */; };
 		89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */; };
 		89BAD9B4194302F800D56D08 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BAD9B3194302F800D56D08 /* AVFoundation.framework */; };
 		89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BAD9B519430A4200D56D08 /* Default@2x.png */; };
@@ -48,6 +47,8 @@
 		89D6B539191FD93500011880 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B537191FD93500011880 /* CoreLocation.framework */; };
 		89D6B53A191FD93500011880 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B538191FD93500011880 /* MapKit.framework */; };
 		89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */; };
+		89F370291948815800C87550 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F370281948815800C87550 /* Alarm.m */; };
+		89F3702C1948815900C87550 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F3702B1948815900C87550 /* Station.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,14 +102,12 @@
 		897F29FF1944EE5F00799A48 /* successIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "successIcon@2x.png"; sourceTree = "<group>"; };
 		897F2A001944EE5F00799A48 /* TDNotificationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNotificationPanel.h; sourceTree = "<group>"; };
 		897F2A011944EE5F00799A48 /* TDNotificationPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNotificationPanel.m; sourceTree = "<group>"; };
+		898D422A1949AEBD002704D6 /* MyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConstants.h; sourceTree = "<group>"; };
+		898D422B1949AEBD002704D6 /* MyConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConstants.m; sourceTree = "<group>"; };
 		899C70301944C3110026D1E7 /* ACPReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPReminder.h; sourceTree = "<group>"; };
 		899C70311944C3110026D1E7 /* ACPReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPReminder.m; sourceTree = "<group>"; };
 		899F721A1927D0BA00835477 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
 		899F721B1927D0BA00835477 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
-		89ACB9161935637F00B43EF8 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		89ACB9171935637F00B43EF8 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
-		89ACB9191935637F00B43EF8 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
-		89ACB91A1935637F00B43EF8 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
 		89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateSigniture.h; sourceTree = "<group>"; };
 		89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateSigniture.m; sourceTree = "<group>"; };
 		89BAD9B3194302F800D56D08 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -119,6 +118,10 @@
 		89D6B538191FD93500011880 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		89D6B53D191FDA0A00011880 /* ShowStopMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowStopMapViewController.h; sourceTree = "<group>"; };
 		89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowStopMapViewController.m; sourceTree = "<group>"; };
+		89F370271948815800C87550 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
+		89F370281948815800C87550 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
+		89F3702A1948815900C87550 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		89F3702B1948815900C87550 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
 		89FC0ADC1924F3DB002BC8B0 /* FrankstonLineStops.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FrankstonLineStops.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -299,6 +302,8 @@
 				89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */,
 				8967C82F1941EB56002460EB /* SettingsViewController.h */,
 				8967C8301941EB56002460EB /* SettingsViewController.m */,
+				898D422A1949AEBD002704D6 /* MyConstants.h */,
+				898D422B1949AEBD002704D6 /* MyConstants.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -308,11 +313,11 @@
 			children = (
 				89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */,
 				89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */,
+				89F370271948815800C87550 /* Alarm.h */,
+				89F3702A1948815900C87550 /* Station.h */,
+				89F3702B1948815900C87550 /* Station.m */,
+				89F370281948815800C87550 /* Alarm.m */,
 				893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */,
-				89ACB9191935637F00B43EF8 /* Alarm.h */,
-				89ACB91A1935637F00B43EF8 /* Alarm.m */,
-				89ACB9161935637F00B43EF8 /* Station.h */,
-				89ACB9171935637F00B43EF8 /* Station.m */,
 				89D6B534191FD25100011880 /* TrainLine.h */,
 				89D6B535191FD25100011880 /* TrainLine.m */,
 			);
@@ -429,12 +434,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				89701DB51919FE4500501AB0 /* main.m in Sources */,
-				89ACB91B1935637F00B43EF8 /* Alarm.m in Sources */,
 				89701DDF191A032B00501AB0 /* AlarmListController.m in Sources */,
 				89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */,
 				89701DE2191A035900501AB0 /* AddStopController.m in Sources */,
 				899C70321944C3110026D1E7 /* ACPReminder.m in Sources */,
+				898D422C1949AEBD002704D6 /* MyConstants.m in Sources */,
 				89701DB91919FE4500501AB0 /* StopMonitorAppDelegate.m in Sources */,
+				89F3702C1948815900C87550 /* Station.m in Sources */,
 				89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */,
 				8967C8311941EB56002460EB /* SettingsViewController.m in Sources */,
 				893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */,
@@ -442,8 +448,8 @@
 				89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */,
 				899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */,
 				89D6B536191FD25100011880 /* TrainLine.m in Sources */,
-				89ACB9181935637F00B43EF8 /* Station.m in Sources */,
 				897F2A081944EE5F00799A48 /* TDNotificationPanel.m in Sources */,
+				89F370291948815800C87550 /* Alarm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

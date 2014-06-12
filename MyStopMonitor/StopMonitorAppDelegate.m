@@ -62,10 +62,21 @@
     AlarmListController *alarmListController = [navController.viewControllers firstObject];
     alarmListController.managedObjectContext = self.managedObjectContext;
     
-    //TRY CREATING LOCATION MANAGER AND REGIONS HERE OR SOMTHING FOR ALL APPLICATION ACCESS TO REGION STUFF
+    
+    //CREATING LOCATION MANAGER OBJECT FOR ALL APPLICATION ACCESS
+    //PASS LOCATION MANAGER TO ALARM LIST OBJECT FOR LATER USE.
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager startUpdatingLocation];
     
+    self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
+    //self.locationManager.distanceFilter = 10.0f;
+    
+	self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    //self.locationManager.desiredAccuracy = 20.0f;
+    
+    alarmListController.locManager = self.locationManager;
+    self.locationManager.delegate = alarmListController;
+
     
     return YES;
 }

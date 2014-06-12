@@ -33,38 +33,151 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+
+
 @end
 
 @implementation SettingsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self)
-    {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)switchToggled:(UISwitch *)sender
-{
     
+    //Set mapView delegate
+    self.radiusMapView.delegate = self;
+    
+    //Set the region/area for the mapView location to show. - Flinders Street Station Melbourne Australia.
+    MKCoordinateRegion mapRegion;
+    
+    //center location for mapView
+    CLLocationCoordinate2D demoRadiusCenter;
+    demoRadiusCenter.latitude = -37.817792;
+    demoRadiusCenter.longitude = 144.967229;
+    
+    //Span @ % of degree = 100th of degree
+    MKCoordinateSpan demoRadiusSpan;
+    demoRadiusSpan.latitudeDelta = 0.02f;
+    demoRadiusSpan.longitudeDelta = 0.02f;
+    
+    //Set center and span for the mapView region
+    mapRegion.center = demoRadiusCenter;
+    mapRegion.span = demoRadiusSpan;
+    
+    //Set the Region to the mapView.
+    [self.radiusMapView setRegion: mapRegion animated: YES];
+    
+    //initalize annotation for radius demo
+    MKPointAnnotation *radiusDemoAnnotation = [[MKPointAnnotation alloc]init];
+    
+    radiusDemoAnnotation.coordinate = demoRadiusCenter;
+    radiusDemoAnnotation.title = @"Flinders Street Station";
+    radiusDemoAnnotation.subtitle = @"Alert radius size visualization";
+    
+    //Add annotation array to the map
+    [self.radiusMapView addAnnotation: radiusDemoAnnotation];
+    
+    //overridden method below, adds custom pin and callout.
+    [self.radiusMapView viewForAnnotation: radiusDemoAnnotation];
+    
+    //create map overlay in circle shape and use alert radius from alarm class
+    // as circle radius
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: kalertRadius];
+    [self.radiusMapView addOverlay: circle];
 }
 
+//MapView delegate
+//Draw region overlay on map
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
+{
+    MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
+    circleR.strokeColor = [UIColor blueColor];
+    circleR.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    
+    return circleR;
+}
+
+
+//Set the map type for demo map will also make this set main map using
+//user defaults plist
 - (IBAction)segmentSelected:(UISegmentedControl *)sender
 {
+    //NSLog(@"Segment has changed!!");
     
+    switch (self.mapSegment.selectedSegmentIndex)
+    {
+        case 0:
+            self.radiusMapView.mapType = MKMapTypeStandard;
+            break;
+        case 1:
+            self.radiusMapView.mapType = MKMapTypeHybrid;
+            break;
+        case 2:
+            self.radiusMapView.mapType = MKMapTypeSatellite;
+            break;
+        default:
+            break;
+    }
 }
+
+- (IBAction)sliderValueChanged:(id)sender
+{
+    UISlider *tempSlider = sender;
+    
+    double radiusUpdate = tempSlider.value * 1000;
+    
+    CLLocationCoordinate2D demoRadiusCenter;
+    demoRadiusCenter.latitude = -37.817792;
+    demoRadiusCenter.longitude = 144.967229;
+    
+    //MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: kalertRadius];
+    //[self.radiusMapView addOverlay: circle];
+    
+    NSLog(@"%.1f", radiusUpdate);
+    //kalertRadius tempSlider.value;
+}
+
+
+
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    // in case it's the user location, we already have an annotation, so just return nil
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+    {
+        return nil;
+    }
+    
+    // handle my custom annotation may add others for bus/train/tram or other use.
+    // for station or stop annotation
+    if ([annotation isKindOfClass:[annotation class]])
+    {
+        
+        static NSString *StopAnnotationIdentifier = @"demoRadiusAnnotation";
+        
+        MKPinAnnotationView *pinView =
+        (MKPinAnnotationView *)[self.radiusMapView dequeueReusableAnnotationViewWithIdentifier: StopAnnotationIdentifier];
+        if (pinView == nil)
+        {
+            //if an existing pin view was not available, create one
+            MKPinAnnotationView *customPinView =
+            [[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: StopAnnotationIdentifier];
+            
+            //Customize the pin view.
+            //customPinView.pinColor = MKPinAnnotationColorRed;
+            customPinView.canShowCallout = YES;
+            
+            return customPinView;
+            
+        }
+        else
+        {
+            pinView.annotation = annotation;
+        }
+        
+        return pinView;
+    }
+    
+    return nil;
+}
+
 @end

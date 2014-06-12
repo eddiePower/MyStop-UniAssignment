@@ -31,15 +31,24 @@
 ////////////////////////////////////////////////////////////*/
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import "MyConstants.h"
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController<MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mapSegment;
+@property (weak, nonatomic) IBOutlet MKMapView *radiusMapView;
+
 @property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
+@property (nonatomic, retain) IBOutlet UISlider *alertRadiusSlider;
 
+@property (nonatomic, readonly) MKMapRect boundingMapRect;
+@property (nonatomic) CLLocationCoordinate2D mapCoordinate;
 
-- (IBAction)switchToggled:(UISwitch *)sender;
 - (IBAction)segmentSelected:(UISegmentedControl *)sender;
+- (IBAction)sliderValueChanged:(id)sender;
+
+
 
 
 @end

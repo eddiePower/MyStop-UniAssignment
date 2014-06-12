@@ -36,6 +36,7 @@
 #import "AlarmCell.h"
 #import "AddStopController.h"
 #import "ShowStopMapViewController.h"
+#import "MyConstants.h"
 
 @interface AlarmListController : UITableViewController <AddAlarmStopDelegate, CLLocationManagerDelegate>
 @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;

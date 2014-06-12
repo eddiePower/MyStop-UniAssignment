@@ -43,12 +43,56 @@
 {
     if(self.alarmSwitch.on)
     {
+        //Update the value stored in alarmIsactive property part of the Alarm class
         self.cellAlarm.alarmIsActive = [NSNumber numberWithInt:1];
+        NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now active, value is: %@\nStation name is: %@", self.cellAlarm.alarmIsActive, self.cellAlarm.station.stationName);
+        //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
+        [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];        
     }
     else
     {
-        self.cellAlarm.alarmIsActive = [NSNumber numberWithInt:0];
+        //Update the value stored in alarmIsactive property part of the Alarm class
+        self.cellAlarm.alarmIsActive = [NSNumber numberWithInt: 0];
+        NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now inactive, value is: %@", self.cellAlarm.alarmIsActive);
+        //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
+        [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
     }
 }
+
+//This will update values already in the managedObjectContext by taking in a value from an id object
+// this allows it to be any data type i need to update and
+-(void)updateAlarmManagedObject:(NSNumber *)isActiveValue objectToSearchFor:(NSString *)alarmTitle
+{
+    //Set up the first view controller location.
+    UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *navController = [tabController.viewControllers firstObject];
+    
+    //Set the AlarmListController which uses the Core Data stack similar to app delegate.
+    AlarmListController *alarmListController = [navController.viewControllers firstObject];
+    self.managedObjectContext = alarmListController.managedObjectContext;
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:[NSEntityDescription entityForName:@"Alarm" inManagedObjectContext: self.managedObjectContext]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"alarmTitle == %@", alarmTitle];
+    [request setPredicate: predicate];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest: request error: &error];
+    
+    // maybe some check before, to be sure results is not empty
+    NSManagedObject* AlarmGrabbed = [results objectAtIndex: 0];
+    NSLog(@"\n\n\nAlarm retrieved from MoC: %@", AlarmGrabbed);
+    
+    
+    // error handling code
+    //if an error occured when saving to managedObject then show userInfo formated output.
+    if(![self.managedObjectContext save: &error])
+    {
+      NSLog(@"Could not add Station to the alarm:\n%@", error.userInfo);
+    }
+    
+}
+
 
 @end

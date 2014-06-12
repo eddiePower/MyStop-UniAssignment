@@ -39,23 +39,13 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    
-	
-	//!!Create location manager with filters set for battery efficiency.
-	self.locManager = [[CLLocationManager alloc] init];
-	self.locManager.delegate = self;
-	
-    self.locManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
-    //self.locManager.distanceFilter = 10.0f;
-    
-	self.locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    //self.locManager.desiredAccuracy = 20.0f;
-	
+
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
-    //Start updating location changes.
-	[self.locManager startUpdatingLocation];
+    AlarmCell *alarmCell = [[AlarmCell alloc] init];
+    
+    alarmCell.managedObjectContext = self.managedObjectContext;
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Alarm"];
     
@@ -79,22 +69,15 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	// Get all regions being monitored for this application.
-    //NOTE: Will need to Check for is alarm Active switch
-	NSMutableArray *regions = [[NSMutableArray alloc] init];
-    regions = [[self.locManager monitoredRegions] allObjects].mutableCopy;
-	    
-	// Iterate through the regions/AlarmStops
-    //Possibly only one annotation needed
-	for (int i = 0; i < [regions count]; i++)
+    //Display the monitored regions after loading or reloading the view.
+    if ([self.locManager monitoredRegions].count > 0)
     {
-		CLCircularRegion *region = [regions objectAtIndex: i];
-        
-		StopAnnotation *annotation = [[StopAnnotation alloc] initWithCLRegion:region aCoord: region.center aTitle: region.identifier andSubtitle: @"Train station"];
-        
-		// Start monitoring the region.
-		[self.locManager startMonitoringForRegion: annotation.region];
-	}
+        NSLog(@"Region List is now: %@", [self.locManager monitoredRegions]);
+    }
+    else
+    {
+        NSLog(@"No Regions bieng monitored at this time.");
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -149,7 +132,6 @@
         
         [cell setupCell];
         
-        
         //Check initial load state of alarm switch has it been saved in on or off position.
         //and redo that switch
         if (a.alarmIsActive.intValue ==  1)
@@ -160,8 +142,6 @@
         {
             [alarmActiveSwitch setOn: NO animated: YES];
         }
-        
-        [alarmActiveSwitch addTarget: self action: @selector(switchChanged:) forControlEvents: UIControlEventValueChanged];
         
        return cell;
     }
@@ -176,33 +156,6 @@
     }
     
     return nil;
-}
-
-
-//Check to see if activate Alarm Switch has moved  ??Ask about passing in alarm from row.
-- (NSNumber *)switchChanged:(id)sender
-{
-    UISwitch *switchControl = sender;
-
-    //NSLog( @"The switch is %@", switchControl.on ? @"ON": @"OFF" );
-
-    //Do stuff here when switch is changed to on position:
-    //start monitoring region, update the alarmIsActive Value.
-    //otherwise stop monitoring for off position.
-    if (switchControl.isOn)
-    {
-        //??pass back value to set alarm is active??
-        NSLog(@"Switch is on");
-        
-        return [NSNumber numberWithInt: 1];
-
-    }
-    else
-    {
-        NSLog(@"switch is off");
-        return [NSNumber numberWithInt: 0];
-    }
-    
 }
 
 //Table View method to stop editing / deleting of a specific row in this case the alarm count.
@@ -225,19 +178,10 @@
         //Create a temp alarm object to store alarm to remove in
         Alarm *alarmToRemove = [self.currentAlarms objectAtIndex: indexPath.row];
         
-        //location coord object and set lat and long to this obj.
-        CLLocationCoordinate2D stopCenter;
-        stopCenter.latitude = [alarmToRemove.station.stationLatitude doubleValue];
-        stopCenter.longitude = [alarmToRemove.station.stationLongitude doubleValue];
+        //Remove region associated with alarm station object.
+        [self removeStopRegion:alarmToRemove];
         
-        //geographic circular region to be removed.
-        CLCircularRegion *geoRegion = [[CLCircularRegion alloc]
-                                       initWithCenter: stopCenter
-                                       radius: [alarmToRemove.alarmAlertRadius doubleValue]  //will be set by user slider
-                                       identifier: alarmToRemove.station.stationName];
-        
-        //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
-        [self.locManager stopMonitoringForRegion: geoRegion];
+        //NSLog(@"%@", [self.locManager monitoredRegions]);
         
         //remove the alarm object fro m the currentAlarms
         [self.currentAlarms removeObject: alarmToRemove];
@@ -264,6 +208,26 @@
             NSLog(@"Could not delete Alarm:\n%@", error.userInfo);
         }
     }
+}
+
+//Remove Region monitoring from an Alarm object for region location to remove
+-(void)removeStopRegion:(Alarm *)anAlarm
+{
+    //location coord object and set lat and long to this obj.
+    CLLocationCoordinate2D stopCenter;
+    stopCenter.latitude = [anAlarm.station.stationLatitude doubleValue];
+    stopCenter.longitude = [anAlarm.station.stationLongitude doubleValue];
+    
+    //geographic circular region to be removed.
+    CLCircularRegion *geoRegion = [[CLCircularRegion alloc]
+                                   initWithCenter: stopCenter
+                                   radius: [anAlarm.alarmAlertRadius doubleValue]  //will be set by user slider
+                                   identifier: anAlarm.station.stationName];
+    
+    NSLog(@"Removing Region: %@", geoRegion.identifier);
+    
+    //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
+    [self.locManager stopMonitoringForRegion: geoRegion];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -294,34 +258,38 @@
     }
 }
 
+//Add the station item to the new alarm object
+//add the station location as a region for monitoring
 -(void)addAlarmStop:(Alarm *)anAlarm
 {
     //link to switch value to set alarm inactive/off for user to activate later
     anAlarm.alarmIsActive = [NSNumber numberWithInt: 1];
     
     //link to slider to adjust radius of region
-    anAlarm.alarmAlertRadius = [NSNumber numberWithFloat: 850.00];  //used in the region creation for radius in meters.
-                                                                   //chose 210 to allow enough time for user.
+    anAlarm.alarmAlertRadius = [NSNumber numberWithFloat: 550.00];  //used in the region creation for radius in meters.
+                                                                   //chose 410-min to allow enough time for user.
                                                                    //will keep this value as the lowest radius limit.
     
     //date of creation may be used after future update to set repeating alarms.
     anAlarm.alarmTime = [NSDate date];
     
-    //set the location manager to this page.
+    anAlarm.alarmTitle = anAlarm.station.stationName;
+    
+    //set the location manager to add stop delegate page (addStopController).
     self.locManager.delegate = self;
     
-    //Add the region from the alarm to the locManager Monitor Region.
-    [self addAlarmRegion:anAlarm];
+    //Add the region from the alarm to the locManager Monitor Region via custom method.
+    [self addAlarmRegion: anAlarm];
 
     //Add alarm to the array for viewing in the Table View.
-    [self.currentAlarms addObject:anAlarm];
+    [self.currentAlarms addObject: anAlarm];
     //Reload TableView Data to show new alarm.
     [self.tableView reloadData];
    
     //Set error space to debug any errors
     NSError *error;
     
-    //if an error occured when saving to managedObject then show userInfo formated output.
+    //if an error occured when trying to save to managedObject then show userInfo formated output.
     if(![self.managedObjectContext save: &error])
     {
         NSLog(@"Could not add Station to the alarm:\n%@", error.userInfo);
@@ -330,11 +298,12 @@
 
 - (void)addAlarmRegion:(Alarm *)anAlarm
 {
+   
     //Is region monitoring available for this app?
 	if ([CLLocationManager isMonitoringAvailableForClass:[CLRegion class]])
     {
         //Begin monitoring the station region just created in the anAlarm object.
-        NSLog(@"Beginning the Region monitoring for location: %@", anAlarm.station.stationName);
+        NSLog(@"\n\nBeginning the Region monitoring for location: %@", anAlarm.station.stationName);
         
         //Used in region init and overlay position.
         CLLocationCoordinate2D stopCenter;
@@ -356,7 +325,7 @@
 	}
 }
 
-#pragma mark - CLLocationManagerDelegate
+//CLLocationManagerDelegate
 
 //Check monitoring for region has started successfully
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
@@ -414,6 +383,7 @@
     
     //Create user alert box for station arrival alert
     UIAlertView *userAlert;
+    
     //instanciate the alert
     userAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Stop Monitor Alarm", nil) message:[NSString stringWithFormat:NSLocalizedString(@"%@ is coming up!", nil), region.identifier] delegate: self cancelButtonTitle: NSLocalizedString(@"Cancel Alert", nil) otherButtonTitles: NSLocalizedString(@"OK im awake!", nil), nil];
     

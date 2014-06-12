@@ -4,6 +4,7 @@
         <attribute name="alarmAlertRadius" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="alarmIsActive" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="alarmTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="alarmTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="station" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Station" inverseName="alarmStation" inverseEntity="Station" syncable="YES"/>
     </entity>
     <entity name="Station" representedClassName="Station" syncable="YES">
@@ -17,7 +18,7 @@
         <relationship name="alarmStation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alarm" inverseName="station" inverseEntity="Alarm" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Alarm" positionX="-594" positionY="-133" width="128" height="103"/>
+        <element name="Alarm" positionX="-594" positionY="-133" width="128" height="120"/>
         <element name="Station" positionX="-261" positionY="-135" width="99" height="165"/>
     </elements>
 </model>

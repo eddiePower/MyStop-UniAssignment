@@ -50,7 +50,7 @@
     self.mapView.delegate = self;
    
     //Set the region/area for the mapView location to show.
-    MKCoordinateRegion mapCoordRegion;
+    MKCoordinateRegion mapRegion;
     
     //center location for mapView
     CLLocationCoordinate2D center;
@@ -59,15 +59,15 @@
     
     //Span @ % of degree = 100th of degree
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.001f;
-    span.longitudeDelta = 0.001f;
+    span.latitudeDelta = 0.005f;
+    span.longitudeDelta = 0.005f;
     
     //Set center and span for the mapView region
-    mapCoordRegion.center = center;
-    mapCoordRegion.span = span;
+    mapRegion.center = center;
+    mapRegion.span = span;
     
     //Set the Region to the mapView.
-    [self.mapView setRegion: mapCoordRegion animated: YES];
+    [self.mapView setRegion: mapRegion animated: YES];
 
     //initalize annotation for Stop with title, coord's
     //  and subtitle used for display only - user visulisation of station.
@@ -79,8 +79,25 @@
     //overridden method below, adds custom pin and callout.
     [self.mapView viewForAnnotation: item];
     
+    //create map overlay in circle shape and use alert radius from alarm class
+    // as circle radius
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate: center radius: kalertRadius];
+                        
+    [self.mapView addOverlay: circle];
+    
     //FUTURE ADD TO MARKER THE MYKI OUTLET STATUS AND PARKING STATUS OF STATIONS.
     //Maybe in the call outs or with seperate annotations
+}
+
+//MapView delegate
+//Draw region overlay on map
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
+{
+    MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
+    circleR.strokeColor = [UIColor blueColor];
+    circleR.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    
+    return circleR;
 }
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -111,17 +128,21 @@
             customPinView.animatesDrop = YES;
             customPinView.canShowCallout = YES;
             
+            #warning Annotation Buttons need further work to show train times and remove region.
             //Add a custom Button for the station/stop call out box to show next train times soon.
             UIButton *showTimeTableButton = [UIButton buttonWithType: UIButtonTypeCustom];
 			[showTimeTableButton setFrame:CGRectMake(0., 0., 45., 45.)];
 			[showTimeTableButton setImage:[UIImage imageNamed: @"StopIcon"] forState:UIControlStateNormal];
             customPinView.rightCalloutAccessoryView = showTimeTableButton;
+            customPinView.rightCalloutAccessoryView.tag = 0;
             
             // Create a button for the left callout accessory view of each annotation to remove the annotation and region being monitored.
 			UIButton *removeRegionButton = [UIButton buttonWithType: UIButtonTypeCustom];
 			[removeRegionButton setFrame:CGRectMake(0., 0., 25., 25.)];
 			[removeRegionButton setImage:[UIImage imageNamed:@"RemoveRegion"] forState:UIControlStateNormal];
 			customPinView.leftCalloutAccessoryView = removeRegionButton;
+            customPinView.rightCalloutAccessoryView.tag = 1;
+
             
             return customPinView;
 
@@ -136,5 +157,35 @@
     
     return nil;
 }
+
+
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+      if (control.tag == 0)
+      {
+         NSLog(@"Clicked Left Button");
+         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Switch off the alert!"
+                                                            message:@"This is the area to turn off the alert for this alarm while still being able to access all the extra information shown on this VC!"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+          
+          [alertView show];
+
+      }
+      else if (control.tag == 1)
+      {
+         NSLog(@"Clicked Right Button");
+          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Next 3 Train Times"
+                                                              message:@"This is your first UIAlertview message.\nThis is second line.\nThird Line\n4thLine etc etc"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+          [alertView show];
+
+      }
+    
+}
+
 
 @end
