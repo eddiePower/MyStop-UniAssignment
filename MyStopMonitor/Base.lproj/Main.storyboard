@@ -44,7 +44,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map Type:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q12-3d-rtl">
                                                     <rect key="frame" x="12" y="11" width="198" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" name="EuphemiaUCAS" family="Euphemia UCAS" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -74,7 +74,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Alert radius:" id="a1c-SG-8dN">
+                            <tableViewSection headerTitle="Alert radius:" footerTitle="200m - 1000m" id="a1c-SG-8dN">
                                 <cells>
                                     <tableViewCell tag="4" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EFh-T8-Afi">
                                         <rect key="frame" x="0.0" y="171" width="320" height="44"/>
@@ -83,10 +83,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alert Region Size:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="207" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-D9-3Jj">
-                                                    <rect key="frame" x="7" y="4" width="207" height="36"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alert Region Size:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-D9-3Jj">
+                                                    <rect key="frame" x="7" y="9" width="207" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <fontDescription key="fontDescription" name="EuphemiaUCAS-Italic" family="Euphemia UCAS" pointSize="14"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -106,16 +106,25 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sQr-aj-vKn">
-                                        <rect key="frame" x="0.0" y="418" width="320" height="44"/>
+                                    <tableViewCell tag="3" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="66" id="sQr-aj-vKn">
+                                        <rect key="frame" x="0.0" y="418" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sQr-aj-vKn" id="DSe-eF-iW7">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set the alert radius in Meters giving you enough time to get ready to disembark the train." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="309" translatesAutoresizingMaskIntoConstraints="NO" id="Cei-cb-XLc">
+                                                    <rect key="frame" x="6" y="25" width="309" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="EuphemiaUCAS-Italic" family="Euphemia UCAS" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell tag="5" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CqM-9f-yCh">
-                                        <rect key="frame" x="0.0" y="462" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="484" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="CqM-9f-yCh" id="nwS-cp-OfS">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -136,7 +145,7 @@
                             <tableViewSection headerTitle="Alert Sounds:" id="4c5-D5-qrM">
                                 <cells>
                                     <tableViewCell tag="7" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8c5-ud-MhL">
-                                        <rect key="frame" x="0.0" y="554" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="603" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8c5-ud-MhL" id="dyX-Td-KIp">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -153,7 +162,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell tag="8" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DIH-5y-aK2">
-                                        <rect key="frame" x="0.0" y="598" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="647" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="DIH-5y-aK2" id="pnD-MH-hgE">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
