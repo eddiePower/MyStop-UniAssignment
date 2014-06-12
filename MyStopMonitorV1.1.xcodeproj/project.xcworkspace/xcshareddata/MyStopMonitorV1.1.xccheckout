@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>97A339DF-236C-40BD-B20B-621864688495</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyStopMonitorV1.1</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>5969020B-3526-4F6F-9C5D-26C3C7DEE594</key>
+		<string>ssh://github.com/eddiePower/MyStop-UniAssignment.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyStopMonitorV1.1.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>5969020B-3526-4F6F-9C5D-26C3C7DEE594</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/eddiePower/MyStop-UniAssignment.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>5969020B-3526-4F6F-9C5D-26C3C7DEE594</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5969020B-3526-4F6F-9C5D-26C3C7DEE594</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyStopMonitorV1.1</string>
+		</dict>
+	</array>
+</dict>
+</plist>
