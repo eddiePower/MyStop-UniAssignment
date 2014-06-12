@@ -1,15 +1,15 @@
-MyStop-UniAssignment
+MyStopMonitor-UniAssignment
 ====================
 
 Refrences :
 ===========
 
-TDNotificationPanel -  Green In Application Banner.
+TDNotificationPanel - Green Bar In Application Banner.
     - https://github.com/tomdiggle/TDNotificationPanel 
     - Tom Diggle
     A custom class that provides a in application type notification which can consist of 3 colours and 3 different uses such as error, success and loading types.  I chose to use this to help alert the user of an upcoming train station by using the succsess color scheme.
     
-ACPReminder -  App in background Notification Banner.
+ACPReminder - App in background Notification Banner.
     - https://github.com/antoniocasero/ACPReminder
     - Anton Iocasero
     A custom class that provides notifications based on the localNotification class that can be fired in a matter of seconds rather then days, i used this to help alert the user when the application is closed. To keep with the train theme i set a sound of train crossing.
