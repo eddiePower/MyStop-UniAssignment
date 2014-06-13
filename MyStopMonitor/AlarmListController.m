@@ -39,8 +39,6 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
     
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
@@ -223,7 +221,7 @@
     //geographic circular region to be removed.
     CLCircularRegion *geoRegion = [[CLCircularRegion alloc]
                                    initWithCenter: stopCenter
-                                   radius: [anAlarm.alarmAlertRadius doubleValue]  //will be set by user slider
+                                   radius: [anAlarm.alarmAlertRadius doubleValue]
                                    identifier: anAlarm.station.stationName];
     
     NSLog(@"Removing Region: %@", geoRegion.identifier);
@@ -272,8 +270,8 @@
     
     //link to slider to adjust radius of region
     anAlarm.alarmAlertRadius = [defaults objectForKey:@"alertRadius"];  //used in the region creation for radius in meters.
-                                                                        //chose 410-min to allow enough time for user.
-                                                                        //will keep this value as the lowest radius limit.
+                                                                        //chose 600m-1.5km to allow enough time for user.
+                                                                        //will keep this value as the last set radius limit.
     
     NSLog(@"The alarm radius bieng set is:%@", [defaults objectForKey:@"alertRadius"]);
     
@@ -305,6 +303,11 @@
 
 - (void)addAlarmRegion:(Alarm *)anAlarm
 {
+    // Get the stored data before the view loads
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    double tempRadius = tempString.doubleValue;
    
     //Is region monitoring available for this app?
 	if ([CLLocationManager isMonitoringAvailableForClass:[CLRegion class]])
@@ -322,7 +325,7 @@
 		// Start location manager monitoring the alarm stop region, radius & ID.
 		[self.locManager startMonitoringForRegion: [[CLCircularRegion alloc]
                                                     initWithCenter: stopCenter
-                                                    radius: [anAlarm.alarmAlertRadius doubleValue]
+                                                    radius: tempRadius
                                                     identifier: anAlarm.station.stationName]];
 	}
 	else

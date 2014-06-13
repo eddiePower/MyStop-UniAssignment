@@ -46,6 +46,17 @@
     
     // Create userDefaults store
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+   
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    
+    double startRadius = tempString.doubleValue;
+    
+    NSLog(@"Radius to be set on slider is: %f", startRadius / 1000);
+    
+    self.radiusSlider.minimumValue = 0.6f;
+    self.radiusSlider.maximumValue = 1.5f;
+    
+    self.radiusSlider.value = startRadius / 1000;
     
     //Set mapView delegate
     self.radiusMapView.delegate = self;
@@ -55,8 +66,8 @@
     
     //center location for mapView
     CLLocationCoordinate2D demoRadiusCenter;
-    demoRadiusCenter.latitude = -37.817792;
-    demoRadiusCenter.longitude = 144.967229;
+    demoRadiusCenter.latitude = -37.818078;
+    demoRadiusCenter.longitude = 144.96681;
     
     //Span @ % of degree = 100th of degree
     MKCoordinateSpan demoRadiusSpan;
@@ -75,7 +86,7 @@
     
     radiusDemoAnnotation.coordinate = demoRadiusCenter;
     radiusDemoAnnotation.title = @"Flinders Street Station";
-    radiusDemoAnnotation.subtitle = @"Alert radius size visualization";
+    radiusDemoAnnotation.subtitle = @"Alert radius size visualization, set for new Alerts only.";
     
     //Add annotation array to the map
     [self.radiusMapView addAnnotation: radiusDemoAnnotation];
@@ -83,7 +94,7 @@
     //overridden method below, adds custom pin and callout.
     [self.radiusMapView viewForAnnotation: radiusDemoAnnotation];
     
-    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    tempString = [defaults objectForKey:@"alertRadius"];
     
     double tempRadius = tempString.doubleValue;
     
@@ -137,16 +148,39 @@
     
     UISlider *tempSlider = sender;
 
-    NSLog(@"RadiusUpdate val: %.1f", tempSlider.value * 1000);
+    //NSLog(@"RadiusUpdate val: %.1f meters accross", tempSlider.value * 1000);
     
     [defaults setDouble: tempSlider.value * 1000 forKey:@"alertRadius"];
     
     [defaults synchronize];
     
-    [self.radiusMapView reloadInputViews];
+    [self.radiusMapView removeOverlay:[self.radiusMapView.overlays firstObject]];
+    [self configureOverlay];
     
-    NSLog(@"Defaults updated with: %@", [defaults objectForKey:@"alertRadius"]);
+    //NSLog(@"Defaults updated with: %@", [defaults objectForKey:@"alertRadius"]);
 }
+
+- (void)configureOverlay
+{
+    // Create userDefaults store
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    
+    double tempRadius = tempString.doubleValue;
+    
+    [self.radiusMapView removeOverlays:[self.radiusMapView.overlays firstObject]];
+    
+    //center location for mapView
+    CLLocationCoordinate2D demoRadiusCenter;
+    demoRadiusCenter.latitude = -37.818078;
+    demoRadiusCenter.longitude = 144.96681;
+        
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
+    [self.radiusMapView addOverlay: circle];
+
+}
+
 
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
