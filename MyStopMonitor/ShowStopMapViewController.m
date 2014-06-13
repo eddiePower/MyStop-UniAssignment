@@ -63,8 +63,9 @@
     
     //Span @ % of degree = 100th of degree
     MKCoordinateSpan span;
-    span.latitudeDelta = 0.005f;
-    span.longitudeDelta = 0.005f;
+    span.latitudeDelta = 0.01f;
+    span.longitudeDelta = 0.01f;
+    
     
     //Set center and span for the mapView region
     mapRegion.center = center;
