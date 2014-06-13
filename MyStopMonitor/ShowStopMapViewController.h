@@ -37,7 +37,6 @@
 #import <MapKit/MapKit.h>
 #import "Station.h"
 #import "StopAnnotation.h"
-#import "MyConstants.h"
 
 @interface ShowStopMapViewController : UIViewController <MKMapViewDelegate>
 

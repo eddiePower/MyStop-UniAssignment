@@ -37,7 +37,6 @@
 		897F2A061944EE5F00799A48 /* successIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FE1944EE5F00799A48 /* successIcon.png */; };
 		897F2A071944EE5F00799A48 /* successIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FF1944EE5F00799A48 /* successIcon@2x.png */; };
 		897F2A081944EE5F00799A48 /* TDNotificationPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 897F2A011944EE5F00799A48 /* TDNotificationPanel.m */; };
-		898D422C1949AEBD002704D6 /* MyConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 898D422B1949AEBD002704D6 /* MyConstants.m */; };
 		899C70321944C3110026D1E7 /* ACPReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 899C70311944C3110026D1E7 /* ACPReminder.m */; };
 		899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 899F721B1927D0BA00835477 /* StopAnnotation.m */; };
 		89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */; };
@@ -102,8 +101,6 @@
 		897F29FF1944EE5F00799A48 /* successIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "successIcon@2x.png"; sourceTree = "<group>"; };
 		897F2A001944EE5F00799A48 /* TDNotificationPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNotificationPanel.h; sourceTree = "<group>"; };
 		897F2A011944EE5F00799A48 /* TDNotificationPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNotificationPanel.m; sourceTree = "<group>"; };
-		898D422A1949AEBD002704D6 /* MyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConstants.h; sourceTree = "<group>"; };
-		898D422B1949AEBD002704D6 /* MyConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConstants.m; sourceTree = "<group>"; };
 		899C70301944C3110026D1E7 /* ACPReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPReminder.h; sourceTree = "<group>"; };
 		899C70311944C3110026D1E7 /* ACPReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPReminder.m; sourceTree = "<group>"; };
 		899F721A1927D0BA00835477 /* StopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopAnnotation.h; sourceTree = "<group>"; };
@@ -302,8 +299,6 @@
 				89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */,
 				8967C82F1941EB56002460EB /* SettingsViewController.h */,
 				8967C8301941EB56002460EB /* SettingsViewController.m */,
-				898D422A1949AEBD002704D6 /* MyConstants.h */,
-				898D422B1949AEBD002704D6 /* MyConstants.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -438,7 +433,6 @@
 				89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */,
 				89701DE2191A035900501AB0 /* AddStopController.m in Sources */,
 				899C70321944C3110026D1E7 /* ACPReminder.m in Sources */,
-				898D422C1949AEBD002704D6 /* MyConstants.m in Sources */,
 				89701DB91919FE4500501AB0 /* StopMonitorAppDelegate.m in Sources */,
 				89F3702C1948815900C87550 /* Station.m in Sources */,
 				89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */,

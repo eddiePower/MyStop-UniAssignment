@@ -32,7 +32,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "MyConstants.h"
 
 @interface SettingsViewController : UITableViewController<MKMapViewDelegate>
 
