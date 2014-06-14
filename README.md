@@ -12,7 +12,7 @@ TDNotificationPanel - Green Bar In Application Banner.
 ACPReminder - App in background Notification Banner.
     - https://github.com/antoniocasero/ACPReminder
     - Anton Iocasero
-    A custom class that provides notifications based on the localNotification class that can be fired in a matter of seconds rather then days, i used this to help alert the user when the application is closed. To keep with the train theme i set a sound of train crossing.
+    <p>A custom class that provides notifications based on the localNotification class that can be fired in a matter of seconds rather then days, i used this to help alert the user when the application is closed. To keep with the train theme i set a sound of train crossing.</p>
 ===============================================================================================
 
 This is my main assignment for Monash FIT3027 in 2014.
