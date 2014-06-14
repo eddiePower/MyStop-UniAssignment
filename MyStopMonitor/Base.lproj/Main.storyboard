@@ -74,7 +74,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Alert radius:" footerTitle="200m - 1000m" id="a1c-SG-8dN">
+                            <tableViewSection headerTitle="Alert radius:" footerTitle="                         360m - 900m" id="a1c-SG-8dN">
                                 <cells>
                                     <tableViewCell tag="4" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="EFh-T8-Afi">
                                         <rect key="frame" x="0.0" y="171" width="320" height="44"/>
@@ -84,9 +84,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Alert Region Size:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lrd-D9-3Jj">
-                                                    <rect key="frame" x="7" y="9" width="207" height="26"/>
+                                                    <rect key="frame" x="7" y="9" width="128" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="EuphemiaUCAS-Italic" family="Euphemia UCAS" pointSize="14"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZH-zK-Jac">
+                                                    <rect key="frame" x="172" y="23" width="142" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -99,7 +106,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="203"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osF-Uh-D11">
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osF-Uh-D11">
                                                     <rect key="frame" x="20" y="-28" width="280" height="249"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </mapView>
@@ -182,6 +189,7 @@
                     <connections>
                         <outlet property="mapSegment" destination="JfS-zJ-Fju" id="ECa-5w-bAE"/>
                         <outlet property="radiusMapView" destination="osF-Uh-D11" id="JAq-nm-Xup"/>
+                        <outlet property="radiusSizeLabel" destination="GZH-zK-Jac" id="g4Q-JK-zXh"/>
                         <outlet property="radiusSlider" destination="NgT-5J-Atj" id="XnD-ci-aGK"/>
                     </connections>
                 </tableViewController>

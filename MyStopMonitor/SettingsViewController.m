@@ -56,7 +56,7 @@
     self.radiusSlider.minimumValue = 0.6f;
     self.radiusSlider.maximumValue = 1.5f;
     
-    self.radiusSlider.value = startRadius / 1000;
+    self.radiusSlider.value = startRadius / 600;
     
     //Set mapView delegate
     self.radiusMapView.delegate = self;
@@ -101,9 +101,9 @@
     
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
-    
-    [self.radiusMapView addOverlay: circle];
+    self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
+
+    [self.radiusMapView addOverlay: self.radiusOverlay];
 }
 
 //MapView delegate
@@ -147,38 +147,43 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     UISlider *tempSlider = sender;
-
-    //NSLog(@"RadiusUpdate val: %.1f meters accross", tempSlider.value * 1000);
     
-    [defaults setDouble: tempSlider.value * 1000 forKey:@"alertRadius"];
-    
+    [defaults setDouble: tempSlider.value * 600 forKey:@"alertRadius"];
     [defaults synchronize];
     
-    [self.radiusMapView removeOverlay:[self.radiusMapView.overlays firstObject]];
     [self configureOverlay];
+    [self.radiusMapView removeOverlay:[self.radiusMapView.overlays firstObject]];
+
+    //Convert the string to double
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    //Number space for label output.
+    NSNumber *radiusNumber = [NSNumber numberWithDouble: tempString.doubleValue];
+    //Format the number data type for radius to appear in a clean decimal 0.000 format.
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    //this rounds the decimal places off to 3.
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    //store a string of the formatted number item_price.
+    NSString *radiusFormatted = [formatter stringFromNumber: radiusNumber];
     
-    //NSLog(@"Defaults updated with: %@", [defaults objectForKey:@"alertRadius"]);
+    self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@ meters", radiusFormatted];
+
 }
 
 - (void)configureOverlay
 {
     // Create userDefaults store
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
-    
     double tempRadius = tempString.doubleValue;
-    
-    [self.radiusMapView removeOverlays:[self.radiusMapView.overlays firstObject]];
     
     //center location for mapView
     CLLocationCoordinate2D demoRadiusCenter;
     demoRadiusCenter.latitude = -37.818078;
     demoRadiusCenter.longitude = 144.96681;
         
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
-    [self.radiusMapView addOverlay: circle];
-
+    self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
+    
+    [self.radiusMapView addOverlay: self.radiusOverlay];
 }
 
 

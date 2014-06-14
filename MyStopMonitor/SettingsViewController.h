@@ -37,10 +37,9 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mapSegment;
 @property (weak, nonatomic) IBOutlet MKMapView *radiusMapView;
-
+@property (strong, nonatomic) MKCircle *radiusOverlay;
 @property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
-@property (nonatomic, retain) IBOutlet UISlider *alertRadiusSlider;
-
+@property (weak, nonatomic) IBOutlet UILabel *radiusSizeLabel;
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 @property (nonatomic) CLLocationCoordinate2D mapCoordinate;
 

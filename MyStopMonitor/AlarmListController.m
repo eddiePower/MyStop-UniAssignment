@@ -344,7 +344,7 @@
 
 -(void)locationManager:(CLLocationManager *)manager didStopMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"Stoping monitoring region name: %@", region.identifier);
+    NSLog(@"\nStoping monitoring region name: %@", region.identifier);
 }
 //if the region monitoring failed then run this delegate method.
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
@@ -378,7 +378,7 @@
 {
 	//Debug lines
     NSString *event = [NSString stringWithFormat:@"You've Entered the Region %@ at %@", region.identifier, [NSDate date]];
-    NSLog(@"Event was: %@", event);
+    NSLog(@"\nEvent was: %@", event);
     
 
     //--------Alert the user To Region or station arrival with Sound Alert and Vibrate------------
