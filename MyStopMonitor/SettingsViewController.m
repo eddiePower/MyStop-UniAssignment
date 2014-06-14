@@ -66,8 +66,8 @@
     
     //center location for mapView
     CLLocationCoordinate2D demoRadiusCenter;
-    demoRadiusCenter.latitude = -37.818078;
-    demoRadiusCenter.longitude = 144.96681;
+    demoRadiusCenter.latitude = -37.818877;
+    demoRadiusCenter.longitude = 144.964488;
     
     //Span @ % of degree = 100th of degree
     MKCoordinateSpan demoRadiusSpan;
@@ -86,7 +86,7 @@
     
     radiusDemoAnnotation.coordinate = demoRadiusCenter;
     radiusDemoAnnotation.title = @"Flinders Street Station";
-    radiusDemoAnnotation.subtitle = @"Alert radius size visualization, set for new Alerts only.";
+    radiusDemoAnnotation.subtitle = @"New Alert's radius size visualization";
     
     //Add annotation array to the map
     [self.radiusMapView addAnnotation: radiusDemoAnnotation];
@@ -178,8 +178,8 @@
     
     //center location for mapView
     CLLocationCoordinate2D demoRadiusCenter;
-    demoRadiusCenter.latitude = -37.818078;
-    demoRadiusCenter.longitude = 144.96681;
+    demoRadiusCenter.latitude = -37.818877;
+    demoRadiusCenter.longitude = 144.964488;
         
     self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
     

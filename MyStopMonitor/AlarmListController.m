@@ -137,10 +137,19 @@
         if (a.alarmIsActive.intValue ==  1)
         {
             [alarmActiveSwitch setOn: YES animated: YES];
+            
+            #warning fill in switch region alert off with switch here!!
+            //check for region alert for this alarm
+            
+            //if region exsists which it should return
+            
+            //else add region via alarm object.
         }
         else
         {
             [alarmActiveSwitch setOn: NO animated: YES];
+            
+            //Remover region alert
         }
         
        return cell;

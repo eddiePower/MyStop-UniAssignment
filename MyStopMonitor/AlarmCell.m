@@ -49,7 +49,14 @@
         //NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now active, value is: %@\nStation name is: %@", self.cellAlarm.alarmIsActive, self.cellAlarm.station.stationName);
         
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
-        [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];        
+        [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];
+        
+        #warning fill in switch region alert off with switch here!!
+        //check for region alert for this cellAlarm
+        
+        //if region exsists return
+        
+        //else add region via alarm object then return.
     }
     else
     {
@@ -60,6 +67,9 @@
         
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
+        
+        //Remover region alert
+
     }
 }
 
