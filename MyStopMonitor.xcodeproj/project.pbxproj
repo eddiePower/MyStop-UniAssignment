@@ -67,21 +67,21 @@
 		893C6A4D1931E57D00501E0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8967C82F1941EB56002460EB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		8967C8301941EB56002460EB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		89701DA51919FE4500501AB0 /* MyStopMonitorV1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStopMonitorV1.1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		89701DA51919FE4500501AB0 /* MyStopMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStopMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89701DA81919FE4500501AB0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		89701DAA1919FE4500501AB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		89701DAC1919FE4500501AB0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		89701DB01919FE4500501AB0 /* MyStopMonitorV1.1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitorV1.1-Info.plist"; sourceTree = "<group>"; };
+		89701DB01919FE4500501AB0 /* MyStopMonitor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitor-Info.plist"; sourceTree = "<group>"; };
 		89701DB21919FE4500501AB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89701DB41919FE4500501AB0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		89701DB61919FE4500501AB0 /* MyStopMonitorV1.1-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyStopMonitorV1.1-Prefix.pch"; sourceTree = "<group>"; };
+		89701DB61919FE4500501AB0 /* MyStopMonitor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyStopMonitor-Prefix.pch"; sourceTree = "<group>"; };
 		89701DB71919FE4500501AB0 /* StopMonitorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StopMonitorAppDelegate.h; sourceTree = "<group>"; };
 		89701DB81919FE4500501AB0 /* StopMonitorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StopMonitorAppDelegate.m; sourceTree = "<group>"; };
 		89701DBB1919FE4500501AB0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89701DC01919FE4500501AB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		89701DC61919FE4600501AB0 /* MyStopMonitorV1.1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyStopMonitorV1.1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89701DC61919FE4600501AB0 /* MyStopMonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyStopMonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89701DC71919FE4600501AB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		89701DCF1919FE4600501AB0 /* MyStopMonitorV1.1Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitorV1.1Tests-Info.plist"; sourceTree = "<group>"; };
+		89701DCF1919FE4600501AB0 /* MyStopMonitorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitorTests-Info.plist"; sourceTree = "<group>"; };
 		89701DD11919FE4600501AB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyStopMonitorTests.m; sourceTree = "<group>"; };
 		89701DDD191A032B00501AB0 /* AlarmListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmListController.h; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 		89701DA61919FE4500501AB0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				89701DA51919FE4500501AB0 /* MyStopMonitorV1.1.app */,
-				89701DC61919FE4600501AB0 /* MyStopMonitorV1.1Tests.xctest */,
+				89701DA51919FE4500501AB0 /* MyStopMonitor.app */,
+				89701DC61919FE4600501AB0 /* MyStopMonitorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,10 +211,10 @@
 		89701DAF1919FE4500501AB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				89701DB01919FE4500501AB0 /* MyStopMonitorV1.1-Info.plist */,
+				89701DB01919FE4500501AB0 /* MyStopMonitor-Info.plist */,
 				89701DB11919FE4500501AB0 /* InfoPlist.strings */,
 				89701DB41919FE4500501AB0 /* main.m */,
-				89701DB61919FE4500501AB0 /* MyStopMonitorV1.1-Prefix.pch */,
+				89701DB61919FE4500501AB0 /* MyStopMonitor-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 		89701DCE1919FE4600501AB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				89701DCF1919FE4600501AB0 /* MyStopMonitorV1.1Tests-Info.plist */,
+				89701DCF1919FE4600501AB0 /* MyStopMonitorTests-Info.plist */,
 				89701DD01919FE4600501AB0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -322,9 +322,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		89701DA41919FE4500501AB0 /* MyStopMonitorV1.1 */ = {
+		89701DA41919FE4500501AB0 /* MyStopMonitor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89701DD71919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1" */;
+			buildConfigurationList = 89701DD71919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitor" */;
 			buildPhases = (
 				89701DA11919FE4500501AB0 /* Sources */,
 				89701DA21919FE4500501AB0 /* Frameworks */,
@@ -334,14 +334,14 @@
 			);
 			dependencies = (
 			);
-			name = MyStopMonitorV1.1;
+			name = MyStopMonitor;
 			productName = MyStopMonitor;
-			productReference = 89701DA51919FE4500501AB0 /* MyStopMonitorV1.1.app */;
+			productReference = 89701DA51919FE4500501AB0 /* MyStopMonitor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		89701DC51919FE4600501AB0 /* MyStopMonitorV1.1Tests */ = {
+		89701DC51919FE4600501AB0 /* MyStopMonitorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89701DDA1919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1Tests" */;
+			buildConfigurationList = 89701DDA1919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorTests" */;
 			buildPhases = (
 				89701DC21919FE4600501AB0 /* Sources */,
 				89701DC31919FE4600501AB0 /* Frameworks */,
@@ -352,9 +352,9 @@
 			dependencies = (
 				89701DCC1919FE4600501AB0 /* PBXTargetDependency */,
 			);
-			name = MyStopMonitorV1.1Tests;
+			name = MyStopMonitorTests;
 			productName = MyStopMonitorTests;
-			productReference = 89701DC61919FE4600501AB0 /* MyStopMonitorV1.1Tests.xctest */;
+			productReference = 89701DC61919FE4600501AB0 /* MyStopMonitorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -372,7 +372,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 89701DA01919FE4500501AB0 /* Build configuration list for PBXProject "MyStopMonitorV1.1" */;
+			buildConfigurationList = 89701DA01919FE4500501AB0 /* Build configuration list for PBXProject "MyStopMonitor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -386,8 +386,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				89701DA41919FE4500501AB0 /* MyStopMonitorV1.1 */,
-				89701DC51919FE4600501AB0 /* MyStopMonitorV1.1Tests */,
+				89701DA41919FE4500501AB0 /* MyStopMonitor */,
+				89701DC51919FE4600501AB0 /* MyStopMonitorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -460,7 +460,7 @@
 /* Begin PBXTargetDependency section */
 		89701DCC1919FE4600501AB0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 89701DA41919FE4500501AB0 /* MyStopMonitorV1.1 */;
+			target = 89701DA41919FE4500501AB0 /* MyStopMonitor */;
 			targetProxy = 89701DCB1919FE4600501AB0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -569,9 +569,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitorV1.1-Prefix.pch";
-				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitorV1.1-Info.plist";
-				PRODUCT_NAME = MyStopMonitorV1.1;
+				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
+				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitor-Info.plist";
+				PRODUCT_NAME = MyStopMonitor;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -582,9 +582,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitorV1.1-Prefix.pch";
-				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitorV1.1-Info.plist";
-				PRODUCT_NAME = MyStopMonitorV1.1;
+				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
+				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitor-Info.plist";
+				PRODUCT_NAME = MyStopMonitor;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -604,8 +604,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MyStopMonitorTests/MyStopMonitorV1.1Tests-Info.plist";
-				PRODUCT_NAME = MyStopMonitorV1.1Tests;
+				INFOPLIST_FILE = "MyStopMonitorTests/MyStopMonitorTests-Info.plist";
+				PRODUCT_NAME = MyStopMonitorTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -622,8 +622,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
-				INFOPLIST_FILE = "MyStopMonitorTests/MyStopMonitorV1.1Tests-Info.plist";
-				PRODUCT_NAME = MyStopMonitorV1.1Tests;
+				INFOPLIST_FILE = "MyStopMonitorTests/MyStopMonitorTests-Info.plist";
+				PRODUCT_NAME = MyStopMonitorTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -632,7 +632,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		89701DA01919FE4500501AB0 /* Build configuration list for PBXProject "MyStopMonitorV1.1" */ = {
+		89701DA01919FE4500501AB0 /* Build configuration list for PBXProject "MyStopMonitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89701DD51919FE4600501AB0 /* Debug */,
@@ -641,7 +641,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89701DD71919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1" */ = {
+		89701DD71919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89701DD81919FE4600501AB0 /* Debug */,
@@ -650,7 +650,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89701DDA1919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorV1.1Tests" */ = {
+		89701DDA1919FE4600501AB0 /* Build configuration list for PBXNativeTarget "MyStopMonitorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				89701DDB1919FE4600501AB0 /* Debug */,

@@ -41,10 +41,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *alarmStopNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alarmLocationLabel;
 @property (strong, nonatomic) UISwitch *alarmSwitch;
-@property (strong, nonatomic) Alarm* cellAlarm;
-
+@property (strong, nonatomic) Alarm *cellAlarm;
 @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 
 -(void)setupCell;
 

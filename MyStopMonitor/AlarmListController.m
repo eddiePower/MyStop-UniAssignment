@@ -117,9 +117,6 @@
 
         //Add a switch to the alarm Cell.
         UISwitch *alarmActiveSwitch = [[UISwitch alloc] initWithFrame: CGRectZero];
-        
-        //Set identifying tag for selecting only that switch.[rowNumber]
-        alarmActiveSwitch.tag = indexPath.row;
 
         //use accessoryView to help position the seitch easily.
         cell.accessoryView = alarmActiveSwitch;
@@ -263,8 +260,8 @@
     }
 }
 
-//Add the station item to the new alarm object
-//add the station location as a region for monitoring
+//Add the station item to the new alarm object,
+//add the station location as a region for monitoring.
 -(void)addAlarmStop:(Alarm *)anAlarm
 {
     // Get the stored data before the view loads

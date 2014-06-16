@@ -79,8 +79,7 @@
     //set the location manager used on other pages so monitoring dosnt stop at wrong time.
     alarmListController.locManager = self.locationManager;
     self.locationManager.delegate = alarmListController;
-    
-    
+
     return YES;
 }
 							

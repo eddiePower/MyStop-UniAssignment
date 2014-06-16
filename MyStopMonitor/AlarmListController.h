@@ -48,5 +48,7 @@
 
 
 - (void)addAlarmRegion:(Alarm *)anAlarm;
+-(void)removeStopRegion:(Alarm *)anAlarm;
+
 
 @end

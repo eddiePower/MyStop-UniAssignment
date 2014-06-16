@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "89701DA41919FE4500501AB0"
-               BuildableName = "MyStopMonitorV1.1.app"
-               BlueprintName = "MyStopMonitorV1.1"
-               ReferencedContainer = "container:MyStopMonitorV1.1.xcodeproj">
+               BuildableName = "MyStopMonitor.app"
+               BlueprintName = "MyStopMonitor"
+               ReferencedContainer = "container:MyStopMonitor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "89701DC51919FE4600501AB0"
-               BuildableName = "MyStopMonitorV1.1Tests.xctest"
-               BlueprintName = "MyStopMonitorV1.1Tests"
-               ReferencedContainer = "container:MyStopMonitorV1.1.xcodeproj">
+               BuildableName = "MyStopMonitorTests.xctest"
+               BlueprintName = "MyStopMonitorTests"
+               ReferencedContainer = "container:MyStopMonitor.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89701DA41919FE4500501AB0"
-            BuildableName = "MyStopMonitorV1.1.app"
-            BlueprintName = "MyStopMonitorV1.1"
-            ReferencedContainer = "container:MyStopMonitorV1.1.xcodeproj">
+            BuildableName = "MyStopMonitor.app"
+            BlueprintName = "MyStopMonitor"
+            ReferencedContainer = "container:MyStopMonitor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89701DA41919FE4500501AB0"
-            BuildableName = "MyStopMonitorV1.1.app"
-            BlueprintName = "MyStopMonitorV1.1"
-            ReferencedContainer = "container:MyStopMonitorV1.1.xcodeproj">
+            BuildableName = "MyStopMonitor.app"
+            BlueprintName = "MyStopMonitor"
+            ReferencedContainer = "container:MyStopMonitor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -84,9 +84,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "89701DA41919FE4500501AB0"
-            BuildableName = "MyStopMonitorV1.1.app"
-            BlueprintName = "MyStopMonitorV1.1"
-            ReferencedContainer = "container:MyStopMonitorV1.1.xcodeproj">
+            BuildableName = "MyStopMonitor.app"
+            BlueprintName = "MyStopMonitor"
+            ReferencedContainer = "container:MyStopMonitor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

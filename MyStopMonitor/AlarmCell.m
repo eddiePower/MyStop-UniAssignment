@@ -54,8 +54,10 @@
         #warning fill in switch region alert off with switch here!!
         //check for region alert for this cellAlarm
         
-        //if region exsists return
+        AlarmListController *testing = [[AlarmListController alloc] init];
         
+        [testing  addAlarmRegion: self.cellAlarm];
+
         //else add region via alarm object then return.
     }
     else
@@ -70,7 +72,9 @@
         
         //Remover region alert
         //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
-        //[self.locManager stopMonitoringForRegion: geoRegion];
+        AlarmListController *testing = [[AlarmListController alloc] init];
+        [testing removeStopRegion: self.cellAlarm];
+
     }
 }
 
