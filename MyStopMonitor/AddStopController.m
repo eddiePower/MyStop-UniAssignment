@@ -102,7 +102,7 @@
         //Do the download from API
         [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
          {
-             if(error == nil)  //No errors in data download pase it to C.D.
+             if(error == nil)  //No errors in data download & parse it to C.D.
              {
                  [self parseStationJSON: data];
                  [self fetchStationData];
@@ -118,6 +118,9 @@
 -(void)fetchStationData
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Station"];
+    
+    //will try sort these in order of train line real world stops but may need edit core data from set
+    // plist of station stop id's in order of real world stop order per trainline.
     NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"stationStopId" ascending:YES];
     
     [fetchRequest setSortDescriptors:@[nameSort]];

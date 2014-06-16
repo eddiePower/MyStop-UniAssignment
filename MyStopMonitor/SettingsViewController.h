@@ -46,7 +46,4 @@
 - (IBAction)segmentSelected:(UISegmentedControl *)sender;
 - (IBAction)sliderValueChanged:(id)sender;
 
-
-
-
 @end

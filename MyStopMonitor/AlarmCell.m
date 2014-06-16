@@ -62,14 +62,13 @@
     {
         //Update the value stored in alarmIsactive property part of the Alarm class
         self.cellAlarm.alarmIsActive = [NSNumber numberWithInt: 0];
-       
-        //NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now inactive, value is: %@", self.cellAlarm.alarmIsActive);
         
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
         
         //Remover region alert
-
+        //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
+        //[self.locManager stopMonitoringForRegion: geoRegion];
     }
 }
 
@@ -77,6 +76,12 @@
 // this allows it to be any data type i need to update and
 -(void)updateAlarmManagedObject:(NSNumber *)isActiveValue objectToSearchFor:(NSString *)alarmTitle
 {
+    
+    
+    //This first bit i got lazy and couldnt work out how to pass managedObject here as its in my
+    //AlarmCell prototype file not a ViewController so its in a tableView not a normall view
+    // Elliott said this was a specific fix for mine
+    
     //Set up the first view controller location.
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     UINavigationController *navController = [tabController.viewControllers firstObject];
@@ -84,14 +89,20 @@
     //Set the AlarmListController which uses the Core Data stack similar to app delegate.
     AlarmListController *alarmListController = [navController.viewControllers firstObject];
     self.managedObjectContext = alarmListController.managedObjectContext;
+    //End elliotts specific fix
     
+    
+    //Create a fetchRequest to setEntity or edit entity in Alarm
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"Alarm" inManagedObjectContext: self.managedObjectContext]];
     
+    //create predecate to search for the alarmTitle passed into this method
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"alarmTitle == %@", alarmTitle];
+    //set predecate on request
     [request setPredicate: predicate];
     
     NSError *error = nil;
+    //Run request
     NSArray *results = [self.managedObjectContext executeFetchRequest: request error: &error];
     
     // maybe some check before, to be sure results is not empty
@@ -101,6 +112,7 @@
     
     // error handling code
     //if an error occured when saving to managedObject then show userInfo formated output.
+    //Otherwise save the newly update managedObjectContext.
     if(![self.managedObjectContext save: &error])
     {
       NSLog(@"Could not add Station to the alarm:\n%@", error.userInfo);

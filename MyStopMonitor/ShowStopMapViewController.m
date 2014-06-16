@@ -53,26 +53,23 @@
     //Set the mapView Delegate to return to itself for annotations.
     self.mapView.delegate = self;
    
-    //Set the region/area for the mapView location to show.
-    MKCoordinateRegion mapRegion;
+    NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    
+    double tempRadius = tempString.doubleValue;
     
     //center location for mapView
     CLLocationCoordinate2D center;
     center.latitude = [self.mapStation.stationLatitude doubleValue];
     center.longitude = [self.mapStation.stationLongitude doubleValue];
     
-    //Span @ % of degree = 100th of degree
-    MKCoordinateSpan span;
-    span.latitudeDelta = 0.01f;
-    span.longitudeDelta = 0.01f;
+    MKMapPoint pt = MKMapPointForCoordinate(center);
+    double w = MKMapPointsPerMeterAtLatitude(center.latitude) * (tempRadius * 2);
+    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
+    [self.mapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(30, 0, 25, 0) animated: NO];
     
     
-    //Set center and span for the mapView region
-    mapRegion.center = center;
-    mapRegion.span = span;
+
     
-    //Set the Region to the mapView.
-    [self.mapView setRegion: mapRegion animated: YES];
 
     //initalize annotation for Stop with title, coord's
     //  and subtitle used for display only - user visulisation of station.
@@ -84,14 +81,12 @@
     //overridden method below, adds custom pin and callout.
     [self.mapView viewForAnnotation: item];
     
-    NSString *tempString = [defaults objectForKey:@"alertRadius"];
-    
-    double tempRadius = tempString.doubleValue;
-    
+        
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
     MKCircle *circle = [MKCircle circleWithCenterCoordinate: center radius: tempRadius];
-                        
+    
+    
     [self.mapView addOverlay: circle];
     
     //FUTURE ADD TO MARKER THE MYKI OUTLET STATUS AND PARKING STATUS OF STATIONS.

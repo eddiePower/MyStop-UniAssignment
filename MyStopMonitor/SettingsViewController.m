@@ -32,6 +32,9 @@
 
 #import "SettingsViewController.h"
 
+const double cSLIDERMULTIPLYER = 600.00;
+
+
 @interface SettingsViewController ()
 
 @property(nonatomic)double radiusUpdate;
@@ -51,37 +54,28 @@
     
     double startRadius = tempString.doubleValue;
     
-    NSLog(@"Radius to be set on slider is: %f", startRadius / 1000);
+    NSLog(@"Radius to be set on slider is: %f", startRadius / cSLIDERMULTIPLYER);
     
     self.radiusSlider.minimumValue = 0.6f;
     self.radiusSlider.maximumValue = 1.5f;
     
-    self.radiusSlider.value = startRadius / 600;
+    self.radiusSlider.value = startRadius / cSLIDERMULTIPLYER;
     
     //Set mapView delegate
     self.radiusMapView.delegate = self;
-    
-    //Set the region/area for the mapView location to show. - Flinders Street Station Melbourne Australia.
-    MKCoordinateRegion mapRegion;
     
     //center location for mapView
     CLLocationCoordinate2D demoRadiusCenter;
     demoRadiusCenter.latitude = -37.818877;
     demoRadiusCenter.longitude = 144.964488;
     
-    //Span @ % of degree = 100th of degree
-    MKCoordinateSpan demoRadiusSpan;
-    demoRadiusSpan.latitudeDelta = 0.02f;
-    demoRadiusSpan.longitudeDelta = 0.02f;
+    MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
+    double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (startRadius * 2);
+    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
     
-    //Set center and span for the mapView region
-    mapRegion.center = demoRadiusCenter;
-    mapRegion.span = demoRadiusSpan;
     
-    //Set the Region to the mapView.
-    [self.radiusMapView setRegion: mapRegion animated: YES];
-    
-    //initalize annotation for radius demo
+     //initalize annotation for radius demo
     MKPointAnnotation *radiusDemoAnnotation = [[MKPointAnnotation alloc]init];
     
     radiusDemoAnnotation.coordinate = demoRadiusCenter;
@@ -102,7 +96,7 @@
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
     self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
-
+    
     [self.radiusMapView addOverlay: self.radiusOverlay];
 }
 
@@ -148,7 +142,7 @@
     
     UISlider *tempSlider = sender;
     
-    [defaults setDouble: tempSlider.value * 600 forKey:@"alertRadius"];
+    [defaults setDouble: tempSlider.value * cSLIDERMULTIPLYER forKey:@"alertRadius"];
     [defaults synchronize];
     
     [self configureOverlay];
@@ -165,8 +159,17 @@
     //store a string of the formatted number item_price.
     NSString *radiusFormatted = [formatter stringFromNumber: radiusNumber];
     
-    self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@ meters", radiusFormatted];
-
+    NSLog(@"\n\nRadius on slider is: %@\n\n", [NSString stringWithFormat:@"Size: %@ meters", radiusFormatted]);
+    
+    //center location for mapView
+    CLLocationCoordinate2D demoRadiusCenter;
+    demoRadiusCenter.latitude = -37.818877;
+    demoRadiusCenter.longitude = 144.964488;
+    
+    MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
+    double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (radiusFormatted.doubleValue * 2);
+    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
 }
 
 - (void)configureOverlay
@@ -180,10 +183,10 @@
     CLLocationCoordinate2D demoRadiusCenter;
     demoRadiusCenter.latitude = -37.818877;
     demoRadiusCenter.longitude = 144.964488;
-        
-    self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
     
-    [self.radiusMapView addOverlay: self.radiusOverlay];
+    self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
+
+    [self.radiusMapView addOverlay: self.radiusOverlay level: MKOverlayLevelAboveLabels];
 }
 
 

@@ -43,10 +43,6 @@
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
-    AlarmCell *alarmCell = [[AlarmCell alloc] init];
-    
-    alarmCell.managedObjectContext = self.managedObjectContext;
-    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Alarm"];
     
     NSError *error;
@@ -279,7 +275,7 @@
     
     //link to slider to adjust radius of region
     anAlarm.alarmAlertRadius = [defaults objectForKey:@"alertRadius"];  //used in the region creation for radius in meters.
-                                                                        //chose 600m-1.5km to allow enough time for user.
+                                                                        //chose 360m-900m to allow enough time for user.
                                                                         //will keep this value as the last set radius limit.
     
     NSLog(@"The alarm radius bieng set is:%@", [defaults objectForKey:@"alertRadius"]);
@@ -427,7 +423,6 @@
     ACPReminder *localNotifications = [ACPReminder sharedManager];
     
     //Settings ACPReminder library --
-    #warning - Add ACPReminder refrence to author in comments and project readMe file.
     localNotifications.messages = @[[NSString stringWithFormat: NSLocalizedString(@"Arriving at %@", nil), region.identifier], [NSString stringWithFormat: NSLocalizedString(@"Wake Up now\n %@ is coming up next!", nil), region.identifier]];
     localNotifications.timePeriods = @[@(1)]; //seconds after fireing - used as alert when app is in BG
     localNotifications.appDomain = @"nu.mine.powerfamilyau.MyStopMonitorV1.1";
