@@ -39,12 +39,10 @@
 
 @interface AlarmListController : UITableViewController <AddAlarmStopDelegate, CLLocationManagerDelegate>
 @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 //location manager
 @property(strong, nonatomic) CLLocationManager *locManager;
 //user alert voice
 @property(strong, nonatomic) AVSpeechSynthesizer *alertSynthesizer;
-@property(strong, nonatomic) UITableView *myTableView;
 @property(strong, nonatomic) Alarm *anAlarmToStore;
 @property(strong, nonatomic) NSMutableArray* currentAlarms; 
 

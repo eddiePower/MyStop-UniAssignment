@@ -159,7 +159,9 @@ const double cSLIDERMULTIPLYER = 600.00;
     //store a string of the formatted number item_price.
     NSString *radiusFormatted = [formatter stringFromNumber: radiusNumber];
     
-    NSLog(@"\n\nRadius on slider is: %@\n\n", [NSString stringWithFormat:@"Size: %@ meters", radiusFormatted]);
+    // NSLog(@"\n\nRadius on slider is: %@\n\n", [NSString stringWithFormat:@"Size: %@ meters", radiusFormatted]);
+    
+    self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@m ", radiusFormatted];
     
     //center location for mapView
     CLLocationCoordinate2D demoRadiusCenter;

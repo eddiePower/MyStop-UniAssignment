@@ -66,6 +66,8 @@
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
         
+        
+        
         //Remover region alert
         //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
         //[self.locManager stopMonitoringForRegion: geoRegion];

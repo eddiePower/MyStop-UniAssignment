@@ -132,20 +132,20 @@
         //and redo that switch
         if (a.alarmIsActive.intValue ==  1)
         {
+            //if core data was stored as alarmIsActive then set switch to on at app start up.
             [alarmActiveSwitch setOn: YES animated: YES];
-            
-            #warning fill in switch region alert off with switch here!!
-            //check for region alert for this alarm
-            
-            //if region exsists which it should return
-            
-            //else add region via alarm object.
+     
+            //Add region via alarm object if switch is in on position on application start up.
+            [self addAlarmRegion: a];
+
         }
         else
         {
+            //if CD was stored as alarmIsActive then set switch to off position on app start up.
             [alarmActiveSwitch setOn: NO animated: YES];
             
-            //Remover region alert
+            //Remover region alert by using current alarm details such as station detail.
+            [self removeStopRegion: a];
         }
         
        return cell;
@@ -318,14 +318,14 @@
 	if ([CLLocationManager isMonitoringAvailableForClass:[CLRegion class]])
     {
         //Begin monitoring the station region just created in the anAlarm object.
-        NSLog(@"\n\nBeginning the Region monitoring for location: %@", anAlarm.station.stationName);
+        NSLog(@"\n\nBeginning the Region monitoring for location: %@\n", anAlarm.station.stationName);
         
         //Used in region init and overlay position.
         CLLocationCoordinate2D stopCenter;
         stopCenter.latitude = [anAlarm.station.stationLatitude doubleValue];
         stopCenter.longitude = [anAlarm.station.stationLongitude doubleValue];
         
-        NSLog(@"Region Radius bieng set is: %f", [anAlarm.alarmAlertRadius doubleValue]);
+        NSLog(@"\nRegion Radius bieng set is: %f\n", [anAlarm.alarmAlertRadius doubleValue]);
         
 		// Start location manager monitoring the alarm stop region, radius & ID.
 		[self.locManager startMonitoringForRegion: [[CLCircularRegion alloc]
@@ -344,7 +344,7 @@
 //Check monitoring for region has started successfully
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
-    //NSLog(@"\nNow monitoring region named: %@", region.identifier);
+    NSLog(@"\nNow monitoring region named: %@", region.identifier);
 }
 
 -(void)locationManager:(CLLocationManager *)manager didStopMonitoringForRegion:(CLRegion *)region
@@ -409,6 +409,15 @@
                                            mode: TDNotificationModeText
                                     dismissible: YES
                                  hideAfterDelay: 10];
+    
+    
+    
+    CGRect myView;
+    myView.size = self.view.frame.size;
+    myView.origin = self.view.frame.origin;
+    
+    // If active alert banner area is hidden from view, scroll ito top    
+    [self.tableView setContentOffset:CGPointMake(0, -90) animated:YES];
     
     //vibrate the phone to alert the user this also covers the alert if user has phone on silent
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
