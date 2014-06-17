@@ -66,9 +66,7 @@
     self.locationManager = [[CLLocationManager alloc] init];
     //Start updating the location data of the user to begin monitoring regions.
     [self.locationManager startUpdatingLocation];
-    
-    #warning more testing required on location manager accuracy setting vs battery life
-    
+        
     //Set desired accuracy as high as feasable due to purpose of the app.
     self.locationManager.distanceFilter = kCLLocationAccuracyBest;
     //self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
@@ -79,7 +77,7 @@
     //set the location manager used on other pages so monitoring dosnt stop at wrong time.
     alarmListController.locManager = self.locationManager;
     self.locationManager.delegate = alarmListController;
-
+    
     return YES;
 }
 							
@@ -98,8 +96,7 @@
 		[self.locationManager stopUpdatingLocation];
 		[self.locationManager startMonitoringSignificantLocationChanges];
         
-        NSLog(@"Switching to monitor Background signifigant Local Changes. Due to interupt from other service");
-        
+         NSLog(@"About to switch to background monitoring, possibly due to incoming interuption(call, sms, other alert).");
 	}
 	else
     {
@@ -123,7 +120,7 @@
     //        build into core data for save state.
     
     //NSMutableArray *regions = [[NSMutableArray alloc] init];
-    //regions = [[self.viewController.locManager monitoredRegions] allObjects].mutableCopy;
+    //regions = [[self.alarmListController.locManager monitoredRegions] allObjects].mutableCopy;
     
     //Check background GPS monitoring is available
 	if ([CLLocationManager significantLocationChangeMonitoringAvailable])
@@ -132,8 +129,7 @@
 		[self.locationManager stopUpdatingLocation];
 		[self.locationManager startMonitoringSignificantLocationChanges];
         
-        NSLog(@"Starting to monitor Background signifigant Changes.");
-
+        NSLog(@"Switching to monitor Background location Changes.");
 	}
 	else
     {

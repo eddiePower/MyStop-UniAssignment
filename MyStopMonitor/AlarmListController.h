@@ -47,7 +47,7 @@
 @property(strong, nonatomic) NSMutableArray* currentAlarms; 
 
 
-- (void)addAlarmRegion:(Alarm *)anAlarm;
+-(void)addAlarmRegion:(Alarm *)anAlarm;
 -(void)removeStopRegion:(Alarm *)anAlarm;
 
 

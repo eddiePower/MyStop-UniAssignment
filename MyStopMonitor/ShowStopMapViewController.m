@@ -40,6 +40,8 @@
 {
     [super viewDidLoad];
     
+    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mapBg"]]];
+    
     // Create userDefaults store
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -137,14 +139,14 @@
             //Add a custom Button for the station/stop call out box to show next train times soon.
             UIButton *showTimeTableButton = [UIButton buttonWithType: UIButtonTypeCustom];
 			[showTimeTableButton setFrame:CGRectMake(0., 0., 45., 45.)];
-			[showTimeTableButton setImage:[UIImage imageNamed: @"StopIcon"] forState:UIControlStateNormal];
+			[showTimeTableButton setImage:[UIImage imageNamed: @"timetable"] forState:UIControlStateNormal];
             customPinView.rightCalloutAccessoryView = showTimeTableButton;
             customPinView.rightCalloutAccessoryView.tag = 0;
             
             // Create a button for the left callout accessory view of each annotation to remove the annotation and region being monitored.
 			UIButton *removeRegionButton = [UIButton buttonWithType: UIButtonTypeCustom];
 			[removeRegionButton setFrame:CGRectMake(0., 0., 25., 25.)];
-			[removeRegionButton setImage:[UIImage imageNamed:@"RemoveRegion"] forState:UIControlStateNormal];
+			[removeRegionButton setImage:[UIImage imageNamed:@"StopIcon"] forState:UIControlStateNormal];
 			customPinView.leftCalloutAccessoryView = removeRegionButton;
             customPinView.rightCalloutAccessoryView.tag = 1;
 
@@ -167,7 +169,7 @@
 {
       if (control.tag == 0)
       {
-         NSLog(@"Clicked Left Button");
+          //NSLog(@"Clicked Left Button");
          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Switch off the alert!"
                                                             message:@"This is the area to turn off the alert for this alarm while still being able to access all the extra information shown on this VC!"
                                                            delegate: self
@@ -179,8 +181,9 @@
       }
       else if (control.tag == 1)
       {
-         NSLog(@"Clicked Right Button");
-          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Next 3 Train Times"       message:@"This is your first UIAlertview message.\nThis is second line.\nThird Line\n4thLine etc etc" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+          // NSLog(@"Clicked Right Button");
+          UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Next 3 Train Times" message:@"This is your first UIAlertview message.\nThis is second line.\nThird Line\n4thLine etc etc" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+          
           [alertView show];
 
       }

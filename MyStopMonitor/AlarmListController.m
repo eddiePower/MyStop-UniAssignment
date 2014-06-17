@@ -43,6 +43,8 @@
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
+    self.locManager.delegate = self;
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Alarm"];
     
     NSError *error;
@@ -68,11 +70,11 @@
     //Display the monitored regions after loading or reloading the view.
     if ([self.locManager monitoredRegions].count > 0)
     {
-        NSLog(@"Region List is now: %@", [self.locManager monitoredRegions]);
+        //NSLog(@"Region List is now: %@", [self.locManager monitoredRegions]);
     }
     else
     {
-        NSLog(@"No Regions bieng monitored at this time.");
+        //NSLog(@"No Regions bieng monitored at this time.");
     }
 }
 
@@ -183,8 +185,6 @@
         //Remove region associated with alarm station object.
         [self removeStopRegion:alarmToRemove];
         
-        //NSLog(@"%@", [self.locManager monitoredRegions]);
-        
         //remove the alarm object fro m the currentAlarms
         [self.currentAlarms removeObject: alarmToRemove];
         
@@ -225,9 +225,7 @@
                                    initWithCenter: stopCenter
                                    radius: [anAlarm.alarmAlertRadius doubleValue]
                                    identifier: anAlarm.station.stationName];
-    
-    NSLog(@"Removing Region: %@", geoRegion.identifier);
-    
+        
     //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
     [self.locManager stopMonitoringForRegion: geoRegion];
 }
@@ -275,8 +273,6 @@
                                                                         //chose 360m-900m to allow enough time for user.
                                                                         //will keep this value as the last set radius limit.
     
-    NSLog(@"The alarm radius bieng set is:%@", [defaults objectForKey:@"alertRadius"]);
-    
     //date of creation may be used after future update to set repeating alarms.
     anAlarm.alarmTime = [NSDate date];
     
@@ -315,14 +311,10 @@
 	if ([CLLocationManager isMonitoringAvailableForClass:[CLRegion class]])
     {
         //Begin monitoring the station region just created in the anAlarm object.
-        NSLog(@"\n\nBeginning the Region monitoring for location: %@\n", anAlarm.station.stationName);
-        
         //Used in region init and overlay position.
         CLLocationCoordinate2D stopCenter;
         stopCenter.latitude = [anAlarm.station.stationLatitude doubleValue];
         stopCenter.longitude = [anAlarm.station.stationLongitude doubleValue];
-        
-        NSLog(@"\nRegion Radius bieng set is: %f\n", [anAlarm.alarmAlertRadius doubleValue]);
         
 		// Start location manager monitoring the alarm stop region, radius & ID.
 		[self.locManager startMonitoringForRegion: [[CLCircularRegion alloc]
@@ -341,19 +333,19 @@
 //Check monitoring for region has started successfully
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"\nNow monitoring region named: %@", region.identifier);
+    //NSLog(@"\nNow monitoring region named: %@", region.identifier);
 }
 
 -(void)locationManager:(CLLocationManager *)manager didStopMonitoringForRegion:(CLRegion *)region
 {
-    NSLog(@"\nStoping monitoring region name: %@", region.identifier);
+    //NSLog(@"\nStoping monitoring region name: %@", region.identifier);
 }
 //if the region monitoring failed then run this delegate method.
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
 	NSString *event = [NSString stringWithFormat:@"monitoringDidFailForRegion %@: %@", region.identifier, error];
     
-    NSLog(@"Event was: %@", event);
+    NSLog(@"Event was: %@\n\nError details: %@", event, error.userInfo);
 }
 
 //Error checking on region monitoring and iPhone sim error with locations/No GPS
@@ -382,7 +374,6 @@
     NSString *event = [NSString stringWithFormat:@"You've Entered the Region %@ at %@", region.identifier, [NSDate date]];
     NSLog(@"\nEvent was: %@", event);
     
-
     //--------Alert the user To Region or station arrival with Sound Alert and Vibrate------------
     //Create string to speak with region name or identifier in it.
     NSString *utteranceString = [NSString stringWithFormat: NSLocalizedString(@"Wake up now your almost at %@", nil), region.identifier];
@@ -398,7 +389,7 @@
     //instanciate the alert
     userAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Stop Monitor Alarm", nil) message:[NSString stringWithFormat:NSLocalizedString(@"%@ is coming up!", nil), region.identifier] delegate: self cancelButtonTitle: NSLocalizedString(@"Cancel Alert", nil) otherButtonTitles: NSLocalizedString(@"OK im awake!", nil), nil];
     
-    //In app animation for arrival at station
+    //In app animation for arrival at station appears at top of view for 10 seconds, refrenced in ReadMe.txt file.
     [TDNotificationPanel showNotificationInView: self.view
                                           title: NSLocalizedString(@"Next Stop: ", nil)
                                        subtitle: [NSString stringWithFormat: NSLocalizedString(@"%@", nil), region.identifier]
@@ -406,14 +397,10 @@
                                            mode: TDNotificationModeText
                                     dismissible: YES
                                  hideAfterDelay: 10];
-    
-    
-    
-    CGRect myView;
-    myView.size = self.view.frame.size;
-    myView.origin = self.view.frame.origin;
-    
-    // If active alert banner area is hidden from view, scroll ito top    
+
+    // If active alert banner area is hidden from view, scroll ito top --Needs work to check location of view
+    //first and if at 0,0 then dont scroll up by -90
+    NSLog(@"%f", self.tableView.contentSize.height);
     [self.tableView setContentOffset:CGPointMake(0, -90) animated:YES];
     
     //vibrate the phone to alert the user this also covers the alert if user has phone on silent

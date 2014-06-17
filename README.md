@@ -17,3 +17,11 @@ TDNotificationPanel - Green Bar In Application Banner.
     - Tom Diggle
     <p>A custom class that provides a in application type notification which can consist of 3 colours and 3 different uses such as error, success and loading types.  I chose to use this to help alert the user of an upcoming train station by using the succsess color scheme.</p>
 
+
+
+<p>Application Functions:
+  Build list of stations from the PTV api.
+  Lets users set alerts or alarms based on these stops
+  App will alert user if app is running and in foreground by a Green alert bar on top of view and a Pop up alert button.
+ App also alerts user when running but in background by a custom notification in notification centre, the user must dismiss or touch this alert to stop the custom sound playing.
+  App will also notify user if the app is not running due to region monitoring, it will then use the notification alert as if the app was not running.</p>

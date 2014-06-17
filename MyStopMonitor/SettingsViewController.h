@@ -33,7 +33,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface SettingsViewController : UITableViewController<MKMapViewDelegate>
+@interface SettingsViewController : UITableViewController<MKMapViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *mapSegment;
 @property (weak, nonatomic) IBOutlet MKMapView *radiusMapView;
@@ -42,6 +42,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *radiusSizeLabel;
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 @property (nonatomic) CLLocationCoordinate2D mapCoordinate;
+
+@property (weak, nonatomic) IBOutlet UIPickerView *soundPicker;
+@property(strong, nonatomic) NSArray *soundsList;
+
 
 - (IBAction)segmentSelected:(UISegmentedControl *)sender;
 - (IBAction)sliderValueChanged:(id)sender;

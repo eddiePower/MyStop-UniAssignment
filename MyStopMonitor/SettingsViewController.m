@@ -47,19 +47,76 @@ const double cSLIDERMULTIPLYER = 600.00;
 {
     [super viewDidLoad];
     
+    self.soundsList = [[NSArray alloc] initWithObjects:@"Voice alert", @"Train Horn", @"Alarm Clock", @"Train Crossing", @"Phone sound 1", nil];
+    
     // Create userDefaults store
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-   
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
-    
     double startRadius = tempString.doubleValue;
     
-    NSLog(@"Radius to be set on slider is: %f", startRadius / cSLIDERMULTIPLYER);
-    
+    //set the sliders range so it will be able to represent values from 600m - 1.5km
     self.radiusSlider.minimumValue = 0.6f;
     self.radiusSlider.maximumValue = 1.5f;
     
-    self.radiusSlider.value = startRadius / cSLIDERMULTIPLYER;
+    // Customizing the UISlider appearence in this view.
+    UIImage *minImage = [[UIImage imageNamed:@"slider_minimum.png"]
+                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    UIImage *maxImage = [[UIImage imageNamed:@"slider_maximum.png"]
+                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    UIImage *thumbImage = [UIImage imageNamed:@"thumb.png"];
+    
+    [[UISlider appearance] setMaximumTrackImage:maxImage
+                                       forState:UIControlStateNormal];
+    [[UISlider appearance] setMinimumTrackImage:minImage
+                                       forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage
+                                forState:UIControlStateNormal];
+    
+    // Customing the segmented control
+    UIImage *segmentSelected =
+    [[UIImage imageNamed:@"segcontrol_sel.png"]
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentUnselected =
+    [[UIImage imageNamed:@"segcontrol_uns.png"]
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentSelectedUnselected =
+    [UIImage imageNamed:@"segcontrol_sel-uns.png"];
+    UIImage *segUnselectedSelected =
+    [UIImage imageNamed:@"segcontrol_uns-sel.png"];
+    UIImage *segmentUnselectedUnselected =
+    [UIImage imageNamed:@"segcontrol_uns-uns.png"];
+    
+    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
+                                               forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
+                                               forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
+                                 forLeftSegmentState:UIControlStateNormal
+                                   rightSegmentState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected
+                                 forLeftSegmentState:UIControlStateSelected
+                                   rightSegmentState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance]
+     setDividerImage:segUnselectedSelected
+     forLeftSegmentState:UIControlStateNormal
+     rightSegmentState:UIControlStateSelected
+     barMetrics:UIBarMetricsDefault];
+    
+    
+    
+    if (startRadius)
+    {
+        self.radiusSlider.value = startRadius / cSLIDERMULTIPLYER;
+        self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %fm ", (self.radiusSlider.value * cSLIDERMULTIPLYER)];
+    }
+    else
+    {
+       self.radiusSlider.value = 500.00 / cSLIDERMULTIPLYER;
+       self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %fm ", (self.radiusSlider.value * cSLIDERMULTIPLYER)];
+    }
     
     //Set mapView delegate
     self.radiusMapView.delegate = self;
@@ -117,8 +174,6 @@ const double cSLIDERMULTIPLYER = 600.00;
 //user defaults plist
 - (IBAction)segmentSelected:(UISegmentedControl *)sender
 {
-    //NSLog(@"Segment has changed!!");
-    
     switch (self.mapSegment.selectedSegmentIndex)
     {
         case 0:
@@ -148,6 +203,26 @@ const double cSLIDERMULTIPLYER = 600.00;
     [self configureOverlay];
     [self.radiusMapView removeOverlay:[self.radiusMapView.overlays firstObject]];
 
+    //Format a string to show user the value of radius during resize.
+    NSString *formattedLabelText = [self formatRadiusLabel];
+    self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@m ", formattedLabelText];
+    
+    
+    //center location for mapView
+    CLLocationCoordinate2D demoRadiusCenter;
+    demoRadiusCenter.latitude = -37.818877;
+    demoRadiusCenter.longitude = 144.964488;
+    
+    MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
+    double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (formattedLabelText.doubleValue * 2);
+    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
+}
+
+-(NSString *)formatRadiusLabel
+{
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //Convert the string to double
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
     //Number space for label output.
@@ -159,19 +234,7 @@ const double cSLIDERMULTIPLYER = 600.00;
     //store a string of the formatted number item_price.
     NSString *radiusFormatted = [formatter stringFromNumber: radiusNumber];
     
-    // NSLog(@"\n\nRadius on slider is: %@\n\n", [NSString stringWithFormat:@"Size: %@ meters", radiusFormatted]);
-    
-    self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@m ", radiusFormatted];
-    
-    //center location for mapView
-    CLLocationCoordinate2D demoRadiusCenter;
-    demoRadiusCenter.latitude = -37.818877;
-    demoRadiusCenter.longitude = 144.964488;
-    
-    MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
-    double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (radiusFormatted.doubleValue * 2);
-    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
-    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
+    return radiusFormatted;
 }
 
 - (void)configureOverlay
@@ -229,5 +292,26 @@ const double cSLIDERMULTIPLYER = 600.00;
     
     return nil;
 }
+
+//UIPicker delegate methods
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    //One column
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    //set number of rows
+    return [self.soundsList count];
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    //set item per row
+    return [self.soundsList objectAtIndex: row];
+}
+//End Picker delegate methods.
 
 @end

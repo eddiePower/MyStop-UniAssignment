@@ -41,24 +41,21 @@
 
 -(void)toggleAlarm
 {
+    //refrence the alarmListController to make use of methods for adding and removing region alerts via the switch
+    AlarmListController *testing = [[AlarmListController alloc] init];
+    //create memory space for locManager from alarmList.
+    testing.locManager = [[CLLocationManager alloc] init];
+    
     if(self.alarmSwitch.on)
     {
         //Update the value stored in alarmIsactive property part of the Alarm class
         self.cellAlarm.alarmIsActive = [NSNumber numberWithInt:1];
-       
-        //NSLog(@"In AlarmCell.m:toggleAlarm: alarm is now active, value is: %@\nStation name is: %@", self.cellAlarm.alarmIsActive, self.cellAlarm.station.stationName);
-        
+
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];
         
-        #warning fill in switch region alert off with switch here!!
-        //check for region alert for this cellAlarm
-        
-        AlarmListController *testing = [[AlarmListController alloc] init];
-        
-        [testing  addAlarmRegion: self.cellAlarm];
-
-        //else add region via alarm object then return.
+        //run the addAlarmRegion method from the testing object
+        [testing addAlarmRegion: self.cellAlarm];
     }
     else
     {
@@ -68,11 +65,7 @@
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
         
-        
-        
-        //Remover region alert
-        //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
-        AlarmListController *testing = [[AlarmListController alloc] init];
+        //Remover region or user alert for a specific stop
         [testing removeStopRegion: self.cellAlarm];
 
     }
@@ -82,12 +75,6 @@
 // this allows it to be any data type i need to update and
 -(void)updateAlarmManagedObject:(NSNumber *)isActiveValue objectToSearchFor:(NSString *)alarmTitle
 {
-    
-    
-    //This first bit i got lazy and couldnt work out how to pass managedObject here as its in my
-    //AlarmCell prototype file not a ViewController so its in a tableView not a normall view
-    // Elliott said this was a specific fix for mine
-    
     //Set up the first view controller location.
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
     UINavigationController *navController = [tabController.viewControllers firstObject];
@@ -95,7 +82,6 @@
     //Set the AlarmListController which uses the Core Data stack similar to app delegate.
     AlarmListController *alarmListController = [navController.viewControllers firstObject];
     self.managedObjectContext = alarmListController.managedObjectContext;
-    //End elliotts specific fix
     
     
     //Create a fetchRequest to setEntity or edit entity in Alarm
@@ -112,18 +98,23 @@
     NSArray *results = [self.managedObjectContext executeFetchRequest: request error: &error];
     
     // maybe some check before, to be sure results is not empty
-    NSManagedObject* AlarmGrabbed = [results objectAtIndex: 0];
-    NSLog(@"\n\n\nAlarm retrieved from MoC: %@", AlarmGrabbed);
+    //NSManagedObject* AlarmGrabbed = [results objectAtIndex: 0];
+    //NSLog(@"\n\n\nAlarm retrieved from MoC: %@", AlarmGrabbed);
     
-    
-    // error handling code
-    //if an error occured when saving to managedObject then show userInfo formated output.
-    //Otherwise save the newly update managedObjectContext.
-    if(![self.managedObjectContext save: &error])
+    if (results != nil && results > 0)
     {
-      NSLog(@"Could not add Station to the alarm:\n%@", error.userInfo);
+        // error handling code
+        //if an error occured when saving to managedObject then show userInfo formated output.
+        //Otherwise save the newly update managedObjectContext.
+        if(![self.managedObjectContext save: &error])
+        {
+            NSLog(@"Could not Save Alarm is active edit because of error:\n%@", error.userInfo);
+        }
     }
-    
+    else
+    {
+        NSLog(@"Could not find alarm details in MoC error occured!");
+    }    
 }
 
 

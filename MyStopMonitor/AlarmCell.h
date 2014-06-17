@@ -42,7 +42,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *alarmLocationLabel;
 @property (strong, nonatomic) UISwitch *alarmSwitch;
 @property (strong, nonatomic) Alarm *cellAlarm;
-@property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 -(void)setupCell;
 

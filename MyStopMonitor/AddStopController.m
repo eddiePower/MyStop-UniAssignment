@@ -168,7 +168,6 @@
         }
         
         self.array = StationArray;
-        NSLog(@"Number of stops in Array is now: %lu", (long unsigned)[self.array count]);
         NSError *error;
         
         if (![self.managedObjectContext save:&error])
