@@ -1,11 +1,11 @@
 <h1>MyStopMonitor - FIT 3027 Monash University Major Assignment by Eddie Power (c) 2014.
 ====================
 
-This is my main assignment for Monash FIT3027 in 2014.
-It is a Public transport system alert application to help those people like me who fall asleep on the train, bus or tram and miss the stop they are ment to get off at. This will send you an alert before you arrive at the station.  How is this different to the normal iphone notification at location you ask, well this is built around the PTV or public transport network victoria data so the train or stop locations are already in the app you just need to search or look through the list to select your desired stoping location.
+<p>This is my main assignment for Monash FIT3027 in 2014.
+It is a Public transport system alert application to help those people like me who fall asleep on the train, bus or tram and miss the stop they are meant to get off at. This will send you an alert before you arrive at the station.  How is this different to the normal iPhone notification at location you ask, well this is built around the PTV or public transport network Victoria data so the train or stop locations are already in the app you just need to search or look through the list to select your desired stoping location.</p>
 
 
-Refrences :
+References :
 ===========
 ACPReminder - App in background Notification Banner.
     - https://github.com/antoniocasero/ACPReminder
@@ -15,7 +15,7 @@ ACPReminder - App in background Notification Banner.
 TDNotificationPanel - Green Bar In Application Banner.
     - https://github.com/tomdiggle/TDNotificationPanel 
     - Tom Diggle
-    <p>A custom class that provides a in application type notification which can consist of 3 colours and 3 different uses such as error, success and loading types.  I chose to use this to help alert the user of an upcoming train station by using the succsess color scheme.</p>
+    <p>A custom class that provides a in application type notification which can consist of 3 colours and 3 different uses such as error, success and loading types.  I chose to use this to help alert the user of an upcoming train station by using the success colour scheme.</p>
 
 
 
@@ -36,19 +36,19 @@ TDNotificationPanel - Green Bar In Application Banner.
   Other Logged messages include:
    <ul><li>[ACPReminder.m:112] Local notification scheduled
  Message: Wake Up now
- Kananook Station is coming up next!  - comes from added library for notification center messeges</li>
+ Kananook Station is coming up next!  - comes from added library for notification centre messages</li>
  <li>Event was: You've Entered the Region Seaford Station at 2014-06-17 17:03:14 +0000 - My Events as user enters region area and alert is triggered.</li>
  </ul>
   </p>
   <h3>Features to be completed:</h3>
-  <ol><li>Check for new stations on API server - at this point as a new station development is a big and long process i will release a new update for users forcing apps to re download the list fresh for new stop updates, untill i can check download list against stored list in a cpu and time efficeint manner.</li>
+  <ol><li>Check for new stations on API server - at this point as a new station development is a big and long process i will release a new update for users forcing apps to re download the list fresh for new stop updates, until i can check download list against stored list in a cpu and time efficient manner.</li>
   <li>Set the map type globally so it is shown in station details as set in settings page of app.</li>
   <li>Add in station information such as Mykey manned station (human to buy new myKey card from at station) and parking details for that station</li>
   <li>Have next 3 train times for station details from callout button - have other station specific related details from left callout button may be connecting bus route numbers.</li>
   </ol>
   
   <h3>Future Updates:</h3>
-  <p>With new itterations of iOS coming out new features or API's will become available to work on and utalize from within this application, one which is coming up in IOS 8 is a family location sharing which will enable you to share you location with approved people for a set time period, I think this would be a great feature to take advantage of.
-  <i>For example:  A student is on their way home from school in the evening they are going to be collected by a parent at the station near their home which normally envolves picking up the phone and calling home well now we can make this app call home for us, with the app connecting from the school childs phone to the parents phone at a set location before the child reaches their stop.  This will prevent a phone call, the child or person waiting around at the station possibly in an unsafe environment</i>
+  <p>With new iterations of iOS coming out new features or API's will become available to work on and utilise from within this application, one which is coming up in IOS 8 is a family location sharing which will enable you to share you location with approved people for a set time period, I think this would be a great feature to take advantage of.
+  <i>For example:  A student is on their way home from school in the evening they are going to be collected by a parent at the station near their home which normally involves picking up the phone and calling home well now we can make this app call home for us, with the app connecting from the school child's phone to the parents phone at a set location before the child reaches their stop.  This will prevent a phone call, the child or person waiting around at the station possibly in an unsafe environment</i>
   These and many more features to come so stay tuned....</p>
   
