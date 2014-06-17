@@ -48,7 +48,7 @@ TDNotificationPanel - Green Bar In Application Banner.
   </ol>
   
   <h3>Future Updates:</h3>
-  <p>With new iterations of iOS coming out new features or API's will become available to work on and utilise from within this application, one which is coming up in IOS 8 is a family location sharing which will enable you to share you location with approved people for a set time period, I think this would be a great feature to take advantage of.
+  <p>With new iterations of iOS coming out new features or API's will become available to work on and utilise from within this application, one which is coming up in IOS 8 is a family location sharing feature which will enable you to share you location with approved people for a set time period, I think this would be a great feature to take advantage of.
   <i>For example:  A student is on their way home from school in the evening they are going to be collected by a parent at the station near their home which normally involves picking up the phone and calling home well now we can make this app call home for us, with the app connecting from the school child's phone to the parents phone at a set location before the child reaches their stop.  This will prevent a phone call, the child or person waiting around at the station possibly in an unsafe environment</i>
   These and many more features to come so stay tuned....</p>
   
