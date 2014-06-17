@@ -398,10 +398,12 @@
                                     dismissible: YES
                                  hideAfterDelay: 10];
 
-    // If active alert banner area is hidden from view, scroll ito top --Needs work to check location of view
-    //first and if at 0,0 then dont scroll up by -90
-    NSLog(@"%f", self.tableView.contentSize.height);
-    [self.tableView setContentOffset:CGPointMake(0, -90) animated:YES];
+    // If active alert banner area is hidden from view, scroll ito top
+    //first and if at x:0, y:-80 then dont scroll up anymore
+    if (self.tableView.contentOffset.y != -80)
+    {
+       [self.tableView setContentOffset:CGPointMake(0, -80) animated:YES];
+    }
     
     //vibrate the phone to alert the user this also covers the alert if user has phone on silent
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
