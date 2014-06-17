@@ -1,4 +1,4 @@
-MyStopMonitor-UniAssignment
+<h1>MyStopMonitor - FIT 3027 Monash University Major Assignment by Eddie Power (c) 2014.
 ====================
 
 This is my main assignment for Monash FIT3027 in 2014.
@@ -19,9 +19,36 @@ TDNotificationPanel - Green Bar In Application Banner.
 
 
 
-<p>Application Functions:
-  Build list of stations from the PTV api.
+<h4>Application Functions:</h4>
+ <p> Build list of stations from the PTV api.
   Lets users set alerts or alarms based on these stops
   App will alert user if app is running and in foreground by a Green alert bar on top of view and a Pop up alert button.
  App also alerts user when running but in background by a custom notification in notification centre, the user must dismiss or touch this alert to stop the custom sound playing.
   App will also notify user if the app is not running due to region monitoring, it will then use the notification alert as if the app was not running.</p>
+  
+  
+  <h3>Notes</h3>
+  <p>Some errors that are encountered when running in iPhone simulator but not on actual device are
+  <ul>
+  <li> 03:08:58.852 ERROR: AVAudioSessionUtilities.h:88: GetProperty_DefaultToZero: AudioSessionGetProperty ('disa') failed with error: '?ytp' - found to be simulator error to do with AV library by others on stackOverflow</li>
+  <li>Encountered a location manager issue when iPhone sim was not set to auto enable fake location data but fixed this with if statement to check if error detail is nil then chances are its probably a simulator issue</li>
+  </ul>
+  Other Logged messages include:
+   <ul><li>[ACPReminder.m:112] Local notification scheduled
+ Message: Wake Up now
+ Kananook Station is coming up next!  - comes from added library for notification center messeges</li>
+ <li>Event was: You've Entered the Region Seaford Station at 2014-06-17 17:03:14 +0000 - My Events as user enters region area and alert is triggered.</li>
+ </ul>
+  </p>
+  <h3>Features to be completed:</h3>
+  <ol><li>Check for new stations on API server - at this point as a new station development is a big and long process i will release a new update for users forcing apps to re download the list fresh for new stop updates, untill i can check download list against stored list in a cpu and time efficeint manner.</li>
+  <li>Set the map type globally so it is shown in station details as set in settings page of app.</li>
+  <li>Add in station information such as Mykey manned station (human to buy new myKey card from at station) and parking details for that station</li>
+  <li>Have next 3 train times for station details from callout button - have other station specific related details from left callout button may be connecting bus route numbers.</li>
+  </ol>
+  
+  <h3>Future Updates:</h3>
+  <p>With new itterations of iOS coming out new features or API's will become available to work on and utalize from within this application, one which is coming up in IOS 8 is a family location sharing which will enable you to share you location with approved people for a set time period, I think this would be a great feature to take advantage of.
+  <i>For example:  A student is on their way home from school in the evening they are going to be collected by a parent at the station near their home which normally envolves picking up the phone and calling home well now we can make this app call home for us, with the app connecting from the school childs phone to the parents phone at a set location before the child reaches their stop.  This will prevent a phone call, the child or person waiting around at the station possibly in an unsafe environment</i>
+  These and many more features to come so stay tuned....</p>
+  
