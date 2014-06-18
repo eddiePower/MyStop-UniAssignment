@@ -38,6 +38,10 @@
 {
     [super viewDidLoad];
     
+    //Set the searchbar delegate target to this view Controller.
+    self.searchBar.delegate = self;
+    
+    
     //Create the pull to refresh control with code not storyboard.
     UIRefreshControl *myRefreshControl = [[UIRefreshControl alloc] init];
     //add a color to the spinner and text.
@@ -48,12 +52,50 @@
     [myRefreshControl addTarget:self action:@selector(refreshStations) forControlEvents:UIControlEventValueChanged];
     self.refreshControl = myRefreshControl;
 
+    
+    //When the view loads we want to start the download process
+    [self fetchStationDataByName:@""];
+    
+    
     //Download and store the station data in the coreData stack.
     [self downloadStationData];
     
     //Fetch station data from the coreData stack
-    [self fetchStationData];
+    //[self fetchStationData];
 }
+
+-(void)fetchStationDataByName:(NSString*)name
+{
+    //The fetch request, asking for MonsterData entities
+    NSFetchRequest* fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Station"];
+    
+    //If the name string isn't empty...
+    if(![name isEqualToString:@""])
+    {
+        //...we use a Predicate to select the correct monsters based on the search name
+        NSPredicate* nameSelect = [NSPredicate predicateWithFormat:@"stationName contains[cd] %@", name];
+        [fetchRequest setPredicate:nameSelect];
+    }
+    
+    //The sort descriptor is used to arrange the results based on name (alphabetically)
+    NSSortDescriptor* nameSort = [NSSortDescriptor sortDescriptorWithKey:@"stationName" ascending:YES];
+    [fetchRequest setSortDescriptors:@[nameSort]];
+    
+    //We attempt to execute the fetch request
+    NSError* error;
+    
+    self.array = [[NSArray alloc] init];
+    self.array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    //Deal with errors
+    if(self.array == nil)
+    {
+        NSLog(@"Could not fetch station Data:\n%@", error.userInfo);
+    }
+    
+    [self.tableView reloadData];
+}
+
 -(void)refreshStations
 {
     NSLog(@"Now downloading any new updates from API");
@@ -104,8 +146,17 @@
          {
              if(error == nil)  //No errors in data download & parse it to C.D.
              {
-                 [self parseStationJSON: data];
-                 [self fetchStationData];
+                 
+                 
+                 //If there is no error we will parse the response (which will save it into CoreData)
+                 int numberOfItems = [self parseStationJSON: data];
+                 //Fetch the monsterData objects and load them into the table
+                 if(numberOfItems > 0)
+                     [self fetchStationDataByName: self.searchBar.text];
+           
+
+                 //[self parseStationJSON: data];
+                 //[self fetchStationData];
              }
              else
              {
@@ -115,29 +166,29 @@
     }
 }
 
--(void)fetchStationData
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Station"];
-    
-    //will try sort these in order of train line real world stops but may need edit core data from set
-    // plist of station stop id's in order of real world stop order per trainline.
-    NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"stationStopId" ascending:YES];
-    
-    [fetchRequest setSortDescriptors:@[nameSort]];
-    
-    NSError *error;
-    
-      self.array = [[NSArray alloc] init];
-      self.array = [self.managedObjectContext executeFetchRequest: fetchRequest error:&error];
-    
-    if (self.array == nil)
-    {
-        NSLog(@"Could not Fetch Station Data:\n%@", error.userInfo);
-    }
-    
-}
+//-(void)fetchStationData
+//{
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Station"];
+//    
+//    //will try sort these in order of train line real world stops but may need edit core data from set
+//    // plist of station stop id's in order of real world stop order per trainline.
+//    NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"stationStopId" ascending:YES];
+//    
+//    [fetchRequest setSortDescriptors:@[nameSort]];
+//    
+//    NSError *error;
+//    
+//      self.array = [[NSArray alloc] init];
+//      self.array = [self.managedObjectContext executeFetchRequest: fetchRequest error:&error];
+//    
+//    if (self.array == nil)
+//    {
+//        NSLog(@"Could not Fetch Station Data:\n%@", error.userInfo);
+//    }
+//    
+//}
 
--(void)parseStationJSON:(NSData *)data
+-(int)parseStationJSON:(NSData *)data
 {
     NSError *error;
     id result = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error:&error];
@@ -145,7 +196,7 @@
     if (result == nil)
     {
         NSLog(@"Error parsing JSON data:\n%@", error.userInfo);
-        return;
+        return 0;
     }
     
     
@@ -174,12 +225,13 @@
         {
             NSLog(@"Could not save Train Line Stops:\n%@", error.userInfo);
         }
-        
+        return (int)[StationArray count];
+
     }
     else
     {
         NSLog(@"Unexpected JSON format");
-        return;
+        return 0;
     }
     
     [self.tableView reloadData];
@@ -235,5 +287,11 @@
     //Pop a alarm onto the list.
     [self.navigationController popViewControllerAnimated: YES];
 }
+//End table view delegate functions
 
+//Translates the searchbarText on the fly rather then after an event like touchUpInside of button etc.
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self fetchStationDataByName: searchText];
+}
 @end

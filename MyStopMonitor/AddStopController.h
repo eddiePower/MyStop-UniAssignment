@@ -43,7 +43,7 @@
 
 @end
 
-@interface AddStopController : UITableViewController
+@interface AddStopController : UITableViewController <UISearchBarDelegate>
 
 @property(strong, nonatomic) NSArray *array;
 @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -51,5 +51,9 @@
 
 //Will update application to work with multiple train lines and eventually bus and tram lines.
 //@property (strong, nonatomic) TrainLine* trainLine;
+
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 @end
