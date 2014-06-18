@@ -39,53 +39,7 @@
 {
     
     //Customeize View of all pages of the app for specific UIKit controlls
-    
-    // Customizing the UISlider appearence in this view.
-    UIImage *minImage = [[UIImage imageNamed:@"slider_minimum.png"]
-                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-    UIImage *maxImage = [[UIImage imageNamed:@"slider_maximum.png"]
-                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-    UIImage *thumbImage = [UIImage imageNamed:@"thumb.png"];
-    
-    [[UISlider appearance] setMaximumTrackImage:maxImage
-                                       forState:UIControlStateNormal];
-    [[UISlider appearance] setMinimumTrackImage:minImage
-                                       forState:UIControlStateNormal];
-    [[UISlider appearance] setThumbImage:thumbImage
-                                forState:UIControlStateNormal];
-    
-    // Customing the segmented control
-    UIImage *segmentSelected =
-    [[UIImage imageNamed:@"segcontrol_sel.png"]
-     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
-    UIImage *segmentUnselected =
-    [[UIImage imageNamed:@"segcontrol_uns.png"]
-     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
-    UIImage *segmentSelectedUnselected =
-    [UIImage imageNamed:@"segcontrol_sel-uns.png"];
-    UIImage *segUnselectedSelected =
-    [UIImage imageNamed:@"segcontrol_uns-sel.png"];
-    UIImage *segmentUnselectedUnselected =
-    [UIImage imageNamed:@"segcontrol_uns-uns.png"];
-    
-    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
-                                               forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
-                                               forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    
-    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
-                                 forLeftSegmentState:UIControlStateNormal
-                                   rightSegmentState:UIControlStateNormal
-                                          barMetrics:UIBarMetricsDefault];
-    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected
-                                 forLeftSegmentState:UIControlStateSelected
-                                   rightSegmentState:UIControlStateNormal
-                                          barMetrics:UIBarMetricsDefault];
-    [[UISegmentedControl appearance]
-     setDividerImage:segUnselectedSelected
-     forLeftSegmentState:UIControlStateNormal
-     rightSegmentState:UIControlStateSelected
-     barMetrics:UIBarMetricsDefault];
+    [self styleMyApplication];
     
     //Create my Core Data Stack!
     self.managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
@@ -194,13 +148,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    
+    //Check if the ACP reminder has been triggered to reset timer for next notification
+    //which ive set as X seconds after an event happens or user alert method is triggered.
     [[ACPReminder sharedManager] checkIfLocalNotificationHasBeenTriggered];
-    
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-	
+
 	if ([CLLocationManager significantLocationChangeMonitoringAvailable])
     {
 		// Stop significant location updates and start normal location updates again since the app is in the forefront.
@@ -212,10 +163,7 @@
     {
 		NSLog(@"Significant location change monitoring is not available.");
 	}
-    
-     // switch the alarm is active switch to off if the alert has been triggered.
-     //DO SOMTHING HERE TO CHECK IF ALARM HAS BEEN TRIGGERED THEN SWITCH IT OFF MAY BE.
-     
+
     // Reset the icon badge number to zero.
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
@@ -223,6 +171,56 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(void)styleMyApplication
+{
+    // Customizing the UISlider appearence in this view.
+    UIImage *minImage = [[UIImage imageNamed:@"slider_minimum.png"]
+                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    UIImage *maxImage = [[UIImage imageNamed:@"slider_maximum.png"]
+                         resizableImageWithCapInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
+    UIImage *thumbImage = [UIImage imageNamed:@"thumb.png"];
+    
+    [[UISlider appearance] setMaximumTrackImage:maxImage
+                                       forState:UIControlStateNormal];
+    [[UISlider appearance] setMinimumTrackImage:minImage
+                                       forState:UIControlStateNormal];
+    [[UISlider appearance] setThumbImage:thumbImage
+                                forState:UIControlStateNormal];
+    
+    // Customing the segmented control
+    UIImage *segmentSelected =
+    [[UIImage imageNamed:@"segcontrol_sel.png"]
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentUnselected =
+    [[UIImage imageNamed:@"segcontrol_uns.png"]
+     resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 15)];
+    UIImage *segmentSelectedUnselected =
+    [UIImage imageNamed:@"segcontrol_sel-uns.png"];
+    UIImage *segUnselectedSelected =
+    [UIImage imageNamed:@"segcontrol_uns-sel.png"];
+    UIImage *segmentUnselectedUnselected =
+    [UIImage imageNamed:@"segcontrol_uns-uns.png"];
+    
+    [[UISegmentedControl appearance] setBackgroundImage:segmentUnselected
+                                               forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setBackgroundImage:segmentSelected
+                                               forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    
+    [[UISegmentedControl appearance] setDividerImage:segmentUnselectedUnselected
+                                 forLeftSegmentState:UIControlStateNormal
+                                   rightSegmentState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance] setDividerImage:segmentSelectedUnselected
+                                 forLeftSegmentState:UIControlStateSelected
+                                   rightSegmentState:UIControlStateNormal
+                                          barMetrics:UIBarMetricsDefault];
+    [[UISegmentedControl appearance]
+     setDividerImage:segUnselectedSelected
+     forLeftSegmentState:UIControlStateNormal
+     rightSegmentState:UIControlStateSelected
+     barMetrics:UIBarMetricsDefault];
 }
 
 @end

@@ -122,7 +122,7 @@
     NSURL *url;
     GenerateSigniture *getSigniture = [[GenerateSigniture alloc] init];
     
-    //Core url will eventually be a if statement for different train lines via /line/x/ changing
+    //Core url will eventually be a method or if statement for different train lines via /line/x/ query string
     //And also /mode/x/ changing for different transport types such as tram, bus, night rider and Vline services.
     url = [getSigniture generateURLWithDevIDAndKey:@"http://timetableapi.ptv.vic.gov.au/v2/mode/0/line/6/stops-for-line"];
     NSURLRequest* request = [NSURLRequest requestWithURL: url];
@@ -146,17 +146,12 @@
          {
              if(error == nil)  //No errors in data download & parse it to C.D.
              {
+                //If there is no error we will parse the response (which will save it into CoreData)
+                int numberOfItems = [self parseStationJSON: data];
                  
-                 
-                 //If there is no error we will parse the response (which will save it into CoreData)
-                 int numberOfItems = [self parseStationJSON: data];
-                 //Fetch the monsterData objects and load them into the table
-                 if(numberOfItems > 0)
-                     [self fetchStationDataByName: self.searchBar.text];
-           
-
-                 //[self parseStationJSON: data];
-                 //[self fetchStationData];
+                //Fetch the monsterData objects and load them into the table
+                if(numberOfItems > 0)
+                    [self fetchStationDataByName: self.searchBar.text];
              }
              else
              {
@@ -166,44 +161,25 @@
     }
 }
 
-//-(void)fetchStationData
-//{
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Station"];
-//    
-//    //will try sort these in order of train line real world stops but may need edit core data from set
-//    // plist of station stop id's in order of real world stop order per trainline.
-//    NSSortDescriptor *nameSort = [NSSortDescriptor sortDescriptorWithKey:@"stationStopId" ascending:YES];
-//    
-//    [fetchRequest setSortDescriptors:@[nameSort]];
-//    
-//    NSError *error;
-//    
-//      self.array = [[NSArray alloc] init];
-//      self.array = [self.managedObjectContext executeFetchRequest: fetchRequest error:&error];
-//    
-//    if (self.array == nil)
-//    {
-//        NSLog(@"Could not Fetch Station Data:\n%@", error.userInfo);
-//    }
-//    
-//}
-
 -(int)parseStationJSON:(NSData *)data
 {
+    //error storage
     NSError *error;
+    //store JSON data into an id or no data type variable
     id result = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error:&error];
     
+    //check result has somthing stored in it
     if (result == nil)
     {
         NSLog(@"Error parsing JSON data:\n%@", error.userInfo);
         return 0;
     }
     
-    
+    //check its class type and if its an Array then save to MoC
     if([result isKindOfClass:[NSArray class]])
     {
         NSArray *StationArray = (NSArray *)result;
-        NSLog(@"Found %lu Stations!", (unsigned long)[StationArray count]);
+        //NSLog(@"Found %lu Stations!", (unsigned long)[StationArray count]);
         
         for (NSDictionary* station in StationArray)
         {
@@ -218,15 +194,18 @@
             aStation.stationDistance = [station objectForKey:@"distance"];
         }
         
+        //store stationArray contents into array contents
         self.array = StationArray;
         NSError *error;
         
+        //save updates to MoC with checking for errors.
         if (![self.managedObjectContext save:&error])
         {
             NSLog(@"Could not save Train Line Stops:\n%@", error.userInfo);
         }
+        
+        //return the number of stations created
         return (int)[StationArray count];
-
     }
     else
     {
@@ -234,8 +213,8 @@
         return 0;
     }
     
+    //reload the data in the table view for the user.
     [self.tableView reloadData];
-    
 }
 
 //TableView Delegate methods.
@@ -257,12 +236,14 @@
     //Set the refrence to the cell Identifier and then to the cell.
     static NSString *CellIdentifier = @"StationCell";
     
+    //deque a prototype cell for population with data.
     StationCell *cell = (StationCell*)[tableView dequeueReusableCellWithIdentifier: CellIdentifier
                                                                       forIndexPath: indexPath];
     
-    // Configure the cell using the trainLine stops built from coreData or  ... JSON.
+    // Configure the cell using the station built from coreData.
     Station *s = [self.array objectAtIndex: indexPath.row];
     
+    //set cell display values
     cell.stopSuburbLabel.text = s.stationSuburb;
     cell.stopNameLabel.text = s.stationName;
     cell.stopLatLabel.text = [NSString stringWithFormat:@"%@", s.stationLatitude];
@@ -292,6 +273,7 @@
 //Translates the searchbarText on the fly rather then after an event like touchUpInside of button etc.
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    //run the fetchStationData by name method on changed value of text in searchbar.
     [self fetchStationDataByName: searchText];
 }
 @end

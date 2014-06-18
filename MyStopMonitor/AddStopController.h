@@ -48,12 +48,9 @@
 @property(strong, nonatomic) NSArray *array;
 @property(strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property(weak, nonatomic) id<AddAlarmStopDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 //Will update application to work with multiple train lines and eventually bus and tram lines.
 //@property (strong, nonatomic) TrainLine* trainLine;
-
-
-@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
-
 
 @end

@@ -68,10 +68,6 @@
     double w = MKMapPointsPerMeterAtLatitude(center.latitude) * (tempRadius * 2);
     MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
     [self.mapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(30, 0, 25, 0) animated: NO];
-    
-    
-
-    
 
     //initalize annotation for Stop with title, coord's
     //  and subtitle used for display only - user visulisation of station.

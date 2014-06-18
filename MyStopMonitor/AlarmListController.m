@@ -376,6 +376,32 @@
     
     //--------Alert the user To Region or station arrival with Sound Alert and Vibrate------------
     //Create string to speak with region name or identifier in it.
+    [self alertUserToRegion: region];
+
+}
+
+//not needed in this application.
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+	//NSString *event = [NSString stringWithFormat:@"You Exited the Region %@ at %@", region.identifier, [NSDate date]];
+    //NSLog(@"Event was: %@", event);
+}
+//End CLLocationManager delegate methods.
+
+-(void)checkViewLocation
+{
+    // If active alert banner area is hidden from view, scroll ito top
+    //first and if at x:0, y:-80 then dont scroll up anymore
+    if (self.tableView.contentOffset.y != -80)
+    {
+        [self.tableView setContentOffset:CGPointMake(0, -80) animated:YES];
+    }
+}
+
+-(void)alertUserToRegion:(CLRegion *)region
+{
+    //--------Alert the user To Region or station arrival with Sound Alert and Vibrate------------
+    //Create string to speak with region name or identifier in it.
     NSString *utteranceString = [NSString stringWithFormat: NSLocalizedString(@"Wake up now your almost at %@", nil), region.identifier];
     
     //Create speech object
@@ -397,13 +423,9 @@
                                            mode: TDNotificationModeText
                                     dismissible: YES
                                  hideAfterDelay: 10];
-
+    
     // If active alert banner area is hidden from view, scroll ito top
-    //first and if at x:0, y:-80 then dont scroll up anymore
-    if (self.tableView.contentOffset.y != -80)
-    {
-       [self.tableView setContentOffset:CGPointMake(0, -80) animated:YES];
-    }
+    [self checkViewLocation];
     
     //vibrate the phone to alert the user this also covers the alert if user has phone on silent
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
@@ -428,15 +450,6 @@
     
     // Update the icon badge number for when app is in b.g.
 	[UIApplication sharedApplication].applicationIconBadgeNumber++;
-
 }
-
-//not needed in this application.
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
-{
-	//NSString *event = [NSString stringWithFormat:@"You Exited the Region %@ at %@", region.identifier, [NSDate date]];
-    //NSLog(@"Event was: %@", event);
-}
-//End CLLocationManager delegate methods.
 
 @end
