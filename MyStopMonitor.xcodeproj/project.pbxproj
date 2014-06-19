@@ -11,6 +11,15 @@
 		89109B501952DEA6000439AC /* AboutInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 89109B4E1952DEA6000439AC /* AboutInfo.html */; };
 		89109B511952DEA6000439AC /* WelcomeInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 89109B4F1952DEA6000439AC /* WelcomeInfo.html */; };
 		89109B551952DEB7000439AC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B531952DEB7000439AC /* logo.png */; };
+		89109B5F1952F152000439AC /* 1_OpenApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B561952F152000439AC /* 1_OpenApp.png */; };
+		89109B601952F152000439AC /* 2_Tap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B571952F152000439AC /* 2_Tap_button.png */; };
+		89109B611952F152000439AC /* 4_SearchStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B581952F152000439AC /* 4_SearchStop.png */; };
+		89109B621952F152000439AC /* 5_tapStopForInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B591952F152000439AC /* 5_tapStopForInfo.png */; };
+		89109B631952F152000439AC /* 8_DeactivateAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5A1952F152000439AC /* 8_DeactivateAlert.png */; };
+		89109B641952F152000439AC /* 6_StopInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5B1952F152000439AC /* 6_StopInfo.png */; };
+		89109B651952F152000439AC /* 3_ChoosStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5C1952F152000439AC /* 3_ChoosStop.png */; };
+		89109B661952F152000439AC /* 7_SetRadiusSize.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5D1952F152000439AC /* 7_SetRadiusSize.png */; };
+		89109B671952F152000439AC /* 9_DeleteStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5E1952F152000439AC /* 9_DeleteStop.png */; };
 		89315BA91946C49800CD1D50 /* TrainAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 89315BA81946C49800CD1D50 /* TrainAlert.mp3 */; };
 		89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89315BAA1946CD4B00CD1D50 /* Localizable.strings */; };
 		893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */; };
@@ -27,8 +36,6 @@
 		89701DC81919FE4600501AB0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DC71919FE4600501AB0 /* XCTest.framework */; };
 		89701DC91919FE4600501AB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DA81919FE4500501AB0 /* Foundation.framework */; };
 		89701DCA1919FE4600501AB0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DAC1919FE4500501AB0 /* UIKit.framework */; };
-		89701DD21919FE4600501AB0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89701DD01919FE4600501AB0 /* InfoPlist.strings */; };
-		89701DD41919FE4600501AB0 /* MyStopMonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */; };
 		89701DDF191A032B00501AB0 /* AlarmListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DDE191A032B00501AB0 /* AlarmListController.m */; };
 		89701DE2191A035900501AB0 /* AddStopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE1191A035900501AB0 /* AddStopController.m */; };
 		89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE4191A039A00501AB0 /* AlarmCell.m */; };
@@ -70,6 +77,15 @@
 		89109B4E1952DEA6000439AC /* AboutInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutInfo.html; sourceTree = "<group>"; };
 		89109B4F1952DEA6000439AC /* WelcomeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WelcomeInfo.html; sourceTree = "<group>"; };
 		89109B531952DEB7000439AC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		89109B561952F152000439AC /* 1_OpenApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_OpenApp.png; sourceTree = "<group>"; };
+		89109B571952F152000439AC /* 2_Tap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_Tap_button.png; sourceTree = "<group>"; };
+		89109B581952F152000439AC /* 4_SearchStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_SearchStop.png; sourceTree = "<group>"; };
+		89109B591952F152000439AC /* 5_tapStopForInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_tapStopForInfo.png; sourceTree = "<group>"; };
+		89109B5A1952F152000439AC /* 8_DeactivateAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8_DeactivateAlert.png; sourceTree = "<group>"; };
+		89109B5B1952F152000439AC /* 6_StopInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_StopInfo.png; sourceTree = "<group>"; };
+		89109B5C1952F152000439AC /* 3_ChoosStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ChoosStop.png; sourceTree = "<group>"; };
+		89109B5D1952F152000439AC /* 7_SetRadiusSize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_SetRadiusSize.png; sourceTree = "<group>"; };
+		89109B5E1952F152000439AC /* 9_DeleteStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9_DeleteStop.png; sourceTree = "<group>"; };
 		89315BA81946C49800CD1D50 /* TrainAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrainAlert.mp3; sourceTree = "<group>"; };
 		89315BAA1946CD4B00CD1D50 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		893C6A4B1931E0EC00501E0A /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -90,9 +106,6 @@
 		89701DC01919FE4500501AB0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		89701DC61919FE4600501AB0 /* MyStopMonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyStopMonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89701DC71919FE4600501AB0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		89701DCF1919FE4600501AB0 /* MyStopMonitorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyStopMonitorTests-Info.plist"; sourceTree = "<group>"; };
-		89701DD11919FE4600501AB0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyStopMonitorTests.m; sourceTree = "<group>"; };
 		89701DDD191A032B00501AB0 /* AlarmListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlarmListController.h; sourceTree = "<group>"; };
 		89701DDE191A032B00501AB0 /* AlarmListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmListController.m; sourceTree = "<group>"; };
 		89701DE0191A035900501AB0 /* AddStopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddStopController.h; sourceTree = "<group>"; };
@@ -233,7 +246,6 @@
 		89701DCD1919FE4600501AB0 /* MyStopMonitorTests */ = {
 			isa = PBXGroup;
 			children = (
-				89701DD31919FE4600501AB0 /* MyStopMonitorTests.m */,
 				89701DCE1919FE4600501AB0 /* Supporting Files */,
 			);
 			path = MyStopMonitorTests;
@@ -242,8 +254,6 @@
 		89701DCE1919FE4600501AB0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				89701DCF1919FE4600501AB0 /* MyStopMonitorTests-Info.plist */,
-				89701DD01919FE4600501AB0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,6 +285,15 @@
 		899F72201927DF3A00835477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				89109B561952F152000439AC /* 1_OpenApp.png */,
+				89109B571952F152000439AC /* 2_Tap_button.png */,
+				89109B581952F152000439AC /* 4_SearchStop.png */,
+				89109B591952F152000439AC /* 5_tapStopForInfo.png */,
+				89109B5A1952F152000439AC /* 8_DeactivateAlert.png */,
+				89109B5B1952F152000439AC /* 6_StopInfo.png */,
+				89109B5C1952F152000439AC /* 3_ChoosStop.png */,
+				89109B5D1952F152000439AC /* 7_SetRadiusSize.png */,
+				89109B5E1952F152000439AC /* 9_DeleteStop.png */,
 				89109B531952DEB7000439AC /* logo.png */,
 				89109B481952CFEC000439AC /* train.png */,
 				89109B4E1952DEA6000439AC /* AboutInfo.html */,
@@ -419,17 +438,26 @@
 				89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */,
 				897F2A021944EE5F00799A48 /* errorIcon.png in Resources */,
 				89109B501952DEA6000439AC /* AboutInfo.html in Resources */,
+				89109B5F1952F152000439AC /* 1_OpenApp.png in Resources */,
+				89109B651952F152000439AC /* 3_ChoosStop.png in Resources */,
 				897F2A051944EE5F00799A48 /* infoIcon@2x.png in Resources */,
+				89109B601952F152000439AC /* 2_Tap_button.png in Resources */,
+				89109B661952F152000439AC /* 7_SetRadiusSize.png in Resources */,
+				89109B671952F152000439AC /* 9_DeleteStop.png in Resources */,
 				8979916219484CC400F0AFA2 /* README.md in Resources */,
 				89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */,
 				89701DC11919FE4500501AB0 /* Images.xcassets in Resources */,
+				89109B621952F152000439AC /* 5_tapStopForInfo.png in Resources */,
 				89701DB31919FE4500501AB0 /* InfoPlist.strings in Resources */,
 				89109B491952CFEC000439AC /* train.png in Resources */,
 				897F2A031944EE5F00799A48 /* errorIcon@2x.png in Resources */,
+				89109B631952F152000439AC /* 8_DeactivateAlert.png in Resources */,
 				89109B511952DEA6000439AC /* WelcomeInfo.html in Resources */,
 				897F2A041944EE5F00799A48 /* infoIcon.png in Resources */,
+				89109B641952F152000439AC /* 6_StopInfo.png in Resources */,
 				89315BA91946C49800CD1D50 /* TrainAlert.mp3 in Resources */,
 				89701DBC1919FE4500501AB0 /* Main.storyboard in Resources */,
+				89109B611952F152000439AC /* 4_SearchStop.png in Resources */,
 				897F2A071944EE5F00799A48 /* successIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,7 +466,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89701DD21919FE4600501AB0 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,7 +500,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89701DD41919FE4600501AB0 /* MyStopMonitorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,14 +528,6 @@
 				89701DBB1919FE4500501AB0 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		89701DD01919FE4600501AB0 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				89701DD11919FE4600501AB0 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

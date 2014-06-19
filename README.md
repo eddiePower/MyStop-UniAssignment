@@ -30,7 +30,7 @@ TDNotificationPanel - Green Bar In Application Banner.
   <h3>Notes</h3>
   <p>Some errors that are encountered when running in iPhone simulator but not on actual device are
   <ul>
-  <li> 03:08:58.852 ERROR: AVAudioSessionUtilities.h:88: GetProperty_DefaultToZero: AudioSessionGetProperty ('disa') failed with error: '?ytp' - found to be simulator error to do with AV library by others on stackOverflow</li>
+  <li> 03:08:58.852 ERROR: AVAudioSessionUtilities.h:88: GetProperty_DefaultToZero: AudioSessionGetProperty ('disa') failed with error: '?ytp' - found to be simulator error to do with Speech Synthsizer by others on stackOverflow</li>
   <li>Encountered a location manager issue when iPhone sim was not set to auto enable fake location data but fixed this with if statement to check if error detail is nil then chances are its probably a simulator issue</li>
   </ul>
   Other Logged messages include:

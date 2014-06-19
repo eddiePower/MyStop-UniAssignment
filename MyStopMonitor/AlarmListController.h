@@ -32,7 +32,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import <AVFoundation/AVFoundation.h>
+@import AVFoundation;  //new import type used for voice synth
 #import "AlarmCell.h"
 #import "AddStopController.h"
 #import "ShowStopMapViewController.h"

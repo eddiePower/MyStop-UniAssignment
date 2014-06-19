@@ -41,6 +41,15 @@
     //Set the searchbar delegate target to this view Controller.
     self.searchBar.delegate = self;
     
+    //create a gesture listening object and set the action to dismissKeyboard method.
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    //set number of taps to listen for
+    tap.numberOfTapsRequired = 2;
+    //add regocnizer to the view.
+    [self.view addGestureRecognizer:tap];
+    
     
     //Create the pull to refresh control with code not storyboard.
     UIRefreshControl *myRefreshControl = [[UIRefreshControl alloc] init];
@@ -53,9 +62,8 @@
     self.refreshControl = myRefreshControl;
 
     
-    //When the view loads we want to start the download process
+    //When the view loads we want to fetch all stations from CD ready for searching
     [self fetchStationDataByName:@""];
-    
     
     //Download and store the station data in the coreData stack.
     [self downloadStationData];
@@ -64,6 +72,7 @@
     //[self fetchStationData];
 }
 
+//fetch by name
 -(void)fetchStationDataByName:(NSString*)name
 {
     //The fetch request, asking for MonsterData entities
@@ -93,6 +102,7 @@
         NSLog(@"Could not fetch station Data:\n%@", error.userInfo);
     }
     
+    //Reload the table with new data
     [self.tableView reloadData];
 }
 
@@ -107,15 +117,17 @@
            afterDelay:1];
 }
 
+//Used for the pull to refresh update
 - (void)updateTable
 {
-    //Reload any new results for stations.
+    //Reload any new result stations in tableView.
     [self.tableView reloadData];
     
     //Stop the refresh task from running.
     [self.refreshControl endRefreshing];
 }
 
+//Get the stations from the PTV API
 -(void)downloadStationData
 {
     //initalize objects used for data retrieval from API.
@@ -276,4 +288,17 @@
     //run the fetchStationData by name method on changed value of text in searchbar.
     [self fetchStationDataByName: searchText];
 }
+
+//Keyboard delegate methods to hide kb when bg is tapped 2X
+- (void) dismissKeyboard
+{
+    // add self
+    [self.searchBar resignFirstResponder];
+}
+//hide when enter or search is tapped
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
 @end
