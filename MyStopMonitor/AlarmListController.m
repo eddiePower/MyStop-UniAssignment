@@ -340,6 +340,7 @@
 {
     //NSLog(@"\nStoping monitoring region name: %@", region.identifier);
 }
+
 //if the region monitoring failed then run this delegate method.
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {

@@ -10,9 +10,13 @@
 
 @interface StopMonitorInfoViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *infoTextSegment;
-@property (weak, nonatomic) IBOutlet UITextView *infoTextView;
-@property(strong, nonatomic) NSString *welcomeText;
-@property(strong, nonatomic) NSString *aboutText;
+
+@property (strong, nonatomic) IBOutlet UIWebView *aboutWebView;
+
+
+
+@property(strong, nonatomic) NSAttributedString *welcomeText;
+@property(strong, nonatomic) NSAttributedString *aboutText;
 
 
 - (IBAction)indexChanged:(UISegmentedControl *)sender;
