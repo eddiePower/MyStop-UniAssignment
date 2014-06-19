@@ -95,7 +95,8 @@
         StopMonitorInfoViewController *infoViewController = [[StopMonitorInfoViewController alloc] init];
         infoViewController = [tabController.viewControllers lastObject];
 
-        // 4. Present the vc and return it.
+        //IF its first time user has run app open up on instruction page to help UI questions
+        
         //[alarmListController presentViewController: infoViewController animated: NO completion:nil];
 
     }
