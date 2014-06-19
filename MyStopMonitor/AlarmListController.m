@@ -395,10 +395,14 @@
     //first and if at x:0, y:-80 then dont scroll up anymore
     if (self.tableView.contentOffset.y != -80)
     {
+        //scroll tableview to the top if its positioned down, used for the APCReminder class
+        //which i found on GitHub as mentioned in readMe file.
         [self.tableView setContentOffset:CGPointMake(0, -80) animated:YES];
     }
 }
 
+//show the user alert dialogues and sounds
+//uses classes found on gitHub refrenced in readMe
 -(void)alertUserToRegion:(CLRegion *)region
 {
     //--------Alert the user To Region or station arrival with Sound Alert and Vibrate------------
@@ -413,10 +417,11 @@
     //Create user alert box for station arrival alert
     UIAlertView *userAlert;
     
-    //instanciate the alert
+    //create the alert box
     userAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Stop Monitor Alarm", nil) message:[NSString stringWithFormat:NSLocalizedString(@"%@ is coming up!", nil), region.identifier] delegate: self cancelButtonTitle: NSLocalizedString(@"Cancel Alert", nil) otherButtonTitles: NSLocalizedString(@"OK im awake!", nil), nil];
     
     //In app animation for arrival at station appears at top of view for 10 seconds, refrenced in ReadMe.txt file.
+    //Part of TDNotificationPanel in ExtraRefrences folder.
     [TDNotificationPanel showNotificationInView: self.view
                                           title: NSLocalizedString(@"Next Stop: ", nil)
                                        subtitle: [NSString stringWithFormat: NSLocalizedString(@"%@", nil), region.identifier]
@@ -438,12 +443,15 @@
     [self.alertSynthesizer speakUtterance: utterance];
     
     //Set a custom notification object to show a short notification if the app is in the background
+    //Found on gitHub and refrenced in the readMe file
+    //This sets a notification handeled in notification manager but created from custom class to override
+    //timing issue and allowing the alert to run seconds after this method fires.
     ACPReminder *localNotifications = [ACPReminder sharedManager];
     
     //Settings ACPReminder library --
     localNotifications.messages = @[[NSString stringWithFormat: NSLocalizedString(@"Arriving at %@", nil), region.identifier], [NSString stringWithFormat: NSLocalizedString(@"Wake Up now\n %@ is coming up next!", nil), region.identifier]];
     localNotifications.timePeriods = @[@(1)]; //seconds after fireing - used as alert when app is in BG
-    localNotifications.appDomain = @"nu.mine.powerfamilyau.MyStopMonitorV1.1";
+    localNotifications.appDomain = @"nu.mine.powerfamilyau.MyStopMonitor";
     localNotifications.randomMessage = YES; //By default is NO (optional)
     localNotifications.testFlagInSeconds = YES; //By default is NO (optional) --> Used to fake alert to user-temporary!
     
