@@ -256,7 +256,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Info" image="icon_info_alt" id="AxH-E2-FiW"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Info" image="icon_info_alt" id="AxH-E2-FiW"/>
                     <connections>
                         <outlet property="aboutWebView" destination="wlq-BN-ds8" id="KZn-Zj-vIc"/>
                         <outlet property="infoTextSegment" destination="VAH-uI-OIK" id="iEm-k5-Nrt"/>

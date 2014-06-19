@@ -37,6 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+   
 
     //Check to see which segment is selected on load its always 0 but
     // this way if the view reloads it dosnt reset

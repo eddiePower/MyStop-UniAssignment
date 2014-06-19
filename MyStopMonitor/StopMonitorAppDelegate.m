@@ -59,8 +59,7 @@
     
     //Set up the first view controller location.
     UITabBarController *tabController = (UITabBarController *)self.window.rootViewController;
-    UINavigationController *navController = [tabController.viewControllers firstObject];
-    
+    UINavigationController *navController = [tabController.viewControllers firstObject];    
     //Set the AlarmListController which uses the Core Data stack.
     AlarmListController *alarmListController = [navController.viewControllers firstObject];
     alarmListController.managedObjectContext = self.managedObjectContext;
@@ -96,10 +95,15 @@
         infoViewController = [tabController.viewControllers lastObject];
 
         //IF its first time user has run app open up on instruction page to help UI questions
+        if (infoViewController.tabBarItem.tag == 1)
+        {
+            infoViewController.tabBarItem.badgeValue = @"Help";
+        }
         
         //[alarmListController presentViewController: infoViewController animated: NO completion:nil];
 
     }
+
     
     return YES;
 }
