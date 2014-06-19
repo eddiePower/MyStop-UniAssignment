@@ -38,7 +38,9 @@
 {
     [super viewDidLoad];
     
-   
+    //Once the user has taped the info button and read the page
+    //the badge will disapear as it is not needed
+    self.tabBarItem.badgeValue = nil;
 
     //Check to see which segment is selected on load its always 0 but
     // this way if the view reloads it dosnt reset
