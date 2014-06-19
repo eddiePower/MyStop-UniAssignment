@@ -73,6 +73,7 @@ const double cSLIDERMULTIPLYER = 600.00;
     //radius label text and an initial circle for the radius view.
     if (startRadius)
     {
+        //Take saved radius value and devide by multiplyer as thats reversed when saved (timesed by multiplier)
         self.radiusSlider.value = startRadius / cSLIDERMULTIPLYER;
         self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %fm ", (self.radiusSlider.value * cSLIDERMULTIPLYER)];
     }
@@ -80,7 +81,8 @@ const double cSLIDERMULTIPLYER = 600.00;
     {
         [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
        
-       self.radiusSlider.value = 100 / cSLIDERMULTIPLYER;
+        //get a value the slider can display beteen min of .6 and max of 1.5
+       self.radiusSlider.value = 500 / cSLIDERMULTIPLYER;
         //Format a string to show user the value of radius during resize.
         NSString *formattedLabelText = [self formatRadiusLabel];
        self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@m ",formattedLabelText];
@@ -109,15 +111,17 @@ const double cSLIDERMULTIPLYER = 600.00;
     //overridden method below, adds custom pin and callout.
     [self.radiusMapView viewForAnnotation: radiusDemoAnnotation];
     
+    //Update new value from user defaults
     tempString = [defaults objectForKey:@"alertRadius"];
     
+    //store as a double
     double tempRadius = tempString.doubleValue;
-    
     
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
     self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
     
+    //set the overlay
     [self.radiusMapView addOverlay: self.radiusOverlay];
 }
 
@@ -125,11 +129,16 @@ const double cSLIDERMULTIPLYER = 600.00;
 //Draw region overlay on map
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
 {
+    //create circle render object with circle
     MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
+    //set the outline colour
     circleR.strokeColor = [UIColor blueColor];
+    //set fill or center colour
     circleR.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    //set the width of the outer line.
     circleR.lineWidth = 3;
     
+    //return render object for showing the circle overlays
     return circleR;
 }
 

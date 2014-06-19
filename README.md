@@ -53,6 +53,7 @@ TDNotificationPanel - Green Bar In Application Banner.
   <li>Have next 3 train times for station details from callout button - have other station specific related details from left callout button may be connecting bus route numbers.</li>
   <li>Show Station myKey outlet details and parking availability near by from google search or PTV POI search.</li>
   <li>load instruction info page on first run of application to help communicate instructions, updates and changes to the user by showing them how to interact with the application.</li>
+  <li>Add Twitter feed page with interuptions to service like metro times application.</li>
   </ol>
   
   <h3>Future Updates:</h3>
