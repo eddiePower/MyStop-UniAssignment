@@ -33,6 +33,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "AlarmListController.h"
+#import "StopMonitorInfoViewController.h"
 
 @interface StopMonitorAppDelegate : UIResponder <UIApplicationDelegate>
 

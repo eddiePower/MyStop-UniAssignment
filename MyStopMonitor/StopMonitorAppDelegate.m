@@ -37,7 +37,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     //Customeize View of all pages of the app for specific UIKit controlls
     [self styleMyApplication];
     
@@ -81,6 +80,25 @@
     //set the location manager used on other pages so monitoring dosnt stop at wrong time.
     alarmListController.locManager = self.locationManager;
     self.locationManager.delegate = alarmListController;
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+    {
+        // app already launched
+        //run like normal
+    }
+    else
+    {
+        [[NSUserDefaults standardUserDefaults] setBool: YES forKey:@"HasLaunchedOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        // This is the first launch ever so set users view to the welcome page.
+        
+        StopMonitorInfoViewController *infoViewController = [[StopMonitorInfoViewController alloc] init];
+        infoViewController = [tabController.viewControllers lastObject];
+
+        // 4. Present the vc and return it.
+        //[alarmListController presentViewController: infoViewController animated: NO completion:nil];
+
+    }
     
     return YES;
 }

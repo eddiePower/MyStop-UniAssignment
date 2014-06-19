@@ -49,10 +49,21 @@ const double cSLIDERMULTIPLYER = 600.00;
     
     self.soundsList = [[NSArray alloc] initWithObjects:@"Voice alert", @"Train Horn", @"Alarm Clock", @"Train Crossing", @"Phone sound 1", nil];
     
+    
     // Create userDefaults store
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
     double startRadius = tempString.doubleValue;
+    
+    //center location for mapView
+    CLLocationCoordinate2D demoRadiusCenter;
+    demoRadiusCenter.latitude = -37.818877;
+    demoRadiusCenter.longitude = 144.964488;
+    
+    MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
+    double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (startRadius * 2);
+    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
     
     //set the sliders range so it will be able to represent values from 600m - 1.5km
     self.radiusSlider.minimumValue = 0.6f;
@@ -67,23 +78,23 @@ const double cSLIDERMULTIPLYER = 600.00;
     }
     else
     {
-       self.radiusSlider.value = 500.00 / cSLIDERMULTIPLYER;
-       self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %fm ", (self.radiusSlider.value * cSLIDERMULTIPLYER)];
+        [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
+       
+       self.radiusSlider.value = 100 / cSLIDERMULTIPLYER;
+        //Format a string to show user the value of radius during resize.
+        NSString *formattedLabelText = [self formatRadiusLabel];
+       self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@m ",formattedLabelText];
+        
+        //This value is used only for the first run to create a radius start point
+        // when no alarms have been set and is used in the create overlay method.
+        [defaults setValue: [NSString stringWithFormat:@"%f", self.radiusSlider.value] forKey:@"alertRadius"];
+        //save defaults
+        [defaults synchronize];
+        
     }
     
     //Set mapView delegate
     self.radiusMapView.delegate = self;
-    
-    //center location for mapView
-    CLLocationCoordinate2D demoRadiusCenter;
-    demoRadiusCenter.latitude = -37.818877;
-    demoRadiusCenter.longitude = 144.964488;
-    
-    MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
-    double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (startRadius * 2);
-    MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
-    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
-    
     
      //initalize annotation for radius demo
     MKPointAnnotation *radiusDemoAnnotation = [[MKPointAnnotation alloc]init];
@@ -150,10 +161,15 @@ const double cSLIDERMULTIPLYER = 600.00;
     
     UISlider *tempSlider = sender;
     
+    //set the value for the setting alertRadius
     [defaults setDouble: tempSlider.value * cSLIDERMULTIPLYER forKey:@"alertRadius"];
+    //Save new value to defaults file
     [defaults synchronize];
     
+    //resize and re draw the overlay
     [self configureOverlay];
+    //remove the old overlay with inaccurate radius value. this is done
+    // because the radius value on overlays is read only and can only be edited on creation.
     [self.radiusMapView removeOverlay:[self.radiusMapView.overlays firstObject]];
 
     //Format a string to show user the value of radius during resize.
@@ -161,17 +177,21 @@ const double cSLIDERMULTIPLYER = 600.00;
     self.radiusSizeLabel.text = [NSString stringWithFormat:@"Size: %@m ", formattedLabelText];
     
     
-    //center location for mapView
+    //center location for demo radius mapView
     CLLocationCoordinate2D demoRadiusCenter;
     demoRadiusCenter.latitude = -37.818877;
     demoRadiusCenter.longitude = 144.964488;
     
+    //create a map point to set as the center point for the map
     MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
     double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (formattedLabelText.doubleValue * 2);
+    //set the map rectangle or the biggest sqare of map that will encompas the overlay as well.
     MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
+    //add the mapRect as the visibale map rectangle.
     [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
 }
 
+//Format the radius label number into one with 2 decimal places for easier viewing.
 -(NSString *)formatRadiusLabel
 {
     
@@ -204,7 +224,7 @@ const double cSLIDERMULTIPLYER = 600.00;
     
     self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
 
-    [self.radiusMapView addOverlay: self.radiusOverlay level: MKOverlayLevelAboveLabels];
+    [self.radiusMapView addOverlay: self.radiusOverlay];
 }
 
 
