@@ -63,7 +63,7 @@ const double cSLIDERMULTIPLYER = 600.00;
     MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
     double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (startRadius * 2);
     MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
-    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: YES];
     
     //set the sliders range so it will be able to represent values from 600m - 1.5km
     self.radiusSlider.minimumValue = 0.6f;
@@ -188,7 +188,7 @@ const double cSLIDERMULTIPLYER = 600.00;
     //set the map rectangle or the biggest sqare of map that will encompas the overlay as well.
     MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
     //add the mapRect as the visibale map rectangle.
-    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: YES];
 }
 
 //Format the radius label number into one with 2 decimal places for easier viewing.

@@ -40,13 +40,19 @@ TDNotificationPanel - Green Bar In Application Banner.
  <li>Event was: You've Entered the Region Seaford Station at 2014-06-17 17:03:14 +0000 - My Events as user enters region area and alert is triggered.</li>
  </ul>
   </p>
-  <h3>Features to be completed:</h3>
+  <h3>Features to be Added & completed:</h3>
   <ol><li>Check for new stations on API server - at this point as a new station development is a big and long process i will release a new update for users forcing apps to re download the list fresh for new stop updates, until i can check download list against stored list in a cpu and time efficient manner.</li>
-  <li>Set the map type globally so it is shown in station details as set in settings page of app.</li>
+  <li>Set the map type globally in userDefaults so it is shown in station details as set in settings page of app.</li>
   <li>Add in station information such as Mykey manned station (human to buy new myKey card from at station) and parking details for that station</li>
+  <li>Connect UIAlert views up to acions</li>
+  <li>Customise look of tableViews</li>
+  <li>Add Train Line Table View and logic selecting correct line numbers</li>
+  <li>Add Train Lines to Core Data Model</li>
+  <li>Add in sounds and set up logic for selection</li>
+  <li>Remove GPS coords from TableViews and Add MapSnapShot images of station view for train line stops</li>
   <li>Have next 3 train times for station details from callout button - have other station specific related details from left callout button may be connecting bus route numbers.</li>
   <li>Show Station myKey outlet details and parking availability near by from google search or PTV POI search.</li>
-  <li>Popovers on first run of application to help communicate updates and changes to the user by showing them how to interact with the application.</li>
+  <li>load instruction info page on first run of application to help communicate instructions, updates and changes to the user by showing them how to interact with the application.</li>
   </ol>
   
   <h3>Future Updates:</h3>
