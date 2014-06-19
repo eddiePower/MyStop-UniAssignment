@@ -10,20 +10,20 @@
 		89109B491952CFEC000439AC /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B481952CFEC000439AC /* train.png */; };
 		89109B501952DEA6000439AC /* AboutInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 89109B4E1952DEA6000439AC /* AboutInfo.html */; };
 		89109B511952DEA6000439AC /* WelcomeInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 89109B4F1952DEA6000439AC /* WelcomeInfo.html */; };
-		89109B551952DEB7000439AC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B531952DEB7000439AC /* logo.png */; };
-		89109B5F1952F152000439AC /* 1_OpenApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B561952F152000439AC /* 1_OpenApp.png */; };
-		89109B601952F152000439AC /* 2_Tap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B571952F152000439AC /* 2_Tap_button.png */; };
-		89109B611952F152000439AC /* 4_SearchStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B581952F152000439AC /* 4_SearchStop.png */; };
-		89109B621952F152000439AC /* 5_tapStopForInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B591952F152000439AC /* 5_tapStopForInfo.png */; };
-		89109B631952F152000439AC /* 8_DeactivateAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5A1952F152000439AC /* 8_DeactivateAlert.png */; };
-		89109B641952F152000439AC /* 6_StopInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5B1952F152000439AC /* 6_StopInfo.png */; };
-		89109B651952F152000439AC /* 3_ChoosStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5C1952F152000439AC /* 3_ChoosStop.png */; };
-		89109B661952F152000439AC /* 7_SetRadiusSize.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5D1952F152000439AC /* 7_SetRadiusSize.png */; };
-		89109B671952F152000439AC /* 9_DeleteStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 89109B5E1952F152000439AC /* 9_DeleteStop.png */; };
 		89315BA91946C49800CD1D50 /* TrainAlert.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 89315BA81946C49800CD1D50 /* TrainAlert.mp3 */; };
 		89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89315BAA1946CD4B00CD1D50 /* Localizable.strings */; };
 		893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */; };
 		893C6A4E1931E57D00501E0A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893C6A4D1931E57D00501E0A /* CoreData.framework */; };
+		895AFD1419534D5D0053A9C7 /* 1_OpenApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0A19534D5D0053A9C7 /* 1_OpenApp.png */; };
+		895AFD1519534D5D0053A9C7 /* 2_Tap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0B19534D5D0053A9C7 /* 2_Tap_button.png */; };
+		895AFD1619534D5D0053A9C7 /* 3_ChoosStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0C19534D5D0053A9C7 /* 3_ChoosStop.png */; };
+		895AFD1719534D5D0053A9C7 /* 4_SearchStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0D19534D5D0053A9C7 /* 4_SearchStop.png */; };
+		895AFD1819534D5D0053A9C7 /* 5_tapStopForInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0E19534D5D0053A9C7 /* 5_tapStopForInfo.png */; };
+		895AFD1919534D5D0053A9C7 /* 6_StopInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0F19534D5D0053A9C7 /* 6_StopInfo.png */; };
+		895AFD1A19534D5D0053A9C7 /* 7_SetRadiusSize.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD1019534D5D0053A9C7 /* 7_SetRadiusSize.png */; };
+		895AFD1B19534D5D0053A9C7 /* 8_DeactivateAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD1119534D5D0053A9C7 /* 8_DeactivateAlert.png */; };
+		895AFD1C19534D5D0053A9C7 /* 9_DeleteStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD1219534D5D0053A9C7 /* 9_DeleteStop.png */; };
+		895AFD1D19534D5D0053A9C7 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD1319534D5D0053A9C7 /* logo.png */; };
 		8967C8311941EB56002460EB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8967C8301941EB56002460EB /* SettingsViewController.m */; };
 		89701DA91919FE4500501AB0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DA81919FE4500501AB0 /* Foundation.framework */; };
 		89701DAB1919FE4500501AB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89701DAA1919FE4500501AB0 /* CoreGraphics.framework */; };
@@ -76,20 +76,20 @@
 		89109B481952CFEC000439AC /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = train.png; sourceTree = "<group>"; };
 		89109B4E1952DEA6000439AC /* AboutInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AboutInfo.html; sourceTree = "<group>"; };
 		89109B4F1952DEA6000439AC /* WelcomeInfo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WelcomeInfo.html; sourceTree = "<group>"; };
-		89109B531952DEB7000439AC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		89109B561952F152000439AC /* 1_OpenApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_OpenApp.png; sourceTree = "<group>"; };
-		89109B571952F152000439AC /* 2_Tap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_Tap_button.png; sourceTree = "<group>"; };
-		89109B581952F152000439AC /* 4_SearchStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_SearchStop.png; sourceTree = "<group>"; };
-		89109B591952F152000439AC /* 5_tapStopForInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_tapStopForInfo.png; sourceTree = "<group>"; };
-		89109B5A1952F152000439AC /* 8_DeactivateAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8_DeactivateAlert.png; sourceTree = "<group>"; };
-		89109B5B1952F152000439AC /* 6_StopInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_StopInfo.png; sourceTree = "<group>"; };
-		89109B5C1952F152000439AC /* 3_ChoosStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_ChoosStop.png; sourceTree = "<group>"; };
-		89109B5D1952F152000439AC /* 7_SetRadiusSize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_SetRadiusSize.png; sourceTree = "<group>"; };
-		89109B5E1952F152000439AC /* 9_DeleteStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9_DeleteStop.png; sourceTree = "<group>"; };
 		89315BA81946C49800CD1D50 /* TrainAlert.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrainAlert.mp3; sourceTree = "<group>"; };
 		89315BAA1946CD4B00CD1D50 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		893C6A4B1931E0EC00501E0A /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		893C6A4D1931E57D00501E0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		895AFD0A19534D5D0053A9C7 /* 1_OpenApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1_OpenApp.png; path = imageResources/1_OpenApp.png; sourceTree = "<group>"; };
+		895AFD0B19534D5D0053A9C7 /* 2_Tap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2_Tap_button.png; path = imageResources/2_Tap_button.png; sourceTree = "<group>"; };
+		895AFD0C19534D5D0053A9C7 /* 3_ChoosStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3_ChoosStop.png; path = imageResources/3_ChoosStop.png; sourceTree = "<group>"; };
+		895AFD0D19534D5D0053A9C7 /* 4_SearchStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 4_SearchStop.png; path = imageResources/4_SearchStop.png; sourceTree = "<group>"; };
+		895AFD0E19534D5D0053A9C7 /* 5_tapStopForInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 5_tapStopForInfo.png; path = imageResources/5_tapStopForInfo.png; sourceTree = "<group>"; };
+		895AFD0F19534D5D0053A9C7 /* 6_StopInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 6_StopInfo.png; path = imageResources/6_StopInfo.png; sourceTree = "<group>"; };
+		895AFD1019534D5D0053A9C7 /* 7_SetRadiusSize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 7_SetRadiusSize.png; path = imageResources/7_SetRadiusSize.png; sourceTree = "<group>"; };
+		895AFD1119534D5D0053A9C7 /* 8_DeactivateAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 8_DeactivateAlert.png; path = imageResources/8_DeactivateAlert.png; sourceTree = "<group>"; };
+		895AFD1219534D5D0053A9C7 /* 9_DeleteStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 9_DeleteStop.png; path = imageResources/9_DeleteStop.png; sourceTree = "<group>"; };
+		895AFD1319534D5D0053A9C7 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = imageResources/logo.png; sourceTree = "<group>"; };
 		8967C82F1941EB56002460EB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		8967C8301941EB56002460EB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		89701DA51919FE4500501AB0 /* MyStopMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyStopMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,16 +285,16 @@
 		899F72201927DF3A00835477 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				89109B561952F152000439AC /* 1_OpenApp.png */,
-				89109B571952F152000439AC /* 2_Tap_button.png */,
-				89109B581952F152000439AC /* 4_SearchStop.png */,
-				89109B591952F152000439AC /* 5_tapStopForInfo.png */,
-				89109B5A1952F152000439AC /* 8_DeactivateAlert.png */,
-				89109B5B1952F152000439AC /* 6_StopInfo.png */,
-				89109B5C1952F152000439AC /* 3_ChoosStop.png */,
-				89109B5D1952F152000439AC /* 7_SetRadiusSize.png */,
-				89109B5E1952F152000439AC /* 9_DeleteStop.png */,
-				89109B531952DEB7000439AC /* logo.png */,
+				895AFD0A19534D5D0053A9C7 /* 1_OpenApp.png */,
+				895AFD0B19534D5D0053A9C7 /* 2_Tap_button.png */,
+				895AFD0C19534D5D0053A9C7 /* 3_ChoosStop.png */,
+				895AFD0D19534D5D0053A9C7 /* 4_SearchStop.png */,
+				895AFD0E19534D5D0053A9C7 /* 5_tapStopForInfo.png */,
+				895AFD0F19534D5D0053A9C7 /* 6_StopInfo.png */,
+				895AFD1019534D5D0053A9C7 /* 7_SetRadiusSize.png */,
+				895AFD1119534D5D0053A9C7 /* 8_DeactivateAlert.png */,
+				895AFD1219534D5D0053A9C7 /* 9_DeleteStop.png */,
+				895AFD1319534D5D0053A9C7 /* logo.png */,
 				89109B481952CFEC000439AC /* train.png */,
 				89109B4E1952DEA6000439AC /* AboutInfo.html */,
 				89109B4F1952DEA6000439AC /* WelcomeInfo.html */,
@@ -434,30 +434,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				897F2A061944EE5F00799A48 /* successIcon.png in Resources */,
-				89109B551952DEB7000439AC /* logo.png in Resources */,
+				895AFD1619534D5D0053A9C7 /* 3_ChoosStop.png in Resources */,
 				89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */,
 				897F2A021944EE5F00799A48 /* errorIcon.png in Resources */,
 				89109B501952DEA6000439AC /* AboutInfo.html in Resources */,
-				89109B5F1952F152000439AC /* 1_OpenApp.png in Resources */,
-				89109B651952F152000439AC /* 3_ChoosStop.png in Resources */,
+				895AFD1C19534D5D0053A9C7 /* 9_DeleteStop.png in Resources */,
+				895AFD1919534D5D0053A9C7 /* 6_StopInfo.png in Resources */,
 				897F2A051944EE5F00799A48 /* infoIcon@2x.png in Resources */,
-				89109B601952F152000439AC /* 2_Tap_button.png in Resources */,
-				89109B661952F152000439AC /* 7_SetRadiusSize.png in Resources */,
-				89109B671952F152000439AC /* 9_DeleteStop.png in Resources */,
+				895AFD1819534D5D0053A9C7 /* 5_tapStopForInfo.png in Resources */,
+				895AFD1A19534D5D0053A9C7 /* 7_SetRadiusSize.png in Resources */,
+				895AFD1B19534D5D0053A9C7 /* 8_DeactivateAlert.png in Resources */,
 				8979916219484CC400F0AFA2 /* README.md in Resources */,
 				89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */,
+				895AFD1D19534D5D0053A9C7 /* logo.png in Resources */,
 				89701DC11919FE4500501AB0 /* Images.xcassets in Resources */,
-				89109B621952F152000439AC /* 5_tapStopForInfo.png in Resources */,
 				89701DB31919FE4500501AB0 /* InfoPlist.strings in Resources */,
 				89109B491952CFEC000439AC /* train.png in Resources */,
+				895AFD1719534D5D0053A9C7 /* 4_SearchStop.png in Resources */,
 				897F2A031944EE5F00799A48 /* errorIcon@2x.png in Resources */,
-				89109B631952F152000439AC /* 8_DeactivateAlert.png in Resources */,
 				89109B511952DEA6000439AC /* WelcomeInfo.html in Resources */,
 				897F2A041944EE5F00799A48 /* infoIcon.png in Resources */,
-				89109B641952F152000439AC /* 6_StopInfo.png in Resources */,
 				89315BA91946C49800CD1D50 /* TrainAlert.mp3 in Resources */,
+				895AFD1419534D5D0053A9C7 /* 1_OpenApp.png in Resources */,
+				895AFD1519534D5D0053A9C7 /* 2_Tap_button.png in Resources */,
 				89701DBC1919FE4500501AB0 /* Main.storyboard in Resources */,
-				89109B611952F152000439AC /* 4_SearchStop.png in Resources */,
 				897F2A071944EE5F00799A48 /* successIcon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
