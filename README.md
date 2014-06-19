@@ -20,11 +20,14 @@ TDNotificationPanel - Green Bar In Application Banner.
 
 
 <h4>Application Functions:</h4>
- <p> Build list of stations from the PTV api.
-  Lets users set alerts or alarms based on these stops
-  App will alert user if app is running and in foreground by a Green alert bar on top of view and a Pop up alert button.
- App also alerts user when running but in background by a custom notification in notification centre, the user must dismiss or touch this alert to stop the custom sound playing.
-  App will also notify user if the app is not running due to region monitoring, it will then use the notification alert as if the app was not running.</p>
+ <ul> 
+ <li>Build list of stations from the PTV api.</li>
+  <li>Lets users set alerts or alarms based on these stops</li>
+  <li>Alert's user if app is running and in foreground by a Green alert bar on top of view and a Pop up alert button.</li>
+  <li>Alert's user when running but in background by a custom notification in notification centre, the user must dismiss or touch this alert to stop the custom sound playing.</li>
+  <li>Notify's user if the app is not running due to region monitoring, it will then use the notification alert as if the app was not running.</li>
+  <li>Shows station information and maps.</li>
+  </ul>
   
   
   <h3>Notes</h3>
