@@ -7,6 +7,7 @@ It is a Public transport system alert application to help those people like me w
 
 References :
 ===========
+All code files located in ExtraResources folder and has appropriate copyrite on each file from these users below
 ACPReminder - App in background Notification Banner.
     - https://github.com/antoniocasero/ACPReminder
     - Anton Iocasero

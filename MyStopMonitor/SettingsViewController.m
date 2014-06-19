@@ -34,7 +34,6 @@
 
 const double cSLIDERMULTIPLYER = 600.00;
 
-
 @interface SettingsViewController ()
 
 @property(nonatomic)double radiusUpdate;
