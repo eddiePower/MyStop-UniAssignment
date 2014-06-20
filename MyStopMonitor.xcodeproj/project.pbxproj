@@ -53,7 +53,6 @@
 		899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 899F721B1927D0BA00835477 /* StopAnnotation.m */; };
 		89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */; };
 		89BAD9B4194302F800D56D08 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BAD9B3194302F800D56D08 /* AVFoundation.framework */; };
-		89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BAD9B519430A4200D56D08 /* Default@2x.png */; };
 		89D6B536191FD25100011880 /* TrainLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6B535191FD25100011880 /* TrainLine.m */; };
 		89D6B539191FD93500011880 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B537191FD93500011880 /* CoreLocation.framework */; };
 		89D6B53A191FD93500011880 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B538191FD93500011880 /* MapKit.framework */; };
@@ -132,7 +131,6 @@
 		89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateSigniture.h; sourceTree = "<group>"; };
 		89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateSigniture.m; sourceTree = "<group>"; };
 		89BAD9B3194302F800D56D08 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		89BAD9B519430A4200D56D08 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		89D6B534191FD25100011880 /* TrainLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainLine.h; sourceTree = "<group>"; };
 		89D6B535191FD25100011880 /* TrainLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainLine.m; sourceTree = "<group>"; };
 		89D6B537191FD93500011880 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -300,7 +298,6 @@
 				89109B4F1952DEA6000439AC /* WelcomeInfo.html */,
 				89315BAA1946CD4B00CD1D50 /* Localizable.strings */,
 				89315BA81946C49800CD1D50 /* TrainAlert.mp3 */,
-				89BAD9B519430A4200D56D08 /* Default@2x.png */,
 				89FC0ADC1924F3DB002BC8B0 /* FrankstonLineStops.gpx */,
 				89701DC01919FE4500501AB0 /* Images.xcassets */,
 			);
@@ -445,7 +442,6 @@
 				895AFD1A19534D5D0053A9C7 /* 7_SetRadiusSize.png in Resources */,
 				895AFD1B19534D5D0053A9C7 /* 8_DeactivateAlert.png in Resources */,
 				8979916219484CC400F0AFA2 /* README.md in Resources */,
-				89BAD9B619430A4200D56D08 /* Default@2x.png in Resources */,
 				895AFD1D19534D5D0053A9C7 /* logo.png in Resources */,
 				89701DC11919FE4500501AB0 /* Images.xcassets in Resources */,
 				89701DB31919FE4500501AB0 /* InfoPlist.strings in Resources */,
