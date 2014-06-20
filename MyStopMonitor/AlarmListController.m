@@ -1,34 +1,23 @@
-/*////////////////////////////////////////////////////////////////////////////////
-//  AlarmListController.m                                                      //
-//  MyStopMonitor                                                             //
-//                                                                           //
-//  This project is to use the ios core location to monitor a users         //
-//  location while on public transport in this case a train running        //
-//  on the Frankston Line and a user will set the stop they would         //
-//  like to be notified before they reach, the phone will then           //
-//  alert the user to the upcoming stop and they can wake up or         //
-//  prepare to disembark the train with lots of time and not           //////////
-//  missing there stop. This will be widened to accept multiple               //
-//  train lines and transport types in an upcoming update soon.              //
-//                                                                          //
-//  The above copyright notice and this permission notice shall            //
-//  be included in all copies or substantial portions of the              //
-//  Software.                                                            //
-//                                                                      //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY          //
-//  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        //
-//  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR          //
-//  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE              //
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,          //
-//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF           //
-//  CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN       //
-//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER            //
-//  DEALINGS IN THE SOFTWARE.                                  //
-//                                                            //
-//  Created by Eddie Power on 7/05/2014.                     //
-//  Copyright (c) 2014 Eddie Power.                         //
-//  All rights reserved.                                   //
-////////////////////////////////////////////////////////////*/
+/*  AlarmListController.m
+//  MyStopMonitor
+
+//  This class is used to create a TableViewController
+//  that is used to display a list of alarms that the user
+//  has set.  It also makes use of alocation manager set up
+//  in the application delegate and passed to this class to track
+//  the users current location and region entry to trigger a user alert
+//  which is a method in this class that at this time makes the phone speak if
+//  the application is in the forground and play a train crossing sound effect if
+//  the application is closed or running in the background.  The user alert
+//  also includes a UIAlertView, a localNotification from a custom class, and
+//  an in app animation from another custom class that diplays a green banner
+//  when the alert is triggered in the app.  These custom classes are refrenced in
+//  the readme file.
+
+//  Created by Eddie Power on 7/05/2014.
+//  Copyright (c) 2014 Eddie Power.
+//  All rights reserved.
+*/
 
 #import "AlarmListController.h"
 #import "ACPReminder/ACPReminder.h"
@@ -43,19 +32,24 @@
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
+    //set location manager delegate to return to this view.
     self.locManager.delegate = self;
     
+    //set fetch request to get the Alarm entities
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Alarm"];
     
     NSError *error;
+    //execute or retrieve alarm objects
     NSArray *results = [self.managedObjectContext executeFetchRequest: fetchRequest error: &error];
     
+    //check there are results
     if(results == nil)
     {
         NSLog(@"Could Not fetch Alarm:\n%@", error.userInfo);
     }
     else if ([results count] == 0)
     {
+        //if there are no results then just create an empty array for the alarmView to use later.
         self.currentAlarms = [[NSMutableArray alloc] initWithCapacity: 0];
     }
     else
@@ -65,9 +59,11 @@
     }
 }
 
+//May be used later to prep regions or data to use.
 - (void)viewDidAppear:(BOOL)animated
 {
     //Display the monitored regions after loading or reloading the view.
+    /*
     if ([self.locManager monitoredRegions].count > 0)
     {
         //NSLog(@"Region List is now: %@", [self.locManager monitoredRegions]);
@@ -76,8 +72,10 @@
     {
         //NSLog(@"No Regions bieng monitored at this time.");
     }
+    */
 }
 
+//number of sections to return as i am counting alarms set this is 2
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -86,6 +84,7 @@
     return 2;
 }
 
+//number of rows is the number of alarms in the array or 1 row for the alarm count section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
@@ -102,17 +101,22 @@
     return 0;
 }
 
+//Conficure the data for the cell prototype AlarmCell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //if the user selected the first section or not the alarm total section
     if (indexPath.section == 0)
     {
+        //set unchangable string for cell identifier
        static NSString *CellIdentifier = @"AlarmCell";
+        //deque or check for a cell with the identifier which i set in storyboard.
        AlarmCell *cell = (AlarmCell*)[tableView dequeueReusableCellWithIdentifier: CellIdentifier
                                                                     forIndexPath: indexPath];
 
        // Configure the Alarm cell with alarm details.
        Alarm* a = [self.currentAlarms objectAtIndex: indexPath.row];
     
+        //use alarm details to populate some labels.
         cell.alarmSuburbLabel.text = a.station.stationSuburb;
         cell.alarmStopNameLabel.text = a.station.stationName;
         cell.alarmLocationLabel.text = [NSString stringWithFormat:@"%@,\n%@", a.station.stationLatitude, a.station.stationLongitude];
@@ -125,6 +129,7 @@
         cell.alarmSwitch = alarmActiveSwitch;
         cell.cellAlarm = a;
         
+        //run setupCell method in alarmCell class
         [cell setupCell];
         
         //Check initial load state of alarm switch has it been saved in on or off position.
@@ -151,7 +156,7 @@
     }
     else
     {
-        //Total Alarms count cell.
+        //Total Alarms count cell setup.
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TotalCell"
                                                                 forIndexPath: indexPath];
         cell.textLabel.text = [NSString stringWithFormat:@"Total Alarms Set: %lu", (unsigned long)[self.currentAlarms count]];
@@ -220,30 +225,39 @@
     stopCenter.latitude = [anAlarm.station.stationLatitude doubleValue];
     stopCenter.longitude = [anAlarm.station.stationLongitude doubleValue];
     
-    //geographic circular region to be removed.
+    //geographic circular region to be removed values taken from stored alarm.
+    // the value needed to be unique and matching a set region is the identifier
     CLCircularRegion *geoRegion = [[CLCircularRegion alloc]
                                    initWithCenter: stopCenter
                                    radius: [anAlarm.alarmAlertRadius doubleValue]
                                    identifier: anAlarm.station.stationName];
+    
         
-    //REMOVE EVENT OR REGION MONITORING ENTRY TO STOP MONITORING/ALERTS
+    //Remove event or region monitoring entry so that the phone will not alert at this region boundry
     [self.locManager stopMonitoringForRegion: geoRegion];
 }
 
+//segue method to set segue details
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //check segue name or identifier if it is addAlarmSegue
     if ([segue.identifier isEqualToString:@"AddAlarmSegue"])
     {
+        //then set segue destination viewController as AddAlarmStopController
         AddStopController* controller = segue.destinationViewController;
+        //pass managed object context from this class to the destination
+        // to allow all core data to accessed from the next view.
         controller.managedObjectContext = self.managedObjectContext;
+        //set the delegate to the addStopController view.
         controller.delegate = self;
     }
     else if ([segue.identifier isEqualToString:@"showMapSegue"])
     {
-        //set the controller to the segue destination from storyboard
+        //set the showMapViewController as the segue destination
         ShowStopMapViewController* controller = segue.destinationViewController;
         
-        //return data from mapView controller.  NOTE: add mapView Delegate to this file .h
+        //return data from mapView controller.
+        //NOTE: may use this later to return data from mapView,
         //controller.mapView.delegate = self;
         
         //select the index path sent over by sender or cell selected
@@ -262,20 +276,26 @@
 //add the station location as a region for monitoring.
 -(void)addAlarmStop:(Alarm *)anAlarm
 {
-    // Get the stored data before the view loads
+    // Get the globaly stored settings data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     //link to switch value to set alarm inactive/off for user to activate later
     anAlarm.alarmIsActive = [NSNumber numberWithInt: 1];
     
-    //link to slider to adjust radius of region
-    anAlarm.alarmAlertRadius = [defaults objectForKey:@"alertRadius"];  //used in the region creation for radius in meters.
-                                                                        //chose 360m-900m to allow enough time for user.
-                                                                        //will keep this value as the last set radius limit.
+    //set the alarmAlertRadius value to the one stored in the user default
+    // store. This is a global settings area for the application.
+    anAlarm.alarmAlertRadius = [defaults objectForKey:@"alertRadius"];
+    //used in the region creation for radius in meters.
+    //chose 360m-900m to allow enough time for user.
+    //will keep this value as the last set radius limit.
     
     //date of creation may be used after future update to set repeating alarms.
+    //Not really used at this time, may need it later
     anAlarm.alarmTime = [NSDate date];
     
+    //set the alarmTitle to the station name,
+    //this is set and used to update the CD entries for
+    // setting alerts to active via the switch and alarmIsActive property.
     anAlarm.alarmTitle = anAlarm.station.stationName;
     
     //set the location manager to add stop delegate page (addStopController).
@@ -299,12 +319,15 @@
     }
 }
 
+//add region to monitor using the alarm details.
 - (void)addAlarmRegion:(Alarm *)anAlarm
 {
-    // Get the stored data before the view loads
+    // Get the globally stored settings data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    //set string to retrieve stored value.
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
+    //place value in double variable since i know its a double value.
     double tempRadius = tempString.doubleValue;
    
     //Is region monitoring available for this app?
@@ -328,14 +351,14 @@
 	}
 }
 
-//CLLocationManagerDelegate
-
-//Check monitoring for region has started successfully
+//CLLocationManagerDelegate methods
+//Check monitoring for region has started successfully - only needed for development / debugging
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
     //NSLog(@"\nNow monitoring region named: %@", region.identifier);
 }
 
+//Check monitoring for region has stopped successfully - only needed for development / debugging
 -(void)locationManager:(CLLocationManager *)manager didStopMonitoringForRegion:(CLRegion *)region
 {
     //NSLog(@"\nStoping monitoring region name: %@", region.identifier);
@@ -344,25 +367,32 @@
 //if the region monitoring failed then run this delegate method.
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
+    //store the error event that just fired in a string with the region details and error detials
 	NSString *event = [NSString stringWithFormat:@"monitoringDidFailForRegion %@: %@", region.identifier, error];
     
+    //show the error in the log.
     NSLog(@"Event was: %@\n\nError details: %@", event, error.userInfo);
 }
 
 //Error checking on region monitoring and iPhone sim error with locations/No GPS
+//used in development and debugging usage errors
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
+    //if the error has no user info then it has had a serious error
     if (error.userInfo == nil)
     {
         NSLog(@"Location Manager had a error\nDetails: %@", error.userInfo);
     }
     else
     {
+        //otherwise it may be a simulator related error
         NSLog(@"Location Manager had a error\nDetails: Error may have been caused by iPhone Simulator not having GPS chip?!");
     }
 }
 
 //May not be needed at this time.
+//used to check the location has changed, could be used to save battery life by disabling the
+// location manager when movement stops, and starts again when movement does.
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
 
@@ -371,7 +401,7 @@
 //This method will be the one to alert users to station arival!
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-	//Debug lines
+	//Debug lines to show the event that fired which is the user has entered the regionName on xx/xx/xxxx +00:00
     NSString *event = [NSString stringWithFormat:@"You've Entered the Region %@ at %@", region.identifier, [NSDate date]];
     NSLog(@"\nEvent was: %@", event);
     
@@ -389,6 +419,9 @@
 }
 //End CLLocationManager delegate methods.
 
+//Check the location of the tableView
+//used when an alert is triggered to bring view
+//back to top where the alert banner is positioned.
 -(void)checkViewLocation
 {
     // If active alert banner area is hidden from view, scroll ito top
@@ -409,19 +442,19 @@
     //Create string to speak with region name or identifier in it.
     NSString *utteranceString = [NSString stringWithFormat: NSLocalizedString(@"Wake up now your almost at %@", nil), region.identifier];
     
-    //Create speech object
+    //Create speech or utterance object
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString: utteranceString];
-    //Voice speed.
+    //set Voice speed.
     utterance.rate = .2f;
     
     //Create user alert box for station arrival alert
     UIAlertView *userAlert;
     
-    //create the alert box
+    //create the alert box testing out Localized strings for multiple language support for tourists in melbourne
     userAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Stop Monitor Alarm", nil) message:[NSString stringWithFormat:NSLocalizedString(@"%@ is coming up!", nil), region.identifier] delegate: self cancelButtonTitle: NSLocalizedString(@"Cancel Alert", nil) otherButtonTitles: NSLocalizedString(@"OK im awake!", nil), nil];
     
     //In app animation for arrival at station appears at top of view for 10 seconds, refrenced in ReadMe.txt file.
-    //Part of TDNotificationPanel in ExtraRefrences folder.
+    //Part of TDNotificationPanel in ExtraRefrences folder and referenced in readMe file.
     [TDNotificationPanel showNotificationInView: self.view
                                           title: NSLocalizedString(@"Next Stop: ", nil)
                                        subtitle: [NSString stringWithFormat: NSLocalizedString(@"%@", nil), region.identifier]
@@ -448,16 +481,20 @@
     //timing issue and allowing the alert to run seconds after this method fires.
     ACPReminder *localNotifications = [ACPReminder sharedManager];
     
-    //Settings ACPReminder library --
+    //Settings ACPReminder library -- also added a sound file refrence to the ACPReminder.m file in the method
+    // creatLocalNotification:- line no: 103.
     localNotifications.messages = @[[NSString stringWithFormat: NSLocalizedString(@"Arriving at %@", nil), region.identifier], [NSString stringWithFormat: NSLocalizedString(@"Wake Up now\n %@ is coming up next!", nil), region.identifier]];
     localNotifications.timePeriods = @[@(1)]; //seconds after fireing - used as alert when app is in BG
     localNotifications.appDomain = @"nu.mine.powerfamilyau.MyStopMonitor";
     localNotifications.randomMessage = YES; //By default is NO (optional)
     localNotifications.testFlagInSeconds = YES; //By default is NO (optional) --> Used to fake alert to user-temporary!
     
+    //create notification which will trigger on phone if app is closed in 1 second i used this custom class to
+    //save development time but may choose to re do this in apple standard code in future updates.
     [localNotifications createLocalNotification];
     
-    // Update the icon badge number for when app is in b.g.
+    // Update the icon badge number - used more for when application is in the background
+    //does run while app is open but when app is switching to background mode this number is reset to 0
 	[UIApplication sharedApplication].applicationIconBadgeNumber++;
 }
 

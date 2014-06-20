@@ -1,41 +1,29 @@
-/*////////////////////////////////////////////////////////////////////////////////
-//  SettingsViewTableViewController.m                                          //
-//  MyStopMonitor                                                             //
-//                                                                           //
-//  This project is to use the ios core location to monitor a users         //
-//  location while on public transport in this case a train running        //
-//  on the Frankston Line and a user will set the stop they would         //
-//  like to be notified before they reach, the phone will then           //
-//  alert the user to the upcoming stop and they can wake up or         //
-//  prepare to disembark the train with lots of time and not           //////////
-//  missing there stop. This will be widened to accept multiple               //
-//  train lines and transport types in an upcoming update soon.              //
-//                                                                          //
-//  The above copyright notice and this permission notice shall            //
-//  be included in all copies or substantial portions of the              //
-//  Software.                                                            //
-//                                                                      //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY          //
-//  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        //
-//  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR          //
-//  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE              //
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,          //
-//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF           //
-//  CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN       //
-//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER            //
-//  DEALINGS IN THE SOFTWARE.                                  //
-//                                                            //
-//  Created by Eddie Power on 7/05/2014.                     //
-//  Copyright (c) 2014 Eddie Power.                         //
-//  All rights reserved.                                   //
-////////////////////////////////////////////////////////////*/
+//  SettingsViewTableViewController.m
+//  MyStopMonitor
+
+//  This class creates a tableView controller that shows a static table
+//  of UIControlls to help the user customise the look and operation of the
+//  application, it holds controlls such as a UISlider for alarm radius setting
+//  a UISegmentControl to set the mapView Type, and a UIPickerView that will soon
+//  allow users to pick a specific sound for the alerts both in app and notification sounds.
+//  This class is a subclass of the UITableViewController and employs a MKMapDelegate and UIPickerDataSource
+//  and pickerViewDelegate methods to recieve feedback and place data into both picker view and mapview.
+
+//  Created by Eddie Power on 7/05/2014.
+//  Copyright (c) 2014 Eddie Power.
+//  All rights reserved.
 
 #import "SettingsViewController.h"
 
+//Set a constant value to multiply the slider value
+// by as it is only between either 0-1 or in my case .6 - 1.5
+// this helps keep variable and computation times lower then
+// a large value on the slider.
 const double cSLIDERMULTIPLYER = 600.00;
 
 @interface SettingsViewController ()
 
+//radius update value for storing the new radius values
 @property(nonatomic)double radiusUpdate;
 
 @end
@@ -46,10 +34,11 @@ const double cSLIDERMULTIPLYER = 600.00;
 {
     [super viewDidLoad];
     
+    //create an Array to be shown in the sounds picker view.
     self.soundsList = [[NSArray alloc] initWithObjects:@"Voice alert", @"Train Horn", @"Alarm Clock", @"Train Crossing", @"Phone sound 1", nil];
     
     
-    // Create userDefaults store
+    // Create userDefaults store and check for alertRadius value in it.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
     double startRadius = tempString.doubleValue;
@@ -59,12 +48,12 @@ const double cSLIDERMULTIPLYER = 600.00;
     demoRadiusCenter.latitude = -37.818877;
     demoRadiusCenter.longitude = 144.964488;
     
+    //create a mapPoint for center location of a mapRect
     MKMapPoint pt = MKMapPointForCoordinate(demoRadiusCenter);
     double w = MKMapPointsPerMeterAtLatitude(demoRadiusCenter.latitude) * (startRadius * 2);
     MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
-    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: YES];
     
-    //set the sliders range so it will be able to represent values from 600m - 1.5km
+    //set the sliders range so it will be able to represent real world values from 600m - 1.5km
     self.radiusSlider.minimumValue = 0.6f;
     self.radiusSlider.maximumValue = 1.5f;
     
@@ -78,7 +67,8 @@ const double cSLIDERMULTIPLYER = 600.00;
     }
     else
     {
-        [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: NO];
+        //set the mapRect
+        [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: YES];
        
         //get a value the slider can display beteen min of .6 and max of 1.5
        self.radiusSlider.value = 500 / cSLIDERMULTIPLYER;
@@ -115,10 +105,14 @@ const double cSLIDERMULTIPLYER = 600.00;
     
     //store as a double
     double tempRadius = tempString.doubleValue;
+   
     
     //create map overlay in circle shape and use alert radius from alarm class
     // as circle radius
-    self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: tempRadius];
+    self.radiusOverlay = [MKCircle circleWithCenterCoordinate: demoRadiusCenter radius: (tempRadius * cSLIDERMULTIPLYER)];
+    
+    //assign the mapRect to the MapView and zoom or set animation on
+    [self.radiusMapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(32, 0, 8, 0) animated: YES];
     
     //set the overlay
     [self.radiusMapView addOverlay: self.radiusOverlay];
@@ -275,24 +269,28 @@ const double cSLIDERMULTIPLYER = 600.00;
 }
 
 //UIPicker delegate methods
-
+//number of dials or sections in pickerView
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     //One column
     return 1;
 }
 
+//rows per section or column
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    //set number of rows
+    //set number of rows to number of items in array
     return [self.soundsList count];
 }
 
+//returns the title for the row pressed
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    //set item per row
+    //show the sound file tapped on in the list.
+    NSLog(@"Sound file requested: %@", [self.soundsList objectAtIndex: row]);
+   
+    //return the object or name of the item at row index number
     return [self.soundsList objectAtIndex: row];
 }
 //End Picker delegate methods.
-
 @end

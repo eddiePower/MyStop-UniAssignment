@@ -1,35 +1,16 @@
-/*////////////////////////////////////////////////////////////////////////////////
-//  ShowStopMapViewController.h                                                //
-//  MyStopMonitor                                                             //
-//                                                                           //
-//  This project is to use the ios core location to monitor a users         //
-//  location while on public transport in this case a train running        //
-//  on the Frankston Line and a user will set the stop they would         //
-//  like to be notified before they reach, the phone will then           //
-//  alert the user to the upcoming stop and they can wake up or         //
-//  prepare to disembark the train with lots of time and not           //////////
-//  missing there stop. This will be widened to accept multiple               //
-//  train lines and transport types in an upcoming update soon.              //
-//                                                                          //
-//  The above copyright notice and this permission notice shall            //
-//  be included in all copies or substantial portions of the              //
-//  Software.                                                            //
-//                                                                      //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY          //
-//  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        //
-//  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR          //
-//  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE              //
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,          //
-//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF           //
-//  CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN       //
-//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER            //
-//  DEALINGS IN THE SOFTWARE.                                  //
-//                                                            //
-//  Created by Eddie Power on 7/05/2014.                     //
-//  Copyright (c) 2014 Eddie Power.                         //
-//  All rights reserved.                                   //
-////////////////////////////////////////////////////////////*/
+//  ShowStopMapViewController.h
+//  MyStopMonitor
 
+//  This class is used to create a view controller to show the currently
+//  set station in an alarm in detail that includes a map of its location
+//  using a MKMapView, and details such as stop type, annotation with station name
+//  and buttons that will soon hold info on train times and stop parking or mykey detail
+//  This class is a subclass of the UIViewController, and uses the MKMapViewDelegate protocol
+//  to recieve feedback from the mapView and location manager to track user location.
+
+//  Created by Eddie Power on 7/05/2014.
+//  Copyright (c) 2014 Eddie Power.
+//  All rights reserved.
 
 #import "ShowStopMapViewController.h"
 #import "StopAnnotation.h"
@@ -40,23 +21,28 @@
 {
     [super viewDidLoad];
     
+    //customise the view background with an image, this will not stay a perminant feature as i am no
+    // good at UI design.
     [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mapBg"]]];
     
-    // Create userDefaults store
+    // Create userDefaults store for retrieving radius values for overlays
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    //MapView Configuration.
-    self.mapView.showsBuildings = YES;
+    //MapView Configuration to show user location when near alarm region on map
     self.mapView.showsUserLocation = YES;
     
+    //set some labels with station information
+    // will expand this to have ticket information, and parking locations in future updates
     self.stationNameLabel.text = self.mapStation.stationName;
     self.stationTypeLabel.text = [NSString stringWithFormat:@"Transport Type: %@", self.mapStation.stationStopType];
    
     //Set the mapView Delegate to return to itself for annotations.
     self.mapView.delegate = self;
    
+    //retrieve the alertRadius value
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
     
+    //store it as a double number
     double tempRadius = tempString.doubleValue;
     
     //center location for mapView
@@ -64,10 +50,13 @@
     center.latitude = [self.mapStation.stationLatitude doubleValue];
     center.longitude = [self.mapStation.stationLongitude doubleValue];
     
+    //create a mapPoint for the mapRect creation
     MKMapPoint pt = MKMapPointForCoordinate(center);
+    //set width in a double variable by using an eqiasion
     double w = MKMapPointsPerMeterAtLatitude(center.latitude) * (tempRadius * 2);
     MKMapRect mapRect = MKMapRectMake(pt.x - w/2.0, pt.y - w/2.0, w, w);
-    [self.mapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(30, 0, 25, 0) animated: NO];
+    //set visible mapRect and animate it to show zooming on mapView
+    [self.mapView setVisibleMapRect:mapRect edgePadding:UIEdgeInsetsMake(30, 0, 25, 0) animated: YES];
 
     //initalize annotation for Stop with title, coord's
     //  and subtitle used for display only - user visulisation of station.
@@ -95,19 +84,25 @@
 //Draw region overlay on map
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay
 {
+    //Create Circle renderer object to draw the circle overlay on the mapView layers
     MKCircleRenderer *circleR = [[MKCircleRenderer alloc] initWithCircle:(MKCircle *)overlay];
+    //set line colour to blue
     circleR.strokeColor = [UIColor blueColor];
+    //set fill colour to blue
     circleR.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+    //set line width to 3
     circleR.lineWidth = 3;
     
     return circleR;
 }
 
+//draw the annotation on the mapView passed in.
 -(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     // in case it's the user location, we already have an annotation, so just return nil
     if ([annotation isKindOfClass:[MKUserLocation class]])
     {
+        //may add code here to show user location by reverse geo lookup in future when location is tapped
         return nil;
     }
 
@@ -115,18 +110,21 @@
     // for station or stop annotation
     if ([annotation isKindOfClass:[StopAnnotation class]])
     {
-        
+        //set static string for annotation identifier.
         static NSString *StopAnnotationIdentifier = @"StopAnnotation";
         
+        //create a pinView to show the pin for the stop annotation
         MKPinAnnotationView *pinView =
         (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier: StopAnnotationIdentifier];
+       
+        //If there are no created pinViews
         if (pinView == nil)
         {
             //if an existing pin view was not available, create one
             MKPinAnnotationView *customPinView =
             [[MKPinAnnotationView alloc] initWithAnnotation: annotation reuseIdentifier: StopAnnotationIdentifier];
             
-            //Customize the pin view.
+            //Customize the pin view looks.
             customPinView.pinColor = MKPinAnnotationColorGreen;
             customPinView.animatesDrop = YES;
             customPinView.canShowCallout = YES;
@@ -151,6 +149,7 @@
         }
         else
         {
+            //else return a normal annotation object
             pinView.annotation = annotation;
         }
         
@@ -160,7 +159,7 @@
     return nil;
 }
 
-
+//Callout buttons tapped
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
       #warning Annotation Buttons need further work to show train times and remove region.
@@ -174,20 +173,17 @@
                                                            delegate: self
                                                   cancelButtonTitle: @"OK"
                                                   otherButtonTitles:nil];
-          
+          //show the alert to user
          [alertView show];
-
       }
       else if (control.tag == 1)
       {
           // NSLog(@"Clicked Right Button");
           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Next 3 Train Times" message:@"This is your first UIAlertview message.\nThis is second line.\nThird Line\n4thLine etc etc" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
           
+          //show alert
           [alertView show];
-
       }
-    
 }
-
 
 @end

@@ -100,7 +100,7 @@ static NSString *const kACPNotificationPeriodIndex = @"kACPNotificationPeriodInd
     UILocalNotification *localNotification = [UILocalNotification new];
     localNotification.fireDate = dateToFire;
     localNotification.alertBody = message;
-    localNotification.soundName = @"TrainAlert.mp3";
+    localNotification.soundName = @"TrainAlert.mp3";   //Edit by Eddie Power for MyStopMonitor 2014, not part of ACPReminder class.
     localNotification.applicationIconBadgeNumber = 1; // increment
     
     NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:timePeriodIndex, kACPNotificationPeriodIndex, kACPLocalNotificationApp, self.appDomain, nil];

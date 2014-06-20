@@ -1,34 +1,16 @@
-/*////////////////////////////////////////////////////////////////////////////////
- //  StopMonitorInfoViewController.m                                           //
- //  MyStopMonitor                                                            //
- //                                                                           //
- //  This project is to use the ios core location to monitor a users         //
- //  location while on public transport in this case a train running        //
- //  on the Frankston Line and a user will set the stop they would         //
- //  like to be notified before they reach, the phone will then           //
- //  alert the user to the upcoming stop and they can wake up or         //
- //  prepare to disembark the train with lots of time and not           //////////
- //  missing there stop. This will be widened to accept multiple               //
- //  train lines and transport types in an upcoming update soon.              //
- //                                                                          //
- //  The above copyright notice and this permission notice shall            //
- //  be included in all copies or substantial portions of the              //
- //  Software.                                                            //
- //                                                                      //
- //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY          //
- //  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        //
- //  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR          //
- //  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE              //
- //  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,          //
- //  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF           //
- //  CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN       //
- //  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER            //
- //  DEALINGS IN THE SOFTWARE.                                  //
- //                                                            //
- //  Created by Eddie Power on 10/06/2014                     //
- //  Copyright (c) 2014 Eddie Power.                         //
- //  All rights reserved.                                   //
- ////////////////////////////////////////////////////////////*/
+//  StopMonitorInfoViewController.m                                          
+//  MyStopMonitor
+
+//  This class is used to create a UIViewController, that is used to show
+//  both an information page such as instructions and upgrade announcments
+//  but also an about page that lets users know what the app is all about,
+//  who its made by and how to contact me should they wish to send in an idea.
+//  It uses a UIWebView to display the formatted text i wanted quickly, i will change this
+//  to a TextKit formatted attributed string and UITextView in the future.
+//  This class is a subclass of the UIViewController class, and does not use any delegate methods.
+
+//  Created by Eddie Power on 18/06/2014.
+//  Copyright (c) 2014 Eddie Power. All rights reserved.
 
 #import "StopMonitorInfoViewController.h"
 
@@ -47,9 +29,11 @@
     switch (self.infoTextSegment.selectedSegmentIndex)
     {
         case 0:
+            //if first segment then show welcome and instruction webpage
             [self showFileWithFileName:@"WelcomeInfo"];
             break;
         case 1:
+            //otherwise show the about info file
             [self showFileWithFileName:@"AboutInfo"];
             break;
         default:

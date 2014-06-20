@@ -1,35 +1,24 @@
-/*////////////////////////////////////////////////////////////////////////////////
-//  AlarmListController.h                                                      //
-//  MyStopMonitor                                                             //
-//                                                                           //
-//  This project is to use the ios core location to monitor a users         //
-//  location while on public transport in this case a train running        //
-//  on the Frankston Line and a user will set the stop they would         //
-//  like to be notified before they reach, the phone will then           //
-//  alert the user to the upcoming stop and they can wake up or         //
-//  prepare to disembark the train with lots of time and not           //////////
-//  missing there stop. This will be widened to accept multiple               //
-//  train lines and transport types in an upcoming update soon.              //
-//                                                                          //
-//  The above copyright notice and this permission notice shall            //
-//  be included in all copies or substantial portions of the              //
-//  Software.                                                            //
-//                                                                      //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY          //
-//  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        //
-//  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR          //
-//  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE              //
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,          //
-//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF           //
-//  CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN       //
-//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER            //
-//  DEALINGS IN THE SOFTWARE.                                  //
-//                                                            //
-//  Created by Eddie Power on 7/05/2014.                     //
-//  Copyright (c) 2014 Eddie Power.                         //
-//  All rights reserved.                                   //
-////////////////////////////////////////////////////////////*/
+/*  AlarmListController.h
+//  MyStopMonitor
 
+//  This class is used to create a TableViewController
+//  that is used to display a list of alarms that the user
+//  has set.  It also makes use of alocation manager set up
+//  in the application delegate and passed to this class to track
+//  the users current location and region entry to trigger a user alert
+//  which is a method in this class that at this time makes the phone speak if
+//  the application is in the forground and play a train crossing sound effect if
+//  the application is closed or running in the background.  The user alert
+//  also includes a UIAlertView, a localNotification from a custom class, and
+//  an in app animation from another custom class that diplays a green banner
+//  when the alert is triggered in the app.  These custom classes are refrenced in
+//  the readme file.
+ 
+//  Created by Eddie Power on 7/05/2014.
+//  Copyright (c) 2014 Eddie Power.
+//  All rights reserved.
+*/
+ 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 @import AVFoundation;  //new import type used for voice synth
@@ -46,7 +35,7 @@
 @property(strong, nonatomic) Alarm *anAlarmToStore;
 @property(strong, nonatomic) NSMutableArray* currentAlarms; 
 
-
+//methods to addAlarmRegion and remove a region.
 -(void)addAlarmRegion:(Alarm *)anAlarm;
 -(void)removeStopRegion:(Alarm *)anAlarm;
 

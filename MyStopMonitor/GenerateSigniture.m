@@ -1,39 +1,23 @@
-/*////////////////////////////////////////////////////////////////////////////////
-//  GenerateSigniture.m                                                        //
-//  MyStopMonitor                                                             //
-//                                                                           //
-//  This project is to use the ios core location to monitor a users         //
-//  location while on public transport in this case a train running        //
-//  on the Frankston Line and a user will set the stop they would         //
-//  like to be notified before they reach, the phone will then           //
-//  alert the user to the upcoming stop and they can wake up or         //
-//  prepare to disembark the train with lots of time and not           //////////
-//  missing there stop. This will be widened to accept multiple               //
-//  train lines and transport types in an upcoming update soon.              //
-//                                                                          //
-//  The above copyright notice and this permission notice shall            //
-//  be included in all copies or substantial portions of the              //
-//  Software.                                                            //
-//                                                                      //
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY          //
-//  KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE        //
-//  WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR          //
-//  PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE              //
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,          //
-//  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF           //
-//  CONTRACT, TORT OR OTHERWISE, ARISING FROM,OUT OF OR IN       //
-//  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER            //
-//  DEALINGS IN THE SOFTWARE.                                  //
-//                                                            //
-//  Created by Eddie Power on 7/05/2014.                     //
-//  Copyright (c) 2014 Eddie Power.                         //
-//  All rights reserved.                                   //
-////////////////////////////////////////////////////////////*/
+//   GenerateSigniture.m
+//   MyStopMonitor
+
+//   This class is used to generate the signiture needed to get data from
+//   the PTV api, it uses the full url as input and breaks that down into
+//   a base url, developerID, developer key to generate the signiture that is
+//   appended to the url required.  It does this by using the SHA1 encryption
+//   methods from the CommonCrypto/CommonHMAC.h library. This was addapted from the
+//   PTV API read me document examples.
+
+//   Created by Eddie Power on 7/05/2014.
+//   Copyright (c) 2014 Eddie Power.
+//   All rights reserved.
+
 
 #import "GenerateSigniture.h"
 
 @implementation GenerateSigniture
 
+//Method to create a signiture string for url and return full url
 -(NSURL*) generateURLWithDevIDAndKey: (NSString*)urlPath
 {
     //MY PTV API detils and main url
@@ -41,38 +25,52 @@
     NSString *hardcodedDevID = @"1000113";
     NSString *hardcodedkey = @"bfd79740-b866-11e3-8bed-0263a9d0b8a0";
     
-    //Set the delete range or amount to the length of the hardcoded url string
+    //Set the delete range or amount to the length of the hardcoded url string to remove.
     NSRange deleteRange = { 0,[hardcodedURL length] };
     NSMutableString *urlString = [[NSMutableString alloc] initWithString: urlPath];
     
+    //remove range
     [urlString deleteCharactersInRange: deleteRange];
     
+    //check if string has initial query string
     if([urlString hasSuffix:@"?"])
+        //then append the other query string seperator
         [urlString appendString:@"&"];
     else
+        //otherwise it needs initial seperator
         [urlString appendString:@"?"];
     
+    //now append the developer id in the string.
     [urlString appendFormat:@"devid=%@", hardcodedDevID];
     
-    const char *cKey = [hardcodedkey cStringUsingEncoding:NSUTF8StringEncoding];
-    const char *cData = [urlString cStringUsingEncoding:NSUTF8StringEncoding];
+    //set the encoding of the characters for encoding/encrypting
+    const char *cKey = [hardcodedkey cStringUsingEncoding: NSUTF8StringEncoding];
+    const char *cData = [urlString cStringUsingEncoding: NSUTF8StringEncoding];
     
+    //run encryption methods from apple library imported
     unsigned char cHMAC[CC_SHA1_DIGEST_LENGTH];
     CCHmac(kCCHmacAlgSHA1, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
     
+    //create a string pointer
     NSString *hash;
     
+    //set mutable string with a length of the encode * 2
     NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
     
+    //for each char in the length of encode string
     for(int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
+        //append a format char
         [output appendFormat:@"%02x", cHMAC[i]];
     
+    //set signiture and output and run the query string through
+    // the API URL to recieve the signiture
     hash = output;
     NSString* signature = [hash uppercaseString];
     NSString *urlSuffix = [NSString stringWithFormat:@"devid=%@&signature=%@", hardcodedDevID,signature];
     NSURL *url = [NSURL URLWithString:urlPath];
     NSString *urlQuery = [url query];
     
+    //error check the query result
     if(urlQuery != nil && [urlQuery length] > 0)
     {
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@&%@",urlPath,urlSuffix]];
@@ -81,11 +79,8 @@
     {
         url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@",urlPath,urlSuffix]];
     }
-    
-    //NSString *tmpString = [url absoluteString];
-    
-    //self.signedURL = tmpString;
-    
+ 
+    //return signed url for JSON requests.
     return url;
 }
 
