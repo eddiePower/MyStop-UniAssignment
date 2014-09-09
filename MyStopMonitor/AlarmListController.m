@@ -29,6 +29,9 @@
 {
     [super viewDidLoad];
     
+    //Allow the edit for re ordering and deletion of many cells
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     //Initalize alertSynth object for user alert to region entry.
     self.alertSynthesizer = [[AVSpeechSynthesizer alloc] init];
     
@@ -56,14 +59,20 @@
     {
         //Use mutableCopy of Array results as current alarms is a mutable array.
         self.currentAlarms = [results mutableCopy];
+        
+        //Alarm *tempAlarm = [[Alarm alloc] init];
+        for (Alarm* anAlarm in self.currentAlarms)
+        {
+            NSLog(@"Alarm Stop name: %@", anAlarm.station.stationName);
+        }
     }
 }
 
+/*
 //May be used later to prep regions or data to use.
 - (void)viewDidAppear:(BOOL)animated
 {
     //Display the monitored regions after loading or reloading the view.
-    /*
     if ([self.locManager monitoredRegions].count > 0)
     {
         //NSLog(@"Region List is now: %@", [self.locManager monitoredRegions]);
@@ -72,8 +81,26 @@
     {
         //NSLog(@"No Regions bieng monitored at this time.");
     }
-    */
+ 
 }
+*/
+
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    //[self.currentAlarms insertObject: [self.currentAlarms
+    //objectAtIndex:fromIndexPath.row] atIndex: toIndexPath.row];
+    
+    NSLog(@"Array is now: %@", self.currentAlarms.description);
+}
+
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the item to be re-orderable.
+    return NO;
+}
+
 
 //number of sections to return as i am counting alarms set this is 2
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -119,8 +146,24 @@
         //use alarm details to populate some labels.
         cell.alarmSuburbLabel.text = a.station.stationSuburb;
         cell.alarmStopNameLabel.text = a.station.stationName;
-        cell.alarmLocationLabel.text = [NSString stringWithFormat:@"%@,\n%@", a.station.stationLatitude, a.station.stationLongitude];
-
+        
+        //Calculate the distance from user to station
+        //set up and grab the user location from locManager.
+        CLLocationManager *locManager = [[CLLocationManager alloc] init];
+        [locManager startUpdatingLocation];
+        
+        //set up a station 2D coord.
+        CLLocationCoordinate2D center;
+        center.latitude = a.station.stationLatitude.doubleValue;
+        center.longitude = a.station.stationLongitude.doubleValue;
+        
+        //fill out the distance between user local and station.
+        cell.alarmDistance.text = [NSString stringWithFormat:@"%.2f km's away", [self kilometersfromPlace: locManager.location.coordinate andToPlace: center]];
+        
+        //stop updating user location for now.
+        [locManager stopUpdatingLocation];
+        
+        
         //Add a switch to the alarm Cell.
         UISwitch *alarmActiveSwitch = [[UISwitch alloc] initWithFrame: CGRectZero];
 
@@ -159,7 +202,7 @@
         //Total Alarms count cell setup.
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TotalCell"
                                                                 forIndexPath: indexPath];
-        cell.textLabel.text = [NSString stringWithFormat:@"Total Alarms Set: %lu", (unsigned long)[self.currentAlarms count]];
+        cell.textLabel.text = [NSString stringWithFormat:@"Total Alarms Set: %lu/20", (unsigned long)[self.currentAlarms count]];
         
         return cell;
     }
@@ -432,6 +475,23 @@
         //which i found on GitHub as mentioned in readMe file.
         [self.tableView setContentOffset:CGPointMake(0, -80) animated:YES];
     }
+}
+
+//Used to calc the distance between two locations in this case the user location and the station in question.
+-(float)kilometersfromPlace:(CLLocationCoordinate2D)from andToPlace:(CLLocationCoordinate2D)to
+{
+    
+    CLLocation *userLoc = [[CLLocation alloc]initWithLatitude:from.latitude longitude:from.longitude];
+    CLLocation *stationLoc = [[CLLocation alloc]initWithLatitude:to.latitude longitude:to.longitude];
+    
+    CLLocationDistance dist = [userLoc distanceFromLocation:stationLoc]/1000;
+    
+    //NSLog(@"Distance between is: %f km's away.", dist);
+    
+    NSString *distance = [NSString stringWithFormat:@"%f",dist];
+    
+    return [distance floatValue];
+    
 }
 
 //show the user alert dialogues and sounds

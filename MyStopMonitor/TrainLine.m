@@ -12,11 +12,10 @@
 
 @implementation TrainLine
 
--(id)initWithStopsArray:(NSArray *)anArray andTrainLineName:(NSString *)aName
+-(id)initWithTrainLineName:(NSString *)aName
 {
     if (self = [super init])
     {
-        self.lineStops = anArray;
         self.lineName = aName;
     }
     

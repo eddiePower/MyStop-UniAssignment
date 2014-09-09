@@ -13,13 +13,9 @@
 
 @interface TrainLine : NSObject
 
-//An array of station objects making up the train line.
-//TL to many Stations. Arrays as TrainLine stops dont change.
-@property (strong, nonatomic) NSArray* lineStops;
-
 //The train Line name for user display etc.
 @property (strong, nonatomic) NSString* lineName;
 
--(id)initWithStopsArray:(NSArray *)anArray andTrainLineName:(NSString *)aName;
+-(id)initWithTrainLineName:(NSString *)aName;
 
 @end

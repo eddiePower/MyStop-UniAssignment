@@ -14,6 +14,7 @@
 //  All rights reserved.
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import <CoreData/CoreData.h>
 #import "Alarm.h"
 #import "StationCell.h"

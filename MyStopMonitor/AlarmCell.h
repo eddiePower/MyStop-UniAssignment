@@ -22,7 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *alarmSuburbLabel;
 @property (weak, nonatomic) IBOutlet UILabel *alarmStopNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *alarmLocationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *alarmDistance;
+
 
 //switch properties needed to get and set switch state
 @property (strong, nonatomic) UISwitch *alarmSwitch;

@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //Customeize View of all pages of the app for specific UIKit controlls
-    [self styleMyApplication];
+    //[self styleMyApplication];
     
     //Create my Core Data Stack!
     self.managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];

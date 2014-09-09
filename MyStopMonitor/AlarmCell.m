@@ -27,9 +27,9 @@
 -(void)toggleAlarm
 {
     //refrence the alarmListController to make use of methods for adding and removing region alerts via the switch
-    AlarmListController *testing = [[AlarmListController alloc] init];
+    AlarmListController *myAlarmList = [[AlarmListController alloc] init];
     //create memory space for locManager from alarmList.
-    testing.locManager = [[CLLocationManager alloc] init];
+    myAlarmList.locManager = [[CLLocationManager alloc] init];
     
     if(self.alarmSwitch.on)
     {
@@ -40,7 +40,7 @@
         [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];
         
         //run the addAlarmRegion method from the testing object
-        [testing addAlarmRegion: self.cellAlarm];
+        [myAlarmList addAlarmRegion: self.cellAlarm];
     }
     else
     {
@@ -51,7 +51,7 @@
         [self updateAlarmManagedObject: [NSNumber numberWithInt:0] objectToSearchFor: self.cellAlarm.station.stationName];
         
         //Remover region or user alert for a specific stop
-        [testing removeStopRegion: self.cellAlarm];
+        [myAlarmList removeStopRegion: self.cellAlarm];
 
     }
 }

@@ -21,6 +21,12 @@
 {
     [super viewDidLoad];
     
+    //Grab the index number from the row selected in the TrainLine list
+    //to set the correct line number (i.e: Frankston is line 6 or row 6)
+    
+    
+    
+    
     //Set the searchbar delegate target to this view Controller.
     self.searchBar.delegate = self;
     
@@ -53,6 +59,7 @@
     
     //Fetch station data from the coreData stack
     //[self fetchStationData];
+    
 }
 
 //fetch station by name, used for search bar
@@ -64,7 +71,7 @@
     //If the name string isn't empty...
     if(![name isEqualToString:@""])
     {
-        //...we use a Predicate to select the correct monsters based on the search name
+        //...we use a Predicate to select the correct station based on the search name
         NSPredicate* nameSelect = [NSPredicate predicateWithFormat:@"stationName contains[cd] %@", name];
         [fetchRequest setPredicate:nameSelect];
     }
@@ -117,10 +124,13 @@
     //initalize objects used for data retrieval or url signing from API.
     NSURL *url;
     GenerateSigniture *getSigniture = [[GenerateSigniture alloc] init];
+    NSString *lineNumber = @"6"; //hardcoded to frankston line for now.
+    
     
     //Core url will eventually be a method or if statement for different train lines via /line/x/ query string
     //And also /mode/x/ changing for different transport types such as tram, bus, night rider and Vline services.
-    url = [getSigniture generateURLWithDevIDAndKey:@"http://timetableapi.ptv.vic.gov.au/v2/mode/0/line/6/stops-for-line"];
+    url = [getSigniture generateURLWithDevIDAndKey:[NSString stringWithFormat:@"http://timetableapi.ptv.vic.gov.au/v2/mode/0/line/%@/stops-for-line", lineNumber]];
+    
     //request the url object
     NSURLRequest* request = [NSURLRequest requestWithURL: url];
     
@@ -146,7 +156,7 @@
                 //If there is no error we will parse the response (which will save it into CoreData)
                 int numberOfItems = [self parseStationJSON: data];
                  
-                //Fetch the monsterData objects and load them into the table
+                //Fetch the stop object from search and load them into the table
                 if(numberOfItems > 0)
                     [self fetchStationDataByName: self.searchBar.text];
              }
@@ -248,8 +258,22 @@
     //set cell display values
     cell.stopSuburbLabel.text = s.stationSuburb;
     cell.stopNameLabel.text = s.stationName;
-    cell.stopLatLabel.text = [NSString stringWithFormat:@"%@", s.stationLatitude];
-    cell.stopLongLabel.text = [NSString stringWithFormat:@"%@", s.stationLongitude];
+    
+    //Calculate the distance from user to station
+    //set up and grab the user location from locManager.
+    CLLocationManager *locManager = [[CLLocationManager alloc] init];
+    [locManager startUpdatingLocation];
+    
+    //set up a station 2D coord.
+    CLLocationCoordinate2D center;
+    center.latitude = [s.stationLatitude doubleValue];
+    center.longitude = [s.stationLongitude doubleValue];
+    
+    //fill out the distance between user local and station.
+    cell.stopDistance.text = [NSString stringWithFormat:@"Distance: %.2f km's away", [self kilometersfromPlace: locManager.location.coordinate andToPlace: center]];
+    
+    //stop updating user location for now.
+    [locManager stopUpdatingLocation];
     
     return cell;
 }
@@ -279,6 +303,25 @@
     //run the fetchStationData by name method on changed value of text in searchbar.
     [self fetchStationDataByName: searchText];
 }
+
+
+//Used to calc the distance between two locations in this case the user location and the station in question.
+-(float)kilometersfromPlace:(CLLocationCoordinate2D)from andToPlace:(CLLocationCoordinate2D)to
+{
+    
+    CLLocation *userLoc = [[CLLocation alloc]initWithLatitude:from.latitude longitude:from.longitude];
+    CLLocation *stationLoc = [[CLLocation alloc]initWithLatitude:to.latitude longitude:to.longitude];
+    
+    CLLocationDistance dist = [userLoc distanceFromLocation:stationLoc]/1000;
+    
+    //NSLog(@"Distance between is: %f km's away.", dist);
+    
+    NSString *distance = [NSString stringWithFormat:@"%f",dist];
+    
+    return [distance floatValue];
+    
+}
+
 
 //Keyboard delegate methods
 //Hide kb when bg is tapped 2X

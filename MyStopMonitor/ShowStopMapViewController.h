@@ -23,9 +23,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *stationNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stationTypeLabel;
 //station mapView output.
+
+@property (weak, nonatomic) IBOutlet UILabel *stationDistanceLabel;
+
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
 @property (nonatomic, readonly) MKMapRect boundingMapRect;
 @property (nonatomic) CLLocationCoordinate2D mapCoordinate;
+
 //Station object passed from alarm list to display
 @property (strong, nonatomic) Station* mapStation;
 

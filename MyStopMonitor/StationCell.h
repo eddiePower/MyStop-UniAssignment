@@ -17,7 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *stopSuburbLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stopNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stopLatLabel;
-@property (weak, nonatomic) IBOutlet UILabel *stopLongLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stopDistance;
 
 @end

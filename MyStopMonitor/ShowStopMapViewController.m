@@ -23,7 +23,7 @@
     
     //customise the view background with an image, this will not stay a perminant feature as i am no
     // good at UI design.
-    [[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mapBg"]]];
+    //[[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"mapBg"]]];
     
     // Create userDefaults store for retrieving radius values for overlays
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -45,10 +45,22 @@
     //store it as a double number
     double tempRadius = tempString.doubleValue;
     
-    //center location for mapView
+    //set up a station 2D coord.
     CLLocationCoordinate2D center;
     center.latitude = [self.mapStation.stationLatitude doubleValue];
     center.longitude = [self.mapStation.stationLongitude doubleValue];
+    
+    //Calculate the distance from user to station
+    //set up and grab the user location from locManager.
+    CLLocationManager *locManager = [[CLLocationManager alloc] init];
+    [locManager startUpdatingLocation];
+    
+    //display the current distance from the user to the station selected.
+    self.stationDistanceLabel.text = [NSString stringWithFormat:@"Distance from you: %.2f km's", [self kilometersfromPlace: locManager.location.coordinate andToPlace: center]];
+
+    //stop monitoring user local for now.
+    [locManager stopUpdatingLocation];
+    
     
     //create a mapPoint for the mapRect creation
     MKMapPoint pt = MKMapPointForCoordinate(center);
@@ -184,6 +196,23 @@
           //show alert
           [alertView show];
       }
+}
+
+//Used to calc the distance between two locations in this case the user location and the station in question.
+-(float)kilometersfromPlace:(CLLocationCoordinate2D)from andToPlace:(CLLocationCoordinate2D)to
+{
+    
+    CLLocation *userLoc = [[CLLocation alloc]initWithLatitude:from.latitude longitude:from.longitude];
+    CLLocation *stationLoc = [[CLLocation alloc]initWithLatitude:to.latitude longitude:to.longitude];
+    
+    CLLocationDistance dist = [userLoc distanceFromLocation:stationLoc]/1000;
+    
+    //NSLog(@"Distance between is: %f km's away.", dist);
+    
+    NSString *distance = [NSString stringWithFormat:@"%f",dist];
+    
+    return [distance floatValue];
+    
 }
 
 @end

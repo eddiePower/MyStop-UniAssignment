@@ -33,7 +33,7 @@
 //user alert voice
 @property(strong, nonatomic) AVSpeechSynthesizer *alertSynthesizer;
 @property(strong, nonatomic) Alarm *anAlarmToStore;
-@property(strong, nonatomic) NSMutableArray* currentAlarms; 
+@property(strong, nonatomic) NSMutableArray* currentAlarms;
 
 //methods to addAlarmRegion and remove a region.
 -(void)addAlarmRegion:(Alarm *)anAlarm;
