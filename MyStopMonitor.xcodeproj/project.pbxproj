@@ -14,6 +14,8 @@
 		89315BAB1946CD4B00CD1D50 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 89315BAA1946CD4B00CD1D50 /* Localizable.strings */; };
 		893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */; };
 		893C6A4E1931E57D00501E0A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893C6A4D1931E57D00501E0A /* CoreData.framework */; };
+		893F24A219BF260100D79DA1 /* TrainLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 893F24A119BF260100D79DA1 /* TrainLineCell.m */; };
+		893F24A519BF262400D79DA1 /* TrainLinesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 893F24A419BF262400D79DA1 /* TrainLinesController.m */; };
 		895AFD1419534D5D0053A9C7 /* 1_OpenApp.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0A19534D5D0053A9C7 /* 1_OpenApp.png */; };
 		895AFD1519534D5D0053A9C7 /* 2_Tap_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0B19534D5D0053A9C7 /* 2_Tap_button.png */; };
 		895AFD1619534D5D0053A9C7 /* 3_ChoosStop.png in Resources */ = {isa = PBXBuildFile; fileRef = 895AFD0C19534D5D0053A9C7 /* 3_ChoosStop.png */; };
@@ -79,6 +81,10 @@
 		89315BAA1946CD4B00CD1D50 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		893C6A4B1931E0EC00501E0A /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		893C6A4D1931E57D00501E0A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		893F24A019BF260100D79DA1 /* TrainLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainLineCell.h; sourceTree = "<group>"; };
+		893F24A119BF260100D79DA1 /* TrainLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainLineCell.m; sourceTree = "<group>"; };
+		893F24A319BF262400D79DA1 /* TrainLinesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainLinesController.h; sourceTree = "<group>"; };
+		893F24A419BF262400D79DA1 /* TrainLinesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainLinesController.m; sourceTree = "<group>"; };
 		895AFD0A19534D5D0053A9C7 /* 1_OpenApp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 1_OpenApp.png; path = imageResources/1_OpenApp.png; sourceTree = "<group>"; };
 		895AFD0B19534D5D0053A9C7 /* 2_Tap_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 2_Tap_button.png; path = imageResources/2_Tap_button.png; sourceTree = "<group>"; };
 		895AFD0C19534D5D0053A9C7 /* 3_ChoosStop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 3_ChoosStop.png; path = imageResources/3_ChoosStop.png; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 				899F721B1927D0BA00835477 /* StopAnnotation.m */,
 				89701DE6191A03AB00501AB0 /* StationCell.h */,
 				89701DE7191A03AB00501AB0 /* StationCell.m */,
+				893F24A019BF260100D79DA1 /* TrainLineCell.h */,
+				893F24A119BF260100D79DA1 /* TrainLineCell.m */,
 				89701DE3191A039A00501AB0 /* AlarmCell.h */,
 				89701DE4191A039A00501AB0 /* AlarmCell.m */,
 			);
@@ -322,10 +330,12 @@
 			children = (
 				89701DB71919FE4500501AB0 /* StopMonitorAppDelegate.h */,
 				89701DB81919FE4500501AB0 /* StopMonitorAppDelegate.m */,
-				89701DE0191A035900501AB0 /* AddStopController.h */,
-				89701DE1191A035900501AB0 /* AddStopController.m */,
 				89701DDD191A032B00501AB0 /* AlarmListController.h */,
 				89701DDE191A032B00501AB0 /* AlarmListController.m */,
+				893F24A319BF262400D79DA1 /* TrainLinesController.h */,
+				893F24A419BF262400D79DA1 /* TrainLinesController.m */,
+				89701DE0191A035900501AB0 /* AddStopController.h */,
+				89701DE1191A035900501AB0 /* AddStopController.m */,
 				89D6B53D191FDA0A00011880 /* ShowStopMapViewController.h */,
 				89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */,
 				8967C82F1941EB56002460EB /* SettingsViewController.h */,
@@ -400,6 +410,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Eddie Power";
 				TargetAttributes = {
+					89701DA41919FE4500501AB0 = {
+						DevelopmentTeam = 56MDF7DRJL;
+					};
 					89701DC51919FE4600501AB0 = {
 						TestTargetID = 89701DA41919FE4500501AB0;
 					};
@@ -476,8 +489,10 @@
 				89701DDF191A032B00501AB0 /* AlarmListController.m in Sources */,
 				89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */,
 				89701DE2191A035900501AB0 /* AddStopController.m in Sources */,
+				893F24A519BF262400D79DA1 /* TrainLinesController.m in Sources */,
 				899C70321944C3110026D1E7 /* ACPReminder.m in Sources */,
 				89701DB91919FE4500501AB0 /* StopMonitorAppDelegate.m in Sources */,
+				893F24A219BF260100D79DA1 /* TrainLineCell.m in Sources */,
 				89F3702C1948815900C87550 /* Station.m in Sources */,
 				89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */,
 				8967C8311941EB56002460EB /* SettingsViewController.m in Sources */,
@@ -604,6 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
 				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitor-Info.plist";
@@ -617,6 +633,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
 				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitor-Info.plist";

@@ -1,17 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal"
-    },
-    {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "1x",
       "filename" : "Icon-Small.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x",
       "filename" : "Icon-SmallX2.png"
+    },
+    {
+      "idiom" : "universal",
+      "unassigned" : true
     }
   ],
   "info" : {
