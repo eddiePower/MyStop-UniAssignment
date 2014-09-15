@@ -174,7 +174,7 @@
 //Callout buttons tapped
 -(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-      #warning Annotation Buttons need further work to show train times and remove region.
+    //#warning Annotation Buttons need further work to show train times and remove region.
     
     //Check which button got clicked left or right by its tag number set.
       if (control.tag == 0)

@@ -38,7 +38,7 @@
 
         //Search the managed object context sent over from alarmListViewController which is recieved initially from app delegate file. then update value of alarmIsActive key in managedobject context
         [self updateAlarmManagedObject: [NSNumber numberWithInt:1] objectToSearchFor: self.cellAlarm.station.stationName];
-        
+    
         //run the addAlarmRegion method from the testing object
         [myAlarmList addAlarmRegion: self.cellAlarm];
     }

@@ -190,7 +190,7 @@
         {
             //if CD was stored as alarmIsActive then set switch to off position on app start up.
             [alarmActiveSwitch setOn: NO animated: YES];
-            
+          
             //Remover region alert by using current alarm details such as station detail.
             [self removeStopRegion: a];
         }
@@ -202,6 +202,10 @@
         //Total Alarms count cell setup.
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TotalCell"
                                                                 forIndexPath: indexPath];
+        
+        
+        
+        
         cell.textLabel.text = [NSString stringWithFormat:@"Total Alarms Set: %lu/20", (unsigned long)[self.currentAlarms count]];
         
         return cell;
