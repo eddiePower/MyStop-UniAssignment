@@ -29,6 +29,16 @@
 {
     [super viewDidLoad];
     
+    // Create userDefaults store and check for alertRadius value in it.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    //set up an initial value for the alertRadius so its not 0 on a new install.
+    //users can then change this value with the slider on settings page.
+    [defaults setValue: @"0.8" forKeyPath: @"alertRadius"];
+    [defaults synchronize];
+    
+    //NSLog(@"Default object radius is now set at: %@", [defaults valueForKeyPath:@"alertRadius"]);
+    
     //Allow the edit for re ordering and deletion of many cells
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -61,38 +71,41 @@
         self.currentAlarms = [results mutableCopy];
         
         //Alarm *tempAlarm = [[Alarm alloc] init];
-        for (Alarm* anAlarm in self.currentAlarms)
-        {
-            NSLog(@"Alarm Stop name: %@", anAlarm.station.stationName);
-        }
+//        for (Alarm* anAlarm in self.currentAlarms)
+//        {
+//            NSLog(@"Alarm Stop name: %@", anAlarm.station.stationName);
+//        }
     }
 }
 
-/*
+
 //May be used later to prep regions or data to use.
 - (void)viewDidAppear:(BOOL)animated
 {
-    //Display the monitored regions after loading or reloading the view.
-    if ([self.locManager monitoredRegions].count > 0)
-    {
-        //NSLog(@"Region List is now: %@", [self.locManager monitoredRegions]);
-    }
-    else
-    {
-        //NSLog(@"No Regions bieng monitored at this time.");
-    }
- 
-}
-*/
-
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-    //[self.currentAlarms insertObject: [self.currentAlarms
-    //objectAtIndex:fromIndexPath.row] atIndex: toIndexPath.row];
+    //quickly get current location of user to compare to location of each alarm
+    CLLocationManager *locManager = [[CLLocationManager alloc] init];
+    [locManager startUpdatingLocation];
     
-    NSLog(@"Array is now: %@", self.currentAlarms.description);
+    //update distance to location of alarms on each reload of page.
+    //Alarm *tempAlarm = [[Alarm alloc] init];
+    for (Alarm* anAlarm in self.currentAlarms)
+    {
+        //NSLog(@"Alarm Stop name: %@", anAlarm.station.stationName);
+        
+        //set up a station 2D coord.
+        CLLocationCoordinate2D center;
+        center.latitude = anAlarm.station.stationLatitude.doubleValue;
+        center.longitude = anAlarm.station.stationLongitude.doubleValue;
+        
+        //fill out the distance between user local and station.
+        anAlarm.alarmDistance = [NSString stringWithFormat: @"%.2f km's away", [self kilometersfromPlace: locManager.location.coordinate andToPlace: center]];
+    }
+    
+    [locManager stopUpdatingLocation];
+    
+    
 }
+
 
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,7 +171,7 @@
         center.longitude = a.station.stationLongitude.doubleValue;
         
         //fill out the distance between user local and station.
-        cell.alarmDistance.text = [NSString stringWithFormat:@"%.2f km's away", [self kilometersfromPlace: locManager.location.coordinate andToPlace: center]];
+        cell.alarmDistance.text = a.alarmDistance;
         
         //stop updating user location for now.
         [locManager stopUpdatingLocation];
@@ -202,9 +215,6 @@
         //Total Alarms count cell setup.
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TotalCell"
                                                                 forIndexPath: indexPath];
-        
-        
-        
         
         cell.textLabel.text = [NSString stringWithFormat:@"Total Alarms Set: %lu/20", (unsigned long)[self.currentAlarms count]];
         
@@ -331,11 +341,25 @@
     
     //set the alarmAlertRadius value to the one stored in the user default
     // store. This is a global settings area for the application.
-    anAlarm.alarmAlertRadius = [defaults objectForKey:@"alertRadius"];
-    //used in the region creation for radius in meters.
-    //chose 360m-900m to allow enough time for user.
-    //will keep this value as the last set radius limit.
     
+    //set string from defaults store to allow for formating to coreData type.
+    NSString *tempRadius = [defaults objectForKey:@"alertRadius"];
+    
+    if (![tempRadius isEqual:@"0.8"])
+    {
+        //convert the inital radius number from a string to a NSNumber with double value.
+        anAlarm.alarmAlertRadius = [NSNumber numberWithDouble: tempRadius.doubleValue];
+        //NSLog(@"\n\n yay theres a val in radius on first load\n%@", tempRadius);
+    }
+    else
+    {
+        //if there is no number stored in the defaults file then make up one
+        // which users can edit gloabally later for all alarms = one radius.
+        anAlarm.alarmAlertRadius = [NSNumber numberWithDouble: 0.8];
+    }
+    
+    
+
     //date of creation may be used after future update to set repeating alarms.
     //Not really used at this time, may need it later
     anAlarm.alarmTime = [NSDate date];

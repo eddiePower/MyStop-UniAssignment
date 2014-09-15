@@ -290,6 +290,23 @@
     //combine the two objects or relate them.
     newAlarm.station = selectedStation;
     
+    //Calculate the distance from user to station
+    //set up and grab the user location from locManager.
+    CLLocationManager *locManager = [[CLLocationManager alloc] init];
+    [locManager startUpdatingLocation];
+    
+    //set up a station 2D coord.
+    CLLocationCoordinate2D center;
+    center.latitude = [selectedStation.stationLatitude doubleValue];
+    center.longitude = [selectedStation.stationLongitude doubleValue];
+    
+    //fill out the distance between user local and station.
+    newAlarm.alarmDistance = [NSString stringWithFormat: @"%.2f km's away", [self kilometersfromPlace: locManager.location.coordinate andToPlace: center]];
+
+    //stop updating location for now as we have got the user
+    // location to compare to stop location ie: distance between a & b
+    [locManager stopUpdatingLocation];
+    
     //send the delegate method the new Alarm including selectedStation.
     [self.delegate addAlarmStop: newAlarm];
     //Pop a alarm onto the list.

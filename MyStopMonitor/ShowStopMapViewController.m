@@ -45,6 +45,12 @@
     //store it as a double number
     double tempRadius = tempString.doubleValue;
     
+    if (tempRadius == 0.0)
+    {
+        tempRadius = 0.6;
+        //NSLog(@"\n\nNew Empty RADIUS in show map is now: %.2f\n\n", tempRadius);
+    }
+
     //set up a station 2D coord.
     CLLocationCoordinate2D center;
     center.latitude = [self.mapStation.stationLatitude doubleValue];

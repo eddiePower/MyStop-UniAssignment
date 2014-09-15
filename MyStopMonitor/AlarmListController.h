@@ -34,6 +34,7 @@
 @property(strong, nonatomic) AVSpeechSynthesizer *alertSynthesizer;
 @property(strong, nonatomic) Alarm *anAlarmToStore;
 @property(strong, nonatomic) NSMutableArray* currentAlarms;
+@property(strong, nonatomic) NSString *stopDistanceStore;
 
 //methods to addAlarmRegion and remove a region.
 -(void)addAlarmRegion:(Alarm *)anAlarm;

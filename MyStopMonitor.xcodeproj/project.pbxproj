@@ -54,13 +54,13 @@
 		899C70321944C3110026D1E7 /* ACPReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 899C70311944C3110026D1E7 /* ACPReminder.m */; };
 		899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 899F721B1927D0BA00835477 /* StopAnnotation.m */; };
 		89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */; };
+		89B1CB3F19C6A7AE000C4FE7 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B1CB3E19C6A7AE000C4FE7 /* Station.m */; };
+		89B1CB4219C6A7AE000C4FE7 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B1CB4119C6A7AE000C4FE7 /* Alarm.m */; };
 		89BAD9B4194302F800D56D08 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89BAD9B3194302F800D56D08 /* AVFoundation.framework */; };
 		89D6B536191FD25100011880 /* TrainLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6B535191FD25100011880 /* TrainLine.m */; };
 		89D6B539191FD93500011880 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B537191FD93500011880 /* CoreLocation.framework */; };
 		89D6B53A191FD93500011880 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D6B538191FD93500011880 /* MapKit.framework */; };
 		89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */; };
-		89F370291948815800C87550 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F370281948815800C87550 /* Alarm.m */; };
-		89F3702C1948815900C87550 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F3702B1948815900C87550 /* Station.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +136,10 @@
 		899F721B1927D0BA00835477 /* StopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopAnnotation.m; sourceTree = "<group>"; };
 		89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenerateSigniture.h; sourceTree = "<group>"; };
 		89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenerateSigniture.m; sourceTree = "<group>"; };
+		89B1CB3D19C6A7AE000C4FE7 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
+		89B1CB3E19C6A7AE000C4FE7 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
+		89B1CB4019C6A7AE000C4FE7 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
+		89B1CB4119C6A7AE000C4FE7 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
 		89BAD9B3194302F800D56D08 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		89D6B534191FD25100011880 /* TrainLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainLine.h; sourceTree = "<group>"; };
 		89D6B535191FD25100011880 /* TrainLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainLine.m; sourceTree = "<group>"; };
@@ -143,10 +147,6 @@
 		89D6B538191FD93500011880 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		89D6B53D191FDA0A00011880 /* ShowStopMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowStopMapViewController.h; sourceTree = "<group>"; };
 		89D6B53E191FDA0A00011880 /* ShowStopMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowStopMapViewController.m; sourceTree = "<group>"; };
-		89F370271948815800C87550 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
-		89F370281948815800C87550 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
-		89F3702A1948815900C87550 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Station.h; sourceTree = "<group>"; };
-		89F3702B1948815900C87550 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Station.m; sourceTree = "<group>"; };
 		89FC0ADC1924F3DB002BC8B0 /* FrankstonLineStops.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FrankstonLineStops.gpx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -351,11 +351,11 @@
 			children = (
 				89ACB91C1935732A00B43EF8 /* GenerateSigniture.h */,
 				89ACB91D1935732A00B43EF8 /* GenerateSigniture.m */,
-				89F370271948815800C87550 /* Alarm.h */,
-				89F370281948815800C87550 /* Alarm.m */,
-				89F3702A1948815900C87550 /* Station.h */,
-				89F3702B1948815900C87550 /* Station.m */,
 				893C6A4A1931E0EB00501E0A /* CoreData.xcdatamodeld */,
+				89B1CB3D19C6A7AE000C4FE7 /* Station.h */,
+				89B1CB3E19C6A7AE000C4FE7 /* Station.m */,
+				89B1CB4019C6A7AE000C4FE7 /* Alarm.h */,
+				89B1CB4119C6A7AE000C4FE7 /* Alarm.m */,
 				89D6B534191FD25100011880 /* TrainLine.h */,
 				89D6B535191FD25100011880 /* TrainLine.m */,
 			);
@@ -489,21 +489,21 @@
 				89701DDF191A032B00501AB0 /* AlarmListController.m in Sources */,
 				89D6B53F191FDA0A00011880 /* ShowStopMapViewController.m in Sources */,
 				89701DE2191A035900501AB0 /* AddStopController.m in Sources */,
+				89B1CB4219C6A7AE000C4FE7 /* Alarm.m in Sources */,
 				893F24A519BF262400D79DA1 /* TrainLinesController.m in Sources */,
 				899C70321944C3110026D1E7 /* ACPReminder.m in Sources */,
 				89701DB91919FE4500501AB0 /* StopMonitorAppDelegate.m in Sources */,
 				893F24A219BF260100D79DA1 /* TrainLineCell.m in Sources */,
-				89F3702C1948815900C87550 /* Station.m in Sources */,
 				89ACB91E1935732A00B43EF8 /* GenerateSigniture.m in Sources */,
 				8967C8311941EB56002460EB /* SettingsViewController.m in Sources */,
 				893C6A4C1931E0EC00501E0A /* CoreData.xcdatamodeld in Sources */,
 				897E855619517A5800ADED1C /* StopMonitorInfoViewController.m in Sources */,
 				89701DE8191A03AB00501AB0 /* StationCell.m in Sources */,
 				89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */,
+				89B1CB3F19C6A7AE000C4FE7 /* Station.m in Sources */,
 				899F721C1927D0BA00835477 /* StopAnnotation.m in Sources */,
 				89D6B536191FD25100011880 /* TrainLine.m in Sources */,
 				897F2A081944EE5F00799A48 /* TDNotificationPanel.m in Sources */,
-				89F370291948815800C87550 /* Alarm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
