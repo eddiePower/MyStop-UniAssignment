@@ -262,8 +262,11 @@
     //Calculate the distance from user to station
     //set up and grab the user location from locManager.
     CLLocationManager *locManager = [[CLLocationManager alloc] init];
-    [locManager startUpdatingLocation];
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //request permission to use location manager if user has not already granted it.
+    [locManager requestAlwaysAuthorization];
+#endif
     //set up a station 2D coord.
     CLLocationCoordinate2D center;
     center.latitude = [s.stationLatitude doubleValue];
@@ -293,7 +296,11 @@
     //Calculate the distance from user to station
     //set up and grab the user location from locManager.
     CLLocationManager *locManager = [[CLLocationManager alloc] init];
-    [locManager startUpdatingLocation];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //request permission to use location manager if user has not already granted it.
+    [locManager requestAlwaysAuthorization];
+#endif
     
     //set up a station 2D coord.
     CLLocationCoordinate2D center;
@@ -314,7 +321,7 @@
 }
 //End table view delegate functions
 
-//Translates the searchbarText on the fly rather then after an event like touchUpInside of button etc.
+//Translates the searchbarText on the fly rather then after an event like touchUpInside of button
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     //run the fetchStationData by name method on changed value of text in searchbar.
@@ -329,7 +336,7 @@
     CLLocation *userLoc = [[CLLocation alloc]initWithLatitude:from.latitude longitude:from.longitude];
     CLLocation *stationLoc = [[CLLocation alloc]initWithLatitude:to.latitude longitude:to.longitude];
     
-    CLLocationDistance dist = [userLoc distanceFromLocation:stationLoc]/1000;
+    CLLocationDistance dist = [userLoc distanceFromLocation: stationLoc]/1000;
     
     //NSLog(@"Distance between is: %f km's away.", dist);
     

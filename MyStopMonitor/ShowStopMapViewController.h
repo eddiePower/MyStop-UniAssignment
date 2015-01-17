@@ -14,6 +14,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+@import CoreLocation;
 #import "Station.h"
 #import "StopAnnotation.h"
 

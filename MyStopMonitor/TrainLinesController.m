@@ -71,7 +71,7 @@
 {
     //set unchangable string for cell identifier
       static NSString *CellIdentifier = @"TrainLineCell";
-    TrainLineCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    TrainLineCell *cell = [tableView dequeueReusableCellWithIdentifier: CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
     

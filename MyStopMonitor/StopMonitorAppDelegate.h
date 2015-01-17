@@ -16,6 +16,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+@import CoreLocation;
 #import "AlarmListController.h"
 #import "StopMonitorInfoViewController.h"
 
@@ -26,7 +27,7 @@
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-//view to open to when alert arrives.
+//view to open to when app loads & locManager
 @property (strong, nonatomic) AlarmListController *viewController;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 

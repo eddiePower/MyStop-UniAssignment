@@ -27,7 +27,7 @@
     
     // Create userDefaults store for retrieving radius values for overlays
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+        
     //MapView Configuration to show user location when near alarm region on map
     self.mapView.showsUserLocation = YES;
     
@@ -38,6 +38,8 @@
    
     //Set the mapView Delegate to return to itself for annotations.
     self.mapView.delegate = self;
+    
+    
    
     //retrieve the alertRadius value
     NSString *tempString = [defaults objectForKey:@"alertRadius"];
@@ -59,6 +61,12 @@
     //Calculate the distance from user to station
     //set up and grab the user location from locManager.
     CLLocationManager *locManager = [[CLLocationManager alloc] init];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //request permission to use location manager if user has not already granted it.
+    [locManager requestAlwaysAuthorization];
+#endif
+    
     [locManager startUpdatingLocation];
     
     //display the current distance from the user to the station selected.

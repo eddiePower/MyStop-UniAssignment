@@ -70,8 +70,8 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "Sydney, Australia"
-         referenceType = "1">
+         identifier = "../../MyStopMonitor/FrankstonLineStops.gpx"
+         referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction

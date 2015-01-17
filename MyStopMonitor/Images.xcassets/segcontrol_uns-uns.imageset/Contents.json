@@ -7,11 +7,13 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Icon-60@2x.png"
     },
     {
-      "idiom" : "universal",
-      "unassigned" : true
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "filename" : "Icon-60@3x.png"
     }
   ],
   "info" : {

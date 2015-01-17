@@ -24,6 +24,17 @@
     //Customeize View of all pages of the app for specific UIKit controlls
     //[self styleMyApplication];
     
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+#else
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+#endif
+    
     //Create my Core Data Stack!
     self.managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: self.managedObjectModel];
@@ -50,9 +61,17 @@
     AlarmListController *alarmListController = [navController.viewControllers firstObject];
     alarmListController.managedObjectContext = self.managedObjectContext;
     
+    //NSLog(@"\n\n\nThe NAV controller contains: %@\n\n\n", [navController description]);
+    
     //Create location manager for use globally through-out the application
     self.locationManager = [[CLLocationManager alloc] init];
     //Start updating the location data of the user to begin monitoring regions after app loads.
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //request permission to use location manager if user has not already granted it.
+    [self.locationManager requestAlwaysAuthorization];
+#endif
+    
     [self.locationManager startUpdatingLocation];
         
     //Set desired accuracy as high as feasable due to purpose of the app.
@@ -60,8 +79,13 @@
     self.locationManager.distanceFilter = kCLLocationAccuracyBest;
     //self.locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
     
-	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    //self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    
+    //Set locationManager accuracy and distance filter or amount of space before device location is checked.
+    // default is kCLDistanceFilterNone: all movements are reported.
+    
+    //self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    self.locationManager.distanceFilter = 5.0f;
     
     //set the location manager used on other pages so monitoring dosnt stop at wrong time.
     alarmListController.locManager = self.locationManager;
@@ -79,6 +103,10 @@
         //app is running for the very first time
         //set the value of HasLaunchedOnce to YES or True
         [[NSUserDefaults standardUserDefaults] setBool: YES forKey:@"HasLaunchedOnce"];
+        
+        //Set an inital radius for alerts
+        [[NSUserDefaults standardUserDefaults] setValue: @"400.50" forKeyPath: @"alertRadius"];
+        
         //save user defaults
         [[NSUserDefaults standardUserDefaults] synchronize];
 
@@ -105,7 +133,23 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // If user goes to home screen Reset the icon badge for alerts number to zero.
-	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    //hide the status bar in the app.
+    application.statusBarHidden = true;
+    
+    //set up new changes for notifications if IOS is above 8.0
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+#else
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+#endif
+    
+    
+	application.applicationIconBadgeNumber = 0;
     
     //Check background GPS monitoring is available
     if ([CLLocationManager significantLocationChangeMonitoringAvailable])
@@ -129,13 +173,17 @@
 {
     
 	// Reset the icon badge number to zero.
-	[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+	application.applicationIconBadgeNumber = 0;
 
     //Check background GPS monitoring is available
 	if ([CLLocationManager significantLocationChangeMonitoringAvailable])
     {
 		// Stop normal location updates and start significant location change updates for battery efficiency.
 		[self.locationManager stopUpdatingLocation];
+        #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        //request permission to use location manager if user has not already granted it.
+        [self.locationManager requestAlwaysAuthorization];
+        #endif
 		[self.locationManager startMonitoringSignificantLocationChanges];
         
         NSLog(@"Switching to monitor Background location Changes.");
@@ -150,6 +198,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //NSLog(@"\n\nThe regions bieng monitored are: %@\n\n", self.locationManager.monitoredRegions);
 }
 
 //app has returned to front or is now active
@@ -168,16 +217,19 @@
 		// Stop significant location updates and start normal location
         // updates again since the app is in the forefront.
 		[self.viewController.locManager stopMonitoringSignificantLocationChanges];
-		[self.viewController.locManager startUpdatingLocation];
-        //NSLog(@"Stopping monitoring Background signifigant Changes now.");
+
+		
+        [self.viewController.locManager startUpdatingLocation];
+        NSLog(@"Stopping monitoring Background signifigant Changes now.");
 	}
 	else
     {
 		NSLog(@"Significant location change monitoring is not available.");
 	}
 
+    
     // Reset the icon badge number to zero.
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    application.applicationIconBadgeNumber = 0;
 }
 
 //called before the app terminates or quits this is where preperation like saving

@@ -11,8 +11,9 @@
       "filename" : "Settings-iconX2.png"
     },
     {
-      "idiom" : "universal",
-      "unassigned" : true
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "filename" : "Icon-60@3x.png"
     }
   ],
   "info" : {

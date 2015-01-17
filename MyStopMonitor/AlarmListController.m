@@ -34,10 +34,10 @@
     
     //set up an initial value for the alertRadius so its not 0 on a new install.
     //users can then change this value with the slider on settings page.
-    [defaults setValue: @"0.8" forKeyPath: @"alertRadius"];
+    //[defaults setValue: @"0.8" forKeyPath: @"alertRadius"];
     [defaults synchronize];
     
-    //NSLog(@"Default object radius is now set at: %@", [defaults valueForKeyPath:@"alertRadius"]);
+    NSLog(@"Default object radius is now set at: %@", [defaults valueForKeyPath:@"alertRadius"]);
     
     //Allow the edit for re ordering and deletion of many cells
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -47,7 +47,12 @@
     
     //set location manager delegate to return to this view.
     self.locManager.delegate = self;
-    
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //request permission to use location manager if user has not already granted it.
+    [self.locManager requestAlwaysAuthorization];
+#endif
+
     //set fetch request to get the Alarm entities
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Alarm"];
     
@@ -69,12 +74,6 @@
     {
         //Use mutableCopy of Array results as current alarms is a mutable array.
         self.currentAlarms = [results mutableCopy];
-        
-        //Alarm *tempAlarm = [[Alarm alloc] init];
-//        for (Alarm* anAlarm in self.currentAlarms)
-//        {
-//            NSLog(@"Alarm Stop name: %@", anAlarm.station.stationName);
-//        }
     }
 }
 
@@ -84,6 +83,12 @@
 {
     //quickly get current location of user to compare to location of each alarm
     CLLocationManager *locManager = [[CLLocationManager alloc] init];
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+    //request permission to use location manager if user has not already granted it.
+    [self.locManager requestAlwaysAuthorization];
+#endif
+    
     [locManager startUpdatingLocation];
     
     //update distance to location of alarms on each reload of page.
@@ -163,6 +168,12 @@
         //Calculate the distance from user to station
         //set up and grab the user location from locManager.
         CLLocationManager *locManager = [[CLLocationManager alloc] init];
+        
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
+        //request permission to use location manager if user has not already granted it.
+        [self.locManager requestAlwaysAuthorization];
+#endif
+        
         [locManager startUpdatingLocation];
         
         //set up a station 2D coord.
@@ -415,6 +426,8 @@
                                                     initWithCenter: stopCenter
                                                     radius: tempRadius
                                                     identifier: anAlarm.station.stationName]];
+       
+        NSLog(@"All regions in locManager are: %@\n\n", [self.locManager monitoredRegions]);
 	}
 	else
     {
@@ -426,13 +439,19 @@
 //Check monitoring for region has started successfully - only needed for development / debugging
 -(void)locationManager:(CLLocationManager *)manager didStartMonitoringForRegion:(CLRegion *)region
 {
-    //NSLog(@"\nNow monitoring region named: %@", region.identifier);
+    //NSLog(@"\nNow monitoring region named: %@", region.description);
 }
 
 //Check monitoring for region has stopped successfully - only needed for development / debugging
 -(void)locationManager:(CLLocationManager *)manager didStopMonitoringForRegion:(CLRegion *)region
 {
-    //NSLog(@"\nStoping monitoring region name: %@", region.identifier);
+    NSLog(@"\nStoping monitoring region name: %@", region.description);
+}
+
+
+-(void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    NSLog(@"Checking the region of: %@", region.identifier);
 }
 
 //if the region monitoring failed then run this delegate method.
@@ -466,7 +485,7 @@
 // location manager when movement stops, and starts again when movement does.
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-
+    //NSLog(@"The location manager has moved to new location of %@", newLocation.description);
 }
 
 //This method will be the one to alert users to station arival!
@@ -474,7 +493,7 @@
 {
 	//Debug lines to show the event that fired which is the user has entered the regionName on xx/xx/xxxx +00:00
     NSString *event = [NSString stringWithFormat:@"You've Entered the Region %@ at %@", region.identifier, [NSDate date]];
-    NSLog(@"\nEvent was: %@", event);
+    NSLog(@"\n\n!!!!!Event was: %@\n\n", event);
     
     //--------Alert the user To Region or station arrival with Sound Alert and Vibrate------------
     //Create string to speak with region name or identifier in it.
@@ -485,8 +504,8 @@
 //not needed in this application.
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-	//NSString *event = [NSString stringWithFormat:@"You Exited the Region %@ at %@", region.identifier, [NSDate date]];
-    //NSLog(@"Event was: %@", event);
+	NSString *event = [NSString stringWithFormat:@"You Exited the Region %@ at %@", region.identifier, [NSDate date]];
+    NSLog(@"Event was: %@", event);
 }
 //End CLLocationManager delegate methods.
 
@@ -532,8 +551,13 @@
     
     //Create speech or utterance object
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString: utteranceString];
+    
     //set Voice speed.
-    utterance.rate = .2f;
+    utterance.rate = .1f;
+    //set voice pitch to little kid=1.4, old person=0.5, funny=2.0, normal=1.0
+    //utterance.pitchMultiplier = 1.4f;
+    
+    
     
     //Create user alert box for station arrival alert
     UIAlertView *userAlert;
@@ -556,6 +580,7 @@
     
     //vibrate the phone to alert the user this also covers the alert if user has phone on silent
     AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+    AudioServicesPlayAlertSound(3);
     
     //Show alert box
     [userAlert show];

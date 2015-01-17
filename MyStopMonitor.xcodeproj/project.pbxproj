@@ -42,6 +42,7 @@
 		89701DE2191A035900501AB0 /* AddStopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE1191A035900501AB0 /* AddStopController.m */; };
 		89701DE5191A039A00501AB0 /* AlarmCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE4191A039A00501AB0 /* AlarmCell.m */; };
 		89701DE8191A03AB00501AB0 /* StationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89701DE7191A03AB00501AB0 /* StationCell.m */; };
+		89755F6219ED601B008B5529 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89755F6119ED601B008B5529 /* Launch Screen.xib */; };
 		8979916219484CC400F0AFA2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8979916119484CC400F0AFA2 /* README.md */; };
 		897E855619517A5800ADED1C /* StopMonitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897E855519517A5800ADED1C /* StopMonitorInfoViewController.m */; };
 		897F2A021944EE5F00799A48 /* errorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 897F29FA1944EE5F00799A48 /* errorIcon.png */; };
@@ -119,6 +120,7 @@
 		89701DE4191A039A00501AB0 /* AlarmCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlarmCell.m; sourceTree = "<group>"; };
 		89701DE6191A03AB00501AB0 /* StationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCell.h; sourceTree = "<group>"; };
 		89701DE7191A03AB00501AB0 /* StationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCell.m; sourceTree = "<group>"; };
+		89755F6119ED601B008B5529 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		8979916119484CC400F0AFA2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		897E855419517A5800ADED1C /* StopMonitorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopMonitorInfoViewController.h; sourceTree = "<group>"; };
 		897E855519517A5800ADED1C /* StopMonitorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopMonitorInfoViewController.m; sourceTree = "<group>"; };
@@ -228,9 +230,10 @@
 				8936BB921944F47900BB9B9B /* ExtraResources */,
 				899F72201927DF3A00835477 /* Resources */,
 				89701DBA1919FE4500501AB0 /* Main.storyboard */,
+				89755F6119ED601B008B5529 /* Launch Screen.xib */,
+				89BAD9B01942EA7100D56D08 /* Controller */,
 				89F6B7BF191A554300797094 /* model */,
 				89BAD9AF1942EA3700D56D08 /* View */,
-				89BAD9B01942EA7100D56D08 /* Controller */,
 				89701DAF1919FE4500501AB0 /* Supporting Files */,
 			);
 			path = MyStopMonitor;
@@ -425,7 +428,6 @@
 			knownRegions = (
 				en,
 				Base,
-				fr,
 			);
 			mainGroup = 89701D9C1919FE4500501AB0;
 			productRefGroup = 89701DA61919FE4500501AB0 /* Products */;
@@ -452,6 +454,7 @@
 				895AFD1919534D5D0053A9C7 /* 6_StopInfo.png in Resources */,
 				897F2A051944EE5F00799A48 /* infoIcon@2x.png in Resources */,
 				895AFD1819534D5D0053A9C7 /* 5_tapStopForInfo.png in Resources */,
+				89755F6219ED601B008B5529 /* Launch Screen.xib in Resources */,
 				895AFD1A19534D5D0053A9C7 /* 7_SetRadiusSize.png in Resources */,
 				895AFD1B19534D5D0053A9C7 /* 8_DeactivateAlert.png in Resources */,
 				8979916219484CC400F0AFA2 /* README.md in Resources */,
@@ -576,7 +579,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -608,7 +611,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -620,10 +623,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
 				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitor-Info.plist";
 				PRODUCT_NAME = MyStopMonitor;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -634,10 +639,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MyStopMonitor/MyStopMonitor-Prefix.pch";
 				INFOPLIST_FILE = "MyStopMonitor/MyStopMonitor-Info.plist";
 				PRODUCT_NAME = MyStopMonitor;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
