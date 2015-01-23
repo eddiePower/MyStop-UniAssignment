@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "TrainLine.h"
+#import "TrainLineCell.h"
+#import "AddStopController.h"
 
 @interface TrainLinesController : UITableViewController
 

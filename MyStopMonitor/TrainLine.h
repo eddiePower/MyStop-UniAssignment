@@ -15,7 +15,8 @@
 
 //The train Line name for user display etc.
 @property (strong, nonatomic) NSString* lineName;
+@property (strong, nonatomic) NSNumber* lineNumber;
 
--(id)initWithTrainLineName:(NSString *)aName;
+-(id)initWithTrainLineName:(NSString *)aName andLineNumber:(NSNumber *)aLineNumber;
 
 @end

@@ -38,6 +38,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 //Will update application to work with multiple train lines and eventually bus and tram lines.
-//@property (strong, nonatomic) TrainLine* trainLine;
+@property (strong, nonatomic) TrainLine* trainLine;
 
 @end

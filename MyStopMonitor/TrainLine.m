@@ -12,11 +12,12 @@
 
 @implementation TrainLine
 
--(id)initWithTrainLineName:(NSString *)aName
+-(id)initWithTrainLineName:(NSString *)aName andLineNumber:(NSNumber *)aLineNumber
 {
     if (self = [super init])
     {
         self.lineName = aName;
+        self.lineNumber = aLineNumber;
     }
     
     return self;
