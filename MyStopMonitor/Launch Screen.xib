@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,8 +10,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2014 Eddie Power. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
-                    <rect key="frame" x="20" y="626" width="336" height="20.5"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2014 Eddie Power. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
+                    <rect key="frame" x="20" y="626" width="336" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="nF3-Id-FNE"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -19,36 +22,59 @@
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                     </variation>
                 </label>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="stopicon" translatesAutoresizingMaskIntoConstraints="NO" id="gsa-JX-ZV6">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="stopicon" translatesAutoresizingMaskIntoConstraints="NO" id="gsa-JX-ZV6">
                     <rect key="frame" x="316" y="245" width="32" height="32"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="train.png" translatesAutoresizingMaskIntoConstraints="NO" id="XNM-fy-e1h">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="train.png" translatesAutoresizingMaskIntoConstraints="NO" id="XNM-fy-e1h">
                     <rect key="frame" x="67" y="92" width="236" height="193"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="193" id="YGN-d0-uuB"/>
+                    </constraints>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="tabbaralarmclock" translatesAutoresizingMaskIntoConstraints="NO" id="zjV-88-cIP">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="tabbaralarmclock" translatesAutoresizingMaskIntoConstraints="NO" id="zjV-88-cIP">
                     <rect key="frame" x="319" y="197" width="29" height="29"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="timetable" translatesAutoresizingMaskIntoConstraints="NO" id="6ku-Hp-cgP">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="timetable" translatesAutoresizingMaskIntoConstraints="NO" id="6ku-Hp-cgP">
                     <rect key="frame" x="319" y="146" width="29" height="29"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="settings-icon" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-Bc-Ic8">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="settings-icon" translatesAutoresizingMaskIntoConstraints="NO" id="vyc-Bc-Ic8">
                     <rect key="frame" x="27" y="248" width="29" height="29"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="icon_info_alt" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-mF-Shd">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="icon_info_alt" translatesAutoresizingMaskIntoConstraints="NO" id="eIf-mF-Shd">
                     <rect key="frame" x="27" y="197" width="29" height="29"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="thumb" translatesAutoresizingMaskIntoConstraints="NO" id="1mi-jh-VWN">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="thumb" translatesAutoresizingMaskIntoConstraints="NO" id="1mi-jh-VWN">
                     <rect key="frame" x="31" y="150" width="25" height="25"/>
                 </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="nFp-mv-zcU">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="redraw" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="nFp-mv-zcU">
                     <rect key="frame" x="9" y="351" width="357" height="169"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="Kzo-t9-V3l"/>
-                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="MfP-vx-nX0"/>
-                <constraint firstAttribute="centerX" secondItem="8ie-xW-0ye" secondAttribute="centerX" id="ZEH-qu-HZ9"/>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="788-Ja-s70"/>
+                <constraint firstItem="gsa-JX-ZV6" firstAttribute="bottom" secondItem="vyc-Bc-Ic8" secondAttribute="bottom" id="C6d-Wa-kdc"/>
+                <constraint firstItem="XNM-fy-e1h" firstAttribute="leading" secondItem="1mi-jh-VWN" secondAttribute="trailing" constant="11" id="E2M-tF-7Oy"/>
+                <constraint firstItem="nFp-mv-zcU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FG2-Ag-SQd"/>
+                <constraint firstItem="zjV-88-cIP" firstAttribute="trailing" secondItem="gsa-JX-ZV6" secondAttribute="trailing" id="HVl-Nw-KiW"/>
+                <constraint firstItem="6ku-Hp-cgP" firstAttribute="leading" secondItem="XNM-fy-e1h" secondAttribute="trailing" constant="16" id="JNY-MW-M0E"/>
+                <constraint firstItem="zjV-88-cIP" firstAttribute="leading" secondItem="6ku-Hp-cgP" secondAttribute="leading" id="Lo0-0K-okE"/>
+                <constraint firstItem="eIf-mF-Shd" firstAttribute="leading" secondItem="vyc-Bc-Ic8" secondAttribute="leading" id="OJD-eT-YzK"/>
+                <constraint firstItem="6ku-Hp-cgP" firstAttribute="trailing" secondItem="zjV-88-cIP" secondAttribute="trailing" id="PQP-GH-z5r"/>
+                <constraint firstItem="eIf-mF-Shd" firstAttribute="trailing" secondItem="vyc-Bc-Ic8" secondAttribute="trailing" id="QtT-a1-qsZ"/>
+                <constraint firstItem="eIf-mF-Shd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="27" id="RDQ-xs-acp"/>
+                <constraint firstItem="nFp-mv-zcU" firstAttribute="top" secondItem="vyc-Bc-Ic8" secondAttribute="bottom" constant="74" id="TEK-3s-ZVY"/>
+                <constraint firstItem="zjV-88-cIP" firstAttribute="top" secondItem="eIf-mF-Shd" secondAttribute="top" id="UeK-Ty-kO1"/>
+                <constraint firstItem="nFp-mv-zcU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="UfF-Q0-ZQN"/>
+                <constraint firstItem="gsa-JX-ZV6" firstAttribute="top" secondItem="zjV-88-cIP" secondAttribute="bottom" constant="19" id="VqI-xk-aWC"/>
+                <constraint firstAttribute="trailing" secondItem="6ku-Hp-cgP" secondAttribute="trailing" constant="27" id="fbA-Fy-Tt6"/>
+                <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="20" id="i7k-gq-A3F"/>
+                <constraint firstItem="eIf-mF-Shd" firstAttribute="trailing" secondItem="1mi-jh-VWN" secondAttribute="trailing" id="jGN-se-Eo8"/>
+                <constraint firstItem="XNM-fy-e1h" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="92" id="kqB-aC-rwc"/>
+                <constraint firstItem="nFp-mv-zcU" firstAttribute="top" secondItem="XNM-fy-e1h" secondAttribute="bottom" constant="66" id="lTc-h2-Ox1"/>
+                <constraint firstItem="1mi-jh-VWN" firstAttribute="bottom" secondItem="6ku-Hp-cgP" secondAttribute="bottom" id="nNb-Bz-TnR"/>
+                <constraint firstItem="eIf-mF-Shd" firstAttribute="top" secondItem="1mi-jh-VWN" secondAttribute="bottom" constant="22" id="ofU-q0-klG"/>
+                <constraint firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="19" id="znK-Zr-4IL"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
