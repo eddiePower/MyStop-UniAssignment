@@ -236,7 +236,15 @@
 // app state can happen.
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    // Call a notification when the application exits to let the user know the app wont notify them
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    [notification setAlertBody:@"Ensure all switch's are off as this app will notify you even if not running unless there are no stops in the list."];
+    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow: 1]];
+    [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+    [notification setSoundName:UILocalNotificationDefaultSoundName];
+    
+    [application setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
 }
 
 //this is called to style some elements of tha app with a custom
