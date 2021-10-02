@@ -127,9 +127,11 @@
     NSString *lineNumber = @"6"; //hardcoded to frankston line for now.
     
     
+    //http://timetableapi.ptv.vic.gov.au/v3/stops/route/6/route_type/0?devid=1000113&signature=FCD2311AEC1222AC07DDEB6CB7D3BCABB84A1910
+
     //Core url will eventually be a method or if statement for different train lines via /line/x/ query string
     //And also /mode/x/ changing for different transport types such as tram, bus, night rider and Vline services.
-    url = [getSigniture generateURLWithDevIDAndKey:[NSString stringWithFormat:@"http://timetableapi.ptv.vic.gov.au/v2/mode/0/line/%@/stops-for-line", lineNumber]];
+    url = [getSigniture generateURLWithDevIDAndKey:[NSString stringWithFormat:@"https://timetableapi.ptv.vic.gov.au/v3/stops/route/%@/route_type/0", lineNumber]];
     
     //request the url object
     NSURLRequest* request = [NSURLRequest requestWithURL: url];
@@ -183,11 +185,15 @@
         return 0;
     }
     
+    id val = nil;
+    NSArray *values = [result allValues];
+    val = [values objectAtIndex:0];
+    
     //check its class type and if its an Array then save to MoC
-    if([result isKindOfClass:[NSArray class]])
+    if([val isKindOfClass:[NSArray class]])
     {
-        NSArray *StationArray = (NSArray *)result;
-        //NSLog(@"Found %lu Stations!", (unsigned long)[StationArray count]);
+        NSArray *StationArray = (NSArray *)val;
+        NSLog(@"Found %lu Stations!", (unsigned long)[StationArray count]);
         
         //Store each station from stationArray in a NSDict called station
         for (NSDictionary* station in StationArray)
@@ -196,12 +202,12 @@
             Station *aStation = [NSEntityDescription insertNewObjectForEntityForName:@"Station" inManagedObjectContext:self.managedObjectContext];
             
             //set values for station object from station dictionary with objectForKey method
-            aStation.stationName = [station objectForKey:@"location_name"];
-            aStation.stationSuburb = [station objectForKey:@"suburb"];
+            aStation.stationName = [station objectForKey:@"stop_name"];
+            aStation.stationSuburb = [station objectForKey:@"stop_suburb"];
             aStation.stationStopId = [station objectForKey:@"stop_id"];
             aStation.stationStopType = [station objectForKey:@"transport_type"];
-            aStation.stationLatitude = [station objectForKey:@"lat"];
-            aStation.stationLongitude = [station objectForKey:@"lon"];
+            aStation.stationLatitude = [station objectForKey:@"stop_latitude"];
+            aStation.stationLongitude = [station objectForKey:@"stop_longitude"];
             aStation.stationDistance = [station objectForKey:@"distance"];
         }
         

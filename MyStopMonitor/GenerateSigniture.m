@@ -21,7 +21,8 @@
 -(NSURL*) generateURLWithDevIDAndKey: (NSString*)urlPath
 {
     //MY PTV API detils and main url
-    NSString *hardcodedURL = @"http://timetableapi.ptv.vic.gov.au";
+    //http://timetableapi.ptv.vic.gov.au/v3/
+    NSString *hardcodedURL = @"https://timetableapi.ptv.vic.gov.au";
     NSString *hardcodedDevID = @"1000113";
     NSString *hardcodedkey = @"bfd79740-b866-11e3-8bed-0263a9d0b8a0";
     
